@@ -3,26 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_recetas_medicas/Class_recetas_medicas.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_compra/JInternalFrame_compra.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/farmacia/salud/total/inicio_de_seccion.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/farmacia/salud/total/FarmaciaSaludTotal.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_recetas_medicas/JInternalFrame_recetas_medicas.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_clientes/JInternalFrame_clientes.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_ventas/JInternalFrame_ventas.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_laboratorio/JInternalFrame_laboratorio.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_compra/Class_compra.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_empleado/Class_empleado.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_clientes/Class_clientes.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_productos/JInternalFrame_productos.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_productos/Class_productos.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_ventas/Class_ventas.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/imagen/Farmacia%20salud%20total.png</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/imagen/Farmacia%20salud%20total%20(1).png</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_empleado/JInternalFrame_empleado.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/farmacia/salud/total/MDI_Farmacia_salud_total.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/farmacia/salud/total/JInternalFrame_inicio_de_seccion.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/package_laboratorio/Class_laboratorio.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/DAOclientes.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/vista/JInternalFrame_clientes.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/DAOempleado.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/DAOproductos.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/vista/JInternalFrame_laboratorio.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/vista/JInternalFrame_compra.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/DataBase.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/DAOcompra.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/Class_empleado.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/vista/JInternalFrame_ventas.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/Class_productos.java</file>
         </group>
     </open-files>
 </project-private>

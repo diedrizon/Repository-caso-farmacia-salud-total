@@ -4,8 +4,6 @@
  */
 package Modelo;
 
-import farmacia.salud.total.*;
-
 /**
  *
  * @author diedr

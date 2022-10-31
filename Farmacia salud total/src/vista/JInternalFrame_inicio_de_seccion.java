@@ -4,8 +4,6 @@
  */
 package vista;
 
-import farmacia.salud.total.*;
-
 /**
  *
  * @author diedr
@@ -50,15 +48,21 @@ public class JInternalFrame_inicio_de_seccion extends javax.swing.JInternalFrame
         jLabel3.setForeground(new java.awt.Color(0, 0, 255));
         jLabel3.setText("clave");
 
+        jTextField_codigo.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField_codigo.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_codigoActionPerformed(evt);
             }
         });
 
-        jButton_iniciar.setForeground(new java.awt.Color(102, 255, 204));
+        jButton_iniciar.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_iniciar.setForeground(new java.awt.Color(0, 0, 0));
+        jButton_iniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon iniciar sesion.png"))); // NOI18N
         jButton_iniciar.setText("Iniciar");
 
+        jPasswordField_clave.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField_clave.setForeground(new java.awt.Color(0, 0, 0));
         jPasswordField_clave.setText("jPasswordField1");
         jPasswordField_clave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,13 +85,14 @@ public class JInternalFrame_inicio_de_seccion extends javax.swing.JInternalFrame
                     .addComponent(jPasswordField_clave, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton_iniciar)
-                .addGap(159, 159, 159))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(133, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(96, 96, 96))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(96, 96, 96))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton_iniciar)
+                        .addGap(131, 131, 131))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,9 +113,9 @@ public class JInternalFrame_inicio_de_seccion extends javax.swing.JInternalFrame
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(jPasswordField_clave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jButton_iniciar)
-                .addGap(23, 23, 23))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
