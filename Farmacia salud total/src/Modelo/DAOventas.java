@@ -9,26 +9,30 @@ import java.util.*;
 
 public class DAOventas {
     
-    public Class_ventas Insertar(int n_factura, float monto_vt , float cant_vt, Date fh_vt ){
+    public Class_ventas Insertar(int n_factura, float monto_vt , float cant_vt, Date fh_vt,int cod_emp,String ced_cli){
         String transaccion = "INSERT INTO ventas VALUES('"
         + n_factura + "', '"
         + monto_vt + "','"
         + cant_vt + "','"
-        + fh_vt + ")"; 
+        + fh_vt + "','"
+        + cod_emp + "','"
+        + ced_cli + ")"; 
         
         
     if (new DataBase().Actualizar(transaccion) > 0){
-    return new Class_ventas(monto_vt,cant_vt ,fh_vt );
+    return new Class_ventas(monto_vt,cant_vt ,fh_vt,cod_emp,ced_cli );
 }
 return null;
 }
      public int Actualizar(int n_factura,int monto_vt,float cant_vt, 
-        float fh_vt){
+        float fh_vt, int cod_emp, String ced_cli){
     
     String transaccion = "UPDATE ventas SET monto_vt='"
         + monto_vt + "', cant_vt='"
         + cant_vt + "', fh_vt= '"
-        + fh_vt + "', WHERE n_factura= '"
+        + fh_vt + "',cod_emp '"
+        + cod_emp + "',ced_cli'"
+        + ced_cli +  "', WHERE n_factura= '"
         + n_factura ;
     return new DataBase().Actualizar(transaccion);
 }   
@@ -42,7 +46,9 @@ return null;
         Class_ventas aut = new Class_ventas ((int) registro.get("n_factura"),
           (float) registro.get("monto_vt"),
           (float) registro.get("cant_vt"),
-          (Date) registro.get("fh_vt"));
+          (Date) registro.get("fh_vt"),
+          (int) registro.get("cod_emp"),
+          (String) registro.get("ced_cli"));
         ventas.add((Map) aut);
     }
     return ventas; // Retorna todos los autores ubicados en la tabla de DB

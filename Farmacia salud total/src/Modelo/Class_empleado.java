@@ -18,8 +18,7 @@ public class Class_empleado {
     private String telf_emp;
     private String tp_de_cargo;
     private int tp_de_turno;
-    private  Time h_entrada; 
-    private Time h_salida;
+   
 
     public Class_empleado(String ced_emp, String nbr_1_emp, String nbr_2_emp, String apelli_1_emp, String apelli_2_emp, String direc_emp, String tel_emp, String tp_de_cargo, Time h_entrada, Time h_salida) {
         this.ced_emp = ced_emp;
@@ -30,26 +29,33 @@ public class Class_empleado {
         this.direc_emp = direc_emp;
         this.telf_emp = tel_emp;
         this.tp_de_cargo = tp_de_cargo;
-        this.h_entrada = h_entrada;
-        this.h_salida = h_salida;
+        
     }
     
 
-//    public Class_empleado(int cod_emp, String ced_emp, String nbr_1_emp, String nbr_2_emp, String apelli_1_emp, String apelli_2_emp, String direc_emp, String tel_emp, String tp_de_cargo, int tp_de_turno, Time h_entrada, Time h_salida) {
-//        this.cod_emp = cod_emp;
-//        this.ced_emp = ced_emp;
-//        this.nbr_1_emp = nbr_1_emp;
-//        this.nbr_2_emp = nbr_2_emp;
-//        this.apelli_1_emp = apelli_1_emp;
-//        this.apelli_2_emp = apelli_2_emp;
-//        this.direc_emp = direc_emp;
-//        this.telf_emp = tel_emp;
-//        this.tp_de_cargo = tp_de_cargo;
-//        this.tp_de_turno = tp_de_turno;
-//        this.h_entrada = h_entrada;
-//        this.h_salida = h_salida;
-  //  }
+    public Class_empleado(int cod_emp, String ced_emp, String nbr_1_emp, String nbr_2_emp, String apelli_1_emp, String apelli_2_emp, String direc_emp, String tel_emp, String tp_de_cargo, int tp_de_turno, Time h_entrada, Time h_salida) {
+        this.cod_emp = cod_emp;
+        this.ced_emp = ced_emp;
+        this.nbr_1_emp = nbr_1_emp;
+        this.nbr_2_emp = nbr_2_emp;
+        this.apelli_1_emp = apelli_1_emp;
+        this.apelli_2_emp = apelli_2_emp;
+        this.direc_emp = direc_emp;
+        this.telf_emp = tel_emp;
+        this.tp_de_cargo = tp_de_cargo;
+        this.tp_de_turno = tp_de_turno;
+        
+    }
 
+    Class_empleado(String ced_emp, String nbr_1_emp, String nbr_2_emp, String apelli_1_emp, String apelli_2_emp, String direc_emp, String telf_emp, String tp_de_cargo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    Class_empleado(int i, int i0, String string, String string0, String string1, String string2, String string3, String string4, int i1) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+  
     public int getCod_emp() {
         return cod_emp;
     }
@@ -130,21 +136,8 @@ public class Class_empleado {
         this.tp_de_turno = tp_de_turno;
     }
 
-    public Time getH_entrada() {
-        return h_entrada;
-    }
-
-    public void setH_entrada(Time h_entrada) {
-        this.h_entrada = h_entrada;
-    }
-
-    public Time getH_salida() {
-        return h_salida;
-    }
-
-    public void setH_salida(Time h_salida) {
-        this.h_salida = h_salida;
+    
     }
     
     
-}
+

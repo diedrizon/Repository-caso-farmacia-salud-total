@@ -5,7 +5,7 @@ import Modelo.*;
 import java.awt.Component;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
-//import java.sql.Date;
+import java.sql.Time;
 import javax.swing.JOptionPane;
 
 /** @author diedr */
@@ -36,6 +36,7 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         public void obtenerDatos(){
         
         List<Class_empleado> empleados=new DAOempleado().obtenerDatos();
+        List<Class_turno> turno = new DOAturno().obtenerDatos();
         
         DefaultTableModel modelo=new DefaultTableModel();
         
@@ -45,12 +46,13 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         
         modelo.setColumnIdentifiers(columnas);
         for(Class_empleado au:empleados){
-            String[]renglon0={Integer.toString(au.getCod_emp()),au.getCed_emp(),
+            String[]renglono={Integer.toString(au.getCod_emp()),au.getCed_emp(),
                     au.getNbr_1_emp(),au.getNbr_2_emp(),au.getApelli_1_emp(),
                     au.getApelli_2_emp(),au.getDirec_emp(),au.getTel_emp(),
                     au.getTp_de_cargo(),
                     Integer.toString (au.getTp_de_turno()),
-                    Time.toString (au.getH_entrada(),au.getH_salida())};   
+                    java.sql.Time(au.getH_entrada(),
+                    java.sql.Time (au.getH_salida()))};   
         }
         jTable_empleado.setModel(modelo);
                 
@@ -702,10 +704,10 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
               String telf=(String)this.jTable_empleado.getValueAt(fila,8);
               String tp_c=(String)this.jTable_empleado.getValueAt(fila,9);
               int tp_t=Integer.parseInt((String)this.jTable_empleado.getValueAt(fila,10));
-              String h_e=(String)this.jTable_empleado.getValueAt(fila,11);
-              String h_s=(String)this.jTable_empleado.getValueAt(fila,12);
+              java.sql.Time h_e=Time.valueOf((String)this.jTable_empleado.getValueAt(fila,11).toString());
+              java.sql.Time h_s=Time.valueOf((String)this.jTable_empleado.getValueAt(fila,12).toString());
               
-              jTextField_cod_emp.setText(""+cod);
+              jTextField_cod_emp.setText(Integer.toString(""+cod));
               jTextField_ced_emp.setText(ced);
               jTextField_nbr_1_emp.setText(nbr1);
               jTextField_nbr_2_emp.setText(nbr2);
@@ -714,9 +716,9 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
               jTextField_direc_emp.setText(direc);
               jTextField_telf_emp.setText(telf);
               jTextField_tp_de_cargo.setText(tp_c);
-              jTextField_tp_de_turno.setText(Integer.parseInt(tp_t));
-              jTextField_h_entrada.setText(h_e);
-              jTextField_h_salida.setText(h_s);
+              jTextField_tp_de_turno.setText(Integer.toString(tp_t));
+              jTextField_h_entrada.setText(String.valueOf(h_e));
+              jTextField_h_salida.setText(String.valueOf(h_s));
               
           }catch(Exception e){
               e.printStackTrace();

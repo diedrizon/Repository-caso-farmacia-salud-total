@@ -30,8 +30,8 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
         jButton_laboratorio_panel = new javax.swing.JButton();
         jButton_compra_panel = new javax.swing.JButton();
         jButton_producto_panel = new javax.swing.JButton();
-        jButton_ventas_panel = new javax.swing.JButton();
         jButton_empleado_panel = new javax.swing.JButton();
+        jButton_ventas_panel = new javax.swing.JButton();
         jButton_clientes_panel = new javax.swing.JButton();
         jButton_rece_mdc_panel = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
@@ -58,7 +58,7 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 521, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,20 +111,6 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton_producto_panel);
 
-        jButton_ventas_panel.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_ventas_panel.setForeground(new java.awt.Color(0, 0, 0));
-        jButton_ventas_panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon venta.png"))); // NOI18N
-        jButton_ventas_panel.setText("Ventas");
-        jButton_ventas_panel.setFocusable(false);
-        jButton_ventas_panel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton_ventas_panel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton_ventas_panel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ventas_panelActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton_ventas_panel);
-
         jButton_empleado_panel.setBackground(new java.awt.Color(255, 255, 255));
         jButton_empleado_panel.setForeground(new java.awt.Color(0, 0, 0));
         jButton_empleado_panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon empleado.png"))); // NOI18N
@@ -138,6 +124,20 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jButton_empleado_panel);
+
+        jButton_ventas_panel.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_ventas_panel.setForeground(new java.awt.Color(0, 0, 0));
+        jButton_ventas_panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon venta.png"))); // NOI18N
+        jButton_ventas_panel.setText("Ventas");
+        jButton_ventas_panel.setFocusable(false);
+        jButton_ventas_panel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_ventas_panel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_ventas_panel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ventas_panelActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton_ventas_panel);
 
         jButton_clientes_panel.setBackground(new java.awt.Color(255, 255, 255));
         jButton_clientes_panel.setForeground(new java.awt.Color(0, 0, 0));
@@ -234,8 +234,8 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
             .addComponent(jDesktopPane1)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

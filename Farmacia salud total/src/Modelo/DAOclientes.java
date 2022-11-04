@@ -43,7 +43,7 @@ public int Actualizar(String ced_cli,String nbr_1_cli, String nbr_2_cli,
 }
       
 public List obtenerDatos(){
-    String transaccion = "SELECT * FROM clientes";
+    String transaccion = "'SELECT * FROM clientes'";
     List<Map> registros = new DataBase().Listar(transaccion);
     List<Map> clientes = new ArrayList(); // Areglos de autores
     

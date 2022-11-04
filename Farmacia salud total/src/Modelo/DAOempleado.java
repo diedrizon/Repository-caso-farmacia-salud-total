@@ -1,18 +1,14 @@
 
 package Modelo;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 /** @author diedr */
 public class DAOempleado {
     
     public Class_empleado Insertar(int cod_emp, String ced_emp, String nbr_1_emp , String nbr_2_emp, String apelli_1_emp,
-            String apelli_2_emp,String direc_emp, String telf_emp, String tp_de_cargo,int tp_de_turno,
-            Time h_entrada,Time h_salida){
+            String apelli_2_emp,String direc_emp, String telf_emp, String tp_de_cargo,int tp_de_turno){
         String transaccion = "INSERT INTO empleado VALUES('"
         + cod_emp + "', '"
         + ced_emp + "','"
@@ -23,22 +19,20 @@ public class DAOempleado {
         + direc_emp + "','"
         + telf_emp + "','"
         + tp_de_cargo + "','"
-        + tp_de_turno + "','"       
-        + h_entrada + "','"
-        + h_salida + ")"; 
+        + tp_de_turno + ")" ;      
+       
         
         
     if (new DataBase().Actualizar(transaccion) > 0){
-    return new Class_empleado(cod_emp,ced_emp ,nbr_1_emp,
-    nbr_2_emp,apelli_1_emp,apelli_2_emp,direc_emp,telf_emp,tp_de_cargo,tp_de_turno,
-    h_entrada,h_salida);
+    return new Class_empleado (ced_emp ,nbr_1_emp ,nbr_2_emp,apelli_1_emp,apelli_2_emp ,direc_emp ,telf_emp ,tp_de_cargo );
+           
 }
 return null;
 }
      public int Actualizar(int cod_emp,String ced_emp,String nbr_1_emp, 
         String nbr_2_emp, String apelli_1_emp, String apelli_2_emp,
         String direc_emp, String telf_emp, String tp_de_cargo,
-       int tp_de_turno, Time h_entrada, Time h_salida ){
+       int tp_de_turno ){
     
     String transaccion = "UPDATE empleado SET ced_emp='"
         + ced_emp + "', nbr_1_emp= '"
@@ -50,9 +44,7 @@ return null;
         + telf_emp + "', ced_emp= '" 
         + ced_emp + "', tp_de_cargo= '"
         + tp_de_cargo + "', tp_de_turno= '"
-        + tp_de_turno + "', h_entrada= '"   
-        + h_entrada + "', h_salida= '" 
-        + h_salida + "', WHERE cod_emp= '"
+        + tp_de_turno + "', WHERE cod_emp= '"
         + cod_emp ;
                 
     return new DataBase().Actualizar(transaccion);
@@ -64,7 +56,8 @@ return null;
     List<Map> empleado = new ArrayList(); 
     
     for(Map registro : registros) {
-        Class_empleado aut = new Class_empleado  ((int) registro.get("cod_emp"),
+        Class_empleado aut = new  Class_empleado
+          ((int) registro.get("cod_emp"),
           (int) registro.get("ced_emp"),
           (String) registro.get("nbr_1_emp"),
           (String) registro.get("nbr_2_emp"),
@@ -72,12 +65,10 @@ return null;
           (String) registro.get("apelli_2_emp"), 
           (String) registro.get("direc_emp"), 
           (String) registro.get("tp_de_cargo"),
-          (int) registro.get("tp_de_turno"),
-          (Time) registro.get("h_entrada"),
-          (Time) registro.get("h_salida"));     
+          (int) registro.get("tp_de_turno"));   
         empleado.add((Map) aut);
     }
-    return empleado; // Retorna todos los autores ubicados en la tabla de DB
+    return empleado; 
 
      }
      
@@ -87,8 +78,7 @@ return null;
     return new DataBase().Actualizar(transaccion);
 }
 
-    public int Actualizar(int cod, String ced, String nbr1, String nbr2, String ape1, String ape2, String direc, String telf, String tp_c, int tp_t, String h_e, String h_s) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+   
     }
     
-}
+

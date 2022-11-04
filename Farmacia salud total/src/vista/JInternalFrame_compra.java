@@ -39,8 +39,8 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         for(Class_compra au:compra){
             
             String[]renglon0={Integer.toString(au.getCod_compra()),au.getVrd_prod(),
-                    Float.toString(au.getCtd_prod(),au.getCtd_t(),au.getFh_cp(),
-                    Integer.toString(au.getCod_prod(),)};
+                    Float.parseFloat(au.getCtd_prod()),Float.parseFloat(au.getCtd_t()),Date.valueOf(au.getFh_cp()),
+                    Integer.toString(au.getCod_prod())};
         }
        jTable_compra.setModel(modelo);
     }

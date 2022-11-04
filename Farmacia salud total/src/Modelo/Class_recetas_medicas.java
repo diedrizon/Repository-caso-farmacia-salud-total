@@ -11,22 +11,35 @@ public class Class_recetas_medicas {
     private int cod_medico;
     private String clinica;
     private String telf_medico;
-    private Date fh_indicaciones;
+    private java.sql.Date fh_indicaciones;
+    private String ced_cli;
 
-    public Class_recetas_medicas(int cod_medico, String clinica, String telf_medico, Date fh_indicaciones) {
+    
+    
+
+    public Class_recetas_medicas(int cod_medico, String clinica, String telf_medico, java.sql.Date fh_indicaciones, String ced_cli) {
         this.cod_medico = cod_medico;
         this.clinica = clinica;
         this.telf_medico = telf_medico;
         this.fh_indicaciones = fh_indicaciones;
+        this.ced_cli = ced_cli;
     }
     
-    public Class_recetas_medicas(int cod_rece_mdc, int cod_medico, String clinica, String telf_medico, Date fh_indicaciones) {
+    
+
+    public Class_recetas_medicas(int cod_rece_mdc, int cod_medico, String clinica, String telf_medico, java.sql.Date fh_indicaciones, String ced_cli) {
         this.cod_rece_mdc = cod_rece_mdc;
         this.cod_medico = cod_medico;
         this.clinica = clinica;
         this.telf_medico = telf_medico;
         this.fh_indicaciones = fh_indicaciones;
+        this.ced_cli = ced_cli;
     }
+
+    Class_recetas_medicas(int cod_rece_mdc, int cod_medico, String clinica, String telf_medico, String ced_cli) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 
     public int getCod_rece_mdc() {
         return cod_rece_mdc;
@@ -60,12 +73,20 @@ public class Class_recetas_medicas {
         this.telf_medico = telf_medico;
     }
 
-    public Date getFh_indicaciones() {
+    public java.sql.Date getFh_indicaciones() {
         return fh_indicaciones;
     }
 
-    public void setFh_indicaciones(Date fh_indicaciones) {
+    public void setFh_indicaciones(java.sql.Date fh_indicaciones) {
         this.fh_indicaciones = fh_indicaciones;
+    }
+    
+    public String getCed_cli() {
+        return ced_cli;
+    }
+
+    public void setCed_cli(String ced_cli) {
+        this.ced_cli = ced_cli;
     }
     
 }

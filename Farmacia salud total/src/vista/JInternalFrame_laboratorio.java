@@ -31,8 +31,8 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
         List<Class_laboratorio> laboratorio=new DAOlaboratorio().obtenerDatos();
         
         DefaultTableModel modelo=new DefaultTableModel();
-        String[] columnas={"Código","Nombre","Dirección",
-        "Telefono"};
+        String[] columnas={"1","2","3",
+        "4"};
         
         modelo.setColumnIdentifiers(columnas);
         for(Class_laboratorio au:laboratorio){
@@ -315,6 +315,7 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
         jPanel3.setForeground(new java.awt.Color(0, 0, 0));
 
         jTable_laboratorio.setBackground(new java.awt.Color(255, 255, 255));
+        jTable_laboratorio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
         jTable_laboratorio.setForeground(new java.awt.Color(0, 0, 0));
         jTable_laboratorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

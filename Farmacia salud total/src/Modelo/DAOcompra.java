@@ -9,29 +9,31 @@ import java.util.*;
 public class DAOcompra {
     
     public Class_compra Insertar(int cod_compra, String vrd_prod, float ctd_prod,
-        float ctd_t,int cod_prod, java.sql.Date fh_cp){
+        float ctd_t,int cod_p, java.sql.Date fh_cp, int cod_lab){
 String transaccion = "INSERT INTO compra VALUES('"
         + cod_compra + "', '"
         + vrd_prod + "','"
         + ctd_prod + "', '"
         + ctd_t + "', '" 
-        + cod_prod + "','"
-        + fh_cp +  "')"; 
+        + cod_p + "','"
+        + fh_cp + "','" 
+        + cod_lab + "')"; 
 //Llamar al metodo Actualizar ubicado en DateBase.java
 if (new DataBase().Actualizar(transaccion) > 0){
-    return new Class_compra (cod_compra, vrd_prod, ctd_prod, ctd_t, cod_prod,fh_cp);
+    return new Class_compra (cod_compra, vrd_prod, ctd_prod, ctd_t, cod_p,fh_cp,cod_lab);
 }
 return null;
 }
     public int Actualizar (int cod_compra, String vrd_prod, float ctd_prod,
-        float ctd_t,int cod_prod, Date fh_cp){
+        float ctd_t,int cod_prod, Date fh_cp,int cod_lab){
         
       String transaccion = "UPDATE compra SET vrd_prod ='"
         + vrd_prod + "', ctd_prod= '"
         + ctd_prod + "', ctd_t= '"
-        + ctd_t +   "', cod_prod='" 
-        + cod_prod + "' fh_cp="  
-        + fh_cp + "' WHERE cod_compra="
+        + ctd_t +   "', cod_prod= '" 
+        + cod_prod + "', fh_cp= '"  
+        + fh_cp + "', cod_lab= '"
+        + cod_lab + "' WHERE cod_compra= "
         + cod_compra  ;
         return new DataBase().Actualizar(transaccion);
     }
@@ -47,7 +49,8 @@ return null;
           (float) registro.get("ctd_prod"),
           (float) registro.get("ctd_t"),
           (int) registro.get("cod_prod"),
-          (java.sql.Date) registro.get("fh_cp"));
+          (java.sql.Date) registro.get("fh_cp"),
+          (int) registro.get("cod_lab"));
         compras.add((Map) aut);
 }
 return compras; // Retorna todos los autores ubicados en la tabla de DB
