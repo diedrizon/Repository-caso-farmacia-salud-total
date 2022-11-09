@@ -36,14 +36,14 @@ return null;
     String transaccion = "SELECT * FROM turno";
    
     List<Map> registros = new DataBase().Listar(transaccion);
-    List<Map> turno = new ArrayList(); 
+    List<Class_turno> turno = new ArrayList(); 
     
     for(Map registro : registros) {
         Class_turno aut = new  Class_turno
           ((int) registro.get("tp_de_turno"),
           (java.sql.Time) registro.get("h_entrada"),
           (java.sql.Time) registro.get("h_salida"));  
-        turno.add((Map) aut);
+        turno.add(aut);
     }
     return turno; 
 

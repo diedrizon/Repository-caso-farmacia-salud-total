@@ -11,8 +11,8 @@ public class Class_recetas_medicas {
     private int cod_medico;
     private String clinica;
     private String telf_medico;
-    private java.sql.Date fh_indicaciones;
     private String ced_cli;
+    private java.sql.Date fh_indicaciones;
 
     
     

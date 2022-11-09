@@ -25,6 +25,7 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
     jTextField_ctd_t.setText("");
     jTextField_fh_compra.setText("");
     jTextField_cod_prod.setText("");
+    jTextField_cod_lab.setText("");
     }
      public void obtenerDatos(){
         
@@ -32,15 +33,17 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         
         DefaultTableModel modelo=new DefaultTableModel();
        
-        String[] columnas={"Código compra","Variedad producto","Cantidad producto",
-        "Cantidad total","Fecha compra", "Código producto"};
+        String[] columns={"Código compra","Variedad producto","Cantidad producto",
+        "Cantidad total","Fecha compra", "Código producto","jTextField_cod_lab"};
        
-        modelo.setColumnIdentifiers(columnas);
+        modelo.setColumnIdentifiers(columns);
         for(Class_compra au:compra){
             
-            String[]renglon0={Integer.toString(au.getCod_compra()),au.getVrd_prod(),
-                    Float.parseFloat(au.getCtd_prod()),Float.parseFloat(au.getCtd_t()),Date.valueOf(au.getFh_cp()),
-                    Integer.toString(au.getCod_prod())};
+            String[]renglon0={Integer.toString(au.getCod_compra(),au.getCod_lab(),
+                    Integer.toString(au.getCod_prod()),au.getVrd_prod(),
+                    Float.toString(au.getCtd_prod(),Float.toString(au.getCtd_t()),
+                    Date.valueOf(au.getFh_cp().toString())
+                   };
         }
        jTable_compra.setModel(modelo);
     }
@@ -50,10 +53,11 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         String ctd=this.jTextField_ctd_p.getText();
         String ct_t=this.jTextField_ctd_t.getText();
         int cod_p=Integer.parseInt (this.jTextField_cod_prod.getText());
+        int cod_lab=Integer.parseInt(this.jTextField_cod_lab.getText());
         Date fec=Date.valueOf(this.jTextField_fh_compra.getText());
         
         DAOcompra doa=new DAOcompra();
-        int res=doa.Actualizar(cod, vrd, ctd, ct_t, cod_p, fec);
+        int res=doa.Actualizar(cod, vrd, ctd, ct_t, cod_p,cod_lab, fec);
         if(res==1){
             JOptionPane.showMessageDialog(rootpane, "¡compra actualizada!");
         }
@@ -82,6 +86,8 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         jTextField_cod_prod = new javax.swing.JTextField();
         jTextField_fh_compra = new javax.swing.JTextField();
         jTextField_ctd_t = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField_cod_lab = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton_agregar_compra = new javax.swing.JButton();
         jButton_buscar_compra = new javax.swing.JButton();
@@ -190,69 +196,91 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel8.setText("Código del laboratorio");
+
+        jTextField_cod_lab.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField_cod_lab.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField_cod_lab.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextField_cod_lab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_cod_labActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField_vrd_p, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField_cod_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField_ctd_t, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField_fh_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField_ctd_p)
+                        .addGap(62, 62, 62))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField_ctd_p, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(36, 36, 36)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2)
+                                .addComponent(jTextField_cod_compra, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(jTextField_vrd_p))
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField_ctd_t, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextField_cod_lab, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField_cod_prod, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(144, 144, 144))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel6)
+                                .addComponent(jTextField_fh_compra, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(jTextField_cod_prod))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7))
+                        .addContainerGap(30, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(20, 20, 20)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField_cod_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_ctd_t, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_fh_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField_vrd_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_fh_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
                     .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_vrd_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_cod_prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel8))
                 .addGap(4, 4, 4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField_ctd_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_cod_prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTextField_cod_lab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_ctd_t, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
@@ -327,41 +355,40 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton_agregar_compra)
-                        .addGap(44, 44, 44)
-                        .addComponent(jButton_editar_compra))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jButton_buscar_compra)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField_buscar_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField_buscar_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jButton_actualizar_compra))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jButton_salir_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_agregar_compra)
+                            .addComponent(jButton_actualizar_compra))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_editar_compra, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton_salir_compra, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(24, 24, 24))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_editar_compra)
-                    .addComponent(jButton_agregar_compra))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton_actualizar_compra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_buscar_compra)
                     .addComponent(jTextField_buscar_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_salir_compra)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_agregar_compra)
+                    .addComponent(jButton_editar_compra))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_actualizar_compra)
+                    .addComponent(jButton_salir_compra))
+                .addGap(31, 31, 31))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
@@ -371,15 +398,15 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         jTable_compra.setForeground(new java.awt.Color(0, 0, 0));
         jTable_compra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código compra", "Variedad producto", "Cantidad producto", "Cantidad total", "Fecha compra", "Código producto"
+                "Código compra", "Variedad producto", "Cantidad producto", "Cantidad total", "Fecha compra", "Código producto", "código de laboratorio"
             }
         ));
         jTable_compra.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -460,17 +487,19 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
        String ctd=jTextField_ctd_p.getText();
        String ctdt=jTextField_ctd_t.getText();
        String fh_c=jTextField_fh_compra.getText();
-       int cod_p=Integer.parseInt( jTextField_cod_prod.getText());
+       int cod_lab=Integer.parseInt(jTextField_cod_lab.getText());
+       int cod_p=Integer.parseInt(jTextField_cod_prod.getText());
        
        if(cod.contentEquals("")||vrd.contentEquals("")||ctd.contentEquals("")
-              || ctdt.contentEquals("")||fh_c.contentEquals("")||cod_p.contentEquals("")){
+              || ctdt.contentEquals("")||fh_c.contentEquals("")||cod_p.contentEquals("")
+               ||cod_lab.contentEquals("")){
         JOptionPane.showMessageDialog(rootpane,
         "Todos los campos son obligatorios");
  
      
    try{
       
-      Class_compra au=new DAOcompra().Insertar(cod, vrd, ctd, ctdt,fh_c, cod_p);
+      Class_compra au=new DAOcompra().Insertar(cod, vrd, ctd, ctdt,fh_c, cod_p,cod_lab);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
   }catch (Exception e){
       e.printStackTrace();
@@ -511,6 +540,7 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
               String ctdt=(String)this.jTable_compra.getValueAt(fila,4);
               String fh_c=(String)this.jTable_compra.getValueAt(fila,5);
               String cod_p=(String)this.jTable_compra.getValueAt(fila,6);
+              String cod_lab=(String)this.jTable_compra.getValueAt(fila,7);
              
               jTextField_cod_compra.setText(""+cod);
               jTextField_vrd_p.setText(vrd);
@@ -518,6 +548,7 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
               jTextField_ctd_t.setText(ctdt);
               jTextField_fh_compra.setText(String.valueOf(fh_c));;
               jTextField_cod_prod.setText(cod_p);
+              jTextField_cod_lab.setText(cod_lab);
           }catch(Exception e){
               e.printStackTrace();
           }
@@ -537,6 +568,10 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable_compraAncestorAdded
 
+    private void jTextField_cod_labActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cod_labActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_cod_labActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_actualizar_compra;
@@ -551,6 +586,7 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -560,6 +596,7 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable_compra;
     private javax.swing.JTextField jTextField_buscar_compra;
     private javax.swing.JTextField jTextField_cod_compra;
+    private javax.swing.JTextField jTextField_cod_lab;
     private javax.swing.JTextField jTextField_cod_prod;
     private javax.swing.JTextField jTextField_ctd_p;
     private javax.swing.JTextField jTextField_ctd_t;

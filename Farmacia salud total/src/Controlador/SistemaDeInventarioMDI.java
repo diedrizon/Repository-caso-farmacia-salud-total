@@ -1,7 +1,7 @@
 
 package Controlador;
 
-import vista.JInternalFrame_inicio_de_seccion;
+
 import vista.JInternalFrame_laboratorio;
 import vista.JInternalFrame_compra;
 import vista.JInternalFrame_productos;

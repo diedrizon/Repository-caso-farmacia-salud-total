@@ -40,7 +40,7 @@ return null;
     String transaccion = "SELECT * FROM ventas";
     //Llama a metodos listar de DateBase.java
     List<Map> registros = new DataBase().Listar(transaccion);
-    List<Map> ventas = new ArrayList(); // Areglos de autores
+    List<Class_ventas> ventas = new ArrayList(); // Areglos de autores
     
     for(Map registro : registros) {
         Class_ventas aut = new Class_ventas ((int) registro.get("n_factura"),
@@ -49,7 +49,7 @@ return null;
           (Date) registro.get("fh_vt"),
           (int) registro.get("cod_emp"),
           (String) registro.get("ced_cli"));
-        ventas.add((Map) aut);
+        ventas.add(aut);
     }
     return ventas; // Retorna todos los autores ubicados en la tabla de DB
 
@@ -66,6 +66,14 @@ return null;
     }
 
     public Class_ventas Insertar(String n, String mt, String cant, String fh) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public int Actualizar(int n_f, String mt, String ctd, String fh, int cod_em, String ced_cli) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Class_ventas Insertar(String n, String mt, String cant, String fh, String cod_emp, String ced_cli) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

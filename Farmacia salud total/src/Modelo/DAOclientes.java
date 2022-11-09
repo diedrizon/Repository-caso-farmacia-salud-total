@@ -45,7 +45,7 @@ public int Actualizar(String ced_cli,String nbr_1_cli, String nbr_2_cli,
 public List obtenerDatos(){
     String transaccion = "'SELECT * FROM clientes'";
     List<Map> registros = new DataBase().Listar(transaccion);
-    List<Map> clientes = new ArrayList(); // Areglos de autores
+    List<Class_clientes> clientes = new ArrayList(); // Areglos de autores
     
     for(Map registro : registros) {
         Class_clientes aut = new Class_clientes ((String) registro.get("ced_cli"),
@@ -55,7 +55,7 @@ public List obtenerDatos(){
           (String) registro.get("apelli_2_cli"),
           (String) registro.get("direc_cli"),
           (String) registro.get("telf_cli"));
-        clientes.add((Map) aut);
+        clientes.add(aut);
 }
 return clientes; // Retorna todos los autores ubicados en la tabla de DB
 

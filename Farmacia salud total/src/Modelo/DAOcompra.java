@@ -41,7 +41,7 @@ return null;
     String transaccion = "SELECT * FROM compra";
     //Llama a metodos listar de DateBase.java
     List<Map> registros = new DataBase().Listar(transaccion);
-    List<Map> compras  = new ArrayList(); // Areglos de autores
+    List<Class_compra> compras  = new ArrayList(); // Areglos de autores
     
     for(Map registro : registros) {
         Class_compra aut = new Class_compra ((int) registro.get("cod_compra"),
@@ -51,7 +51,7 @@ return null;
           (int) registro.get("cod_prod"),
           (java.sql.Date) registro.get("fh_cp"),
           (int) registro.get("cod_lab"));
-        compras.add((Map) aut);
+        compras.add(aut);
 }
 return compras; // Retorna todos los autores ubicados en la tabla de DB
 

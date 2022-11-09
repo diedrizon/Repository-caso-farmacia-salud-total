@@ -4,7 +4,9 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 /** @author diedr */
+
 public class DAOempleado {
     
     public Class_empleado Insertar(int cod_emp, String ced_emp, String nbr_1_emp , String nbr_2_emp, String apelli_1_emp,
@@ -53,7 +55,7 @@ return null;
     String transaccion = "SELECT * FROM empleado";
    
     List<Map> registros = new DataBase().Listar(transaccion);
-    List<Map> empleado = new ArrayList(); 
+    List<Class_empleado> empleado = new ArrayList(); 
     
     for(Map registro : registros) {
         Class_empleado aut = new  Class_empleado
@@ -66,7 +68,7 @@ return null;
           (String) registro.get("direc_emp"), 
           (String) registro.get("tp_de_cargo"),
           (int) registro.get("tp_de_turno"));   
-        empleado.add((Map) aut);
+        empleado.add(aut);
     }
     return empleado; 
 

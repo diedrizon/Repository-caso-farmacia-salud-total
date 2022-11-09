@@ -3,20 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/DAOclientes.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/Class_recetas_medicas.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/DAOrecetas_medicas.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/vista/JInternalFrame_productos.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/vista/JInternalFrame_empleado.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/DOAturno.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/Class_clientes.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/DataBase.java</file>
             <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Controlador/SistemaDeInventarioMDI.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/vista/JInternalFrame_laboratorio.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/DAOlaboratorio.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/vista/JInternalFrame_productos.java</file>
             <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/vista/JInternalFrame_compra.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/DAOventas.java</file>
-            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/Modelo/Class_turno.java</file>
+            <file>file:/C:/Users/diedr/OneDrive/Documentos/NetBeansProjects/Farmacia%20salud%20total/src/vista/JInternalFrame_ventas.java</file>
         </group>
     </open-files>
 </project-private>
