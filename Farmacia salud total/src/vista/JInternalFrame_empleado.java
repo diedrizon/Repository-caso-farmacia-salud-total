@@ -36,27 +36,49 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         public void obtenerDatos(){
         
         List<Class_empleado> empleados=new DAOempleado().obtenerDatos();
-        List<Class_turno> turno = new DOAturno().obtenerDatos();
+        
         
         DefaultTableModel modelo=new DefaultTableModel();
         
-        String[] columnas={"cod_emp","ced_emp","nbr_1_emp",
+        String[] columns={"cod_emp","ced_emp","nbr_1_emp",
         "nbr_2_emp","apelli_1_emp", "apelli_2_emp","direc_emp","telf_emp",
         "tp_de_cargo","tp_de_turno","h_entrada","h_salida"};
         
-        modelo.setColumnIdentifiers(columnas);
+        modelo.setColumnIdentifiers(columns);
         for(Class_empleado au:empleados){
             String[]renglono={Integer.toString(au.getCod_emp()),au.getCed_emp(),
                     au.getNbr_1_emp(),au.getNbr_2_emp(),au.getApelli_1_emp(),
                     au.getApelli_2_emp(),au.getDirec_emp(),au.getTel_emp(),
                     au.getTp_de_cargo(),
-                    Integer.toString (au.getTp_de_turno()),
-                    java.sql.Time(au.getH_entrada(),
-                    java.sql.Time (au.getH_salida()))};   
+                    Integer.toString (au.getTp_de_turno())};
+  
         }
         jTable_empleado.setModel(modelo);
-                
-    }
+        }
+        
+        public void obtenerturno(){
+        String trasaccion = "SELECT * FROM turno";
+            
+        List<Class_turno> turno = new DOAturno().obtenerDatos();
+        
+        
+        DefaultTableModel modelo=new DefaultTableModel();
+        
+        String [] columns={"tp_de_turno","h_entrada","h_salida"};
+       
+        modelo.setColumnIdentifiers(columns);
+        
+        for(Class_turno au: turno){
+         String [] renglono={Integer.toString (au.getTp_de_turno()),
+          (java.sql.Time.valueOf ("h_entrada").toString()), 
+           (java.sql.Time.valueOf ("h_salida").toString())};
+        }
+        jTable_turno.setModel(modelo);
+        
+        
+    
+}
+    
     public void actualizarempleado(){
         int cod=Integer.parseInt(this.jTextField_cod_emp.getText());
         String ced=this.jTextField_ced_emp.getText();
@@ -68,20 +90,34 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         String telf=this.jTextField_telf_emp.getText();
         String tp_c=this.jTextField_tp_de_cargo.getText();
         int tp_t=Integer.parseInt (this.jTextField_tp_de_turno.getText());
-        String h_e=this.jTextField_h_entrada.getText();
-        String h_s=this.jTextField_h_salida.getText();
         
         
         DAOempleado doa=new DAOempleado();
-        int res=doa.Actualizar(cod, ced, nbr1, nbr2, ape1,
-                ape2, direc, telf, tp_c, tp_t,h_e, h_s);
+        int res=doa.Actualizar(cod, ced, nbr1, nbr2, ape1, ape2, direc, telf, tp_c, tp_t);
         if(res==1){
             JOptionPane.showMessageDialog(rootpane, "¡Empleado actualizado!");
         }
         else{
             JOptionPane.showMessageDialog(rootpane, "¡Ocurrio un ERROR!");
+            
         }
+        
        }
+    public void actualizarturno(){
+       int tp_de_turno=Integer.parseInt (this.jTextField_tp_de_turno.getText());
+       Time h_entrada=Time.valueOf(this.jTextField_h_entrada.getText());
+       Time h_salida=Time.valueOf(this.jTextField_h_salida.getText());
+       
+       DOAturno doa = new DOAturno();
+       int res =doa.Actualizar(tp_de_turno, h_entrada, h_salida);
+        if(res==1){
+            JOptionPane.showMessageDialog(rootpane, "¡Empleado actualizado!");
+        }
+        else{
+            JOptionPane.showMessageDialog(rootpane, "¡Ocurrio un ERROR!");
+            
+        }
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -118,6 +154,8 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_empleado = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable_turno = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -271,12 +309,9 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6))
                         .addGap(42, 42, 42)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField_tp_de_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(26, Short.MAX_VALUE))))
+                            .addComponent(jLabel10)
+                            .addComponent(jTextField_tp_de_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(26, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField_cod_emp, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -449,7 +484,7 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jButton_salir_de_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -472,7 +507,7 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(560, 0, 260, 340);
+        jPanel2.setBounds(560, 0, 290, 340);
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -482,16 +517,16 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         jTable_empleado.setForeground(new java.awt.Color(0, 0, 0));
         jTable_empleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Cédula", "Nombre 1", "Nombre 2", "Apellido 1", "Apellido 2", "Dirreción ", "Telefono", "Tipo de cargo", "Tipo de turno", "Hora Entrada", "Hora salida"
+                "Código", "Cédula", "Nombre 1", "Nombre 2", "Apellido 1", "Apellido 2", "Dirreción ", "Telefono", "Tipo de cargo", "Tipo de turno"
             }
         ));
         jTable_empleado.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -505,21 +540,53 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable_empleado);
 
+        jTable_turno.setBackground(new java.awt.Color(255, 255, 255));
+        jTable_turno.setForeground(new java.awt.Color(0, 0, 0));
+        jTable_turno.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Tipo de turno", "Hora de entrada", "Hora salida"
+            }
+        ));
+        jTable_turno.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable_turnoAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(jTable_turno);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(0, 4, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(0, 340, 820, 140);
+        jPanel3.setBounds(0, 340, 850, 140);
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -572,25 +639,15 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jTextField_h_salida, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jTextField_h_entrada))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel12))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel13))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel14))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jTextField_tp_de_turno)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField_h_salida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(jTextField_h_entrada, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField_tp_de_turno, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jLabel11)))
@@ -689,8 +746,7 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
      
    try{
       
-      Class_empleado au=new DAOempleado().Insertar(cod, ced, nbr1, nbr2, ape1,
-      ape2, direc, telf, tp_c, tp_t, h_e, h_s );
+      Class_empleado au=new DAOempleado().Insertar(WIDTH, ced, nbr1, nbr2, ape1, ape2, direc, telf, tp_c, WIDTH);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
   }catch (Exception e){
       e.printStackTrace();
@@ -749,7 +805,7 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
               java.sql.Time h_e=Time.valueOf((String)this.jTable_empleado.getValueAt(fila,11).toString());
               java.sql.Time h_s=Time.valueOf((String)this.jTable_empleado.getValueAt(fila,12).toString());
               
-              jTextField_cod_emp.setText(Integer.toString(""+cod));
+              jTextField_cod_emp.setText(""+cod);
               jTextField_ced_emp.setText(ced);
               jTextField_nbr_1_emp.setText(nbr1);
               jTextField_nbr_2_emp.setText(nbr2);
@@ -780,6 +836,10 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_ced_empActionPerformed
 
+    private void jTable_turnoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable_turnoAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_turnoAncestorAdded
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_actualizar_emp;
@@ -806,8 +866,10 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable_empleado;
+    private javax.swing.JTable jTable_turno;
     private javax.swing.JTextField jTextField_apelli_1_emp;
     private javax.swing.JTextField jTextField_apelli_2_emp;
     private javax.swing.JTextField jTextField_buscar;

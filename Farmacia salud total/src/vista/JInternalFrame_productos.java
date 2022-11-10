@@ -41,21 +41,21 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
             String[]renglon0={Integer.toString(au.getCod_prod()),au.getNbr_prod(),
                    Float.toString(au.getPrec_cp()) ,
                    Float.toString(au.getPrec_vt()),au.getLab_prod(),
-                   au.getDcrip_prod(),au.getFh_venc()};    
+                   au.getDcrip_prod(),au.getFh_venc().toString()};    
         }
         jTable_productos.setModel(modelo);
                 
     }
          public void actualizarproductos(){
         int nbr=Integer.parseInt(this.jTextField_nbr_prod.getText());
-        String prec_c=this.jTextField_prec_cp.getText();
-        String prec_v=this.jTextField_prec_vt.getText();
+        float prec_c=Float.parseFloat(this.jTextField_prec_cp.getText());
+        float prec_v=Float.parseFloat(this.jTextField_prec_vt.getText());
         String lab=this.jTextField_lab_prod.getText();
         String dcrip=this.jTextField_dcrip_prod.getText();
         Date fh=Date.valueOf(this.jTextField_fh_venc.getText());
         
         DAOproductos doa=new DAOproductos();
-        int res=doa.Actualizar(nbr, prec_c,prec_v , lab, dcrip, fh);
+        int res=doa.Actualizar(nbr, dcrip, prec_c, prec_v, title, lab, dcrip, fh);
         if(res==1){
             JOptionPane.showMessageDialog(rootpane, "¡producto actualizado!");
         }

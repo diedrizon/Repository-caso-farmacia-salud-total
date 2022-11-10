@@ -33,31 +33,30 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         
         DefaultTableModel modelo=new DefaultTableModel();
        
-        String[] columns={"Código compra","Variedad producto","Cantidad producto",
-        "Cantidad total","Fecha compra", "Código producto","jTextField_cod_lab"};
+        String[] columns={"cod_cp","vrd_p","ctd_p",
+        "ctd_t","fh_cp", "cod_p","cod_lab"};
        
         modelo.setColumnIdentifiers(columns);
         for(Class_compra au:compra){
             
-            String[]renglon0={Integer.toString(au.getCod_compra(),au.getCod_lab(),
-                    Integer.toString(au.getCod_prod()),au.getVrd_prod(),
-                    Float.toString(au.getCtd_prod(),Float.toString(au.getCtd_t()),
-                    Date.valueOf(au.getFh_cp().toString())
-                   };
+            String[]renglon={Integer.toString(au.getCod_cp()),Integer.toString(au.getCod_lab()),
+                    Integer.toString(au.getCod_p()),au.getVrd_p(),
+                    Float.toString(au.getCtd_p()),Float.toString(au.getCtd_t()),
+                    au.getFh_cp().toString()};
         }
        jTable_compra.setModel(modelo);
     }
      public void actualizarcompra(){
-        int cod=Integer.parseInt(this.jTextField_cod_compra.getText());
-        String vrd=this.jTextField_vrd_p.getText();
-        String ctd=this.jTextField_ctd_p.getText();
-        String ct_t=this.jTextField_ctd_t.getText();
+        int cod_cp=Integer.parseInt(this.jTextField_cod_compra.getText());
+        String vrd_p=this.jTextField_vrd_p.getText();
+        float ctd_p=Float.parseFloat(this.jTextField_ctd_p.getText());
+        float ct_t=Float.parseFloat(this.jTextField_ctd_t.getText());
         int cod_p=Integer.parseInt (this.jTextField_cod_prod.getText());
         int cod_lab=Integer.parseInt(this.jTextField_cod_lab.getText());
-        Date fec=Date.valueOf(this.jTextField_fh_compra.getText());
+        Date fh_cp=Date.valueOf(this.jTextField_fh_compra.getText());
         
         DAOcompra doa=new DAOcompra();
-        int res=doa.Actualizar(cod, vrd, ctd, ct_t, cod_p,cod_lab, fec);
+        int res=doa.Actualizar(cod_cp, vrd_p, ctd_p, ct_t, cod_p, fh_cp, cod_lab);
         if(res==1){
             JOptionPane.showMessageDialog(rootpane, "¡compra actualizada!");
         }
@@ -482,24 +481,30 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField_cod_prodActionPerformed
 
     private void jButton_agregar_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregar_compraActionPerformed
-       int cod=Integer.parseInt(jTextField_cod_compra.getText());
-       String vrd=jTextField_vrd_p.getText();
-       String ctd=jTextField_ctd_p.getText();
-       String ctdt=jTextField_ctd_t.getText();
-       String fh_c=jTextField_fh_compra.getText();
-       int cod_lab=Integer.parseInt(jTextField_cod_lab.getText());
-       int cod_p=Integer.parseInt(jTextField_cod_prod.getText());
+       String cod_cp=jTextField_cod_compra.getText();
+       String vrd_p=jTextField_vrd_p.getText();
+       String ctd_p=jTextField_ctd_p.getText();
+       String ctd_t=jTextField_ctd_t.getText();
+       String fh_cp=jTextField_fh_compra.getText();
+       String cod_lab=jTextField_cod_lab.getText();
+       String cod_p=jTextField_cod_prod.getText();
        
-       if(cod.contentEquals("")||vrd.contentEquals("")||ctd.contentEquals("")
-              || ctdt.contentEquals("")||fh_c.contentEquals("")||cod_p.contentEquals("")
+       if(cod_cp.contentEquals("")||vrd_p.contentEquals("")||ctd_p.contentEquals("")
+              || ctd_t.contentEquals("")||fh_cp.contentEquals("")||cod_p.contentEquals("")
                ||cod_lab.contentEquals("")){
         JOptionPane.showMessageDialog(rootpane,
         "Todos los campos son obligatorios");
  
      
    try{
+      int cod_pro=Integer.parseInt(cod_p);
+      int cod_ltb=Integer.parseInt(cod_lab);
+      int cod_comp=Integer.parseInt(cod_cp);
+      Date fec=Date.valueOf(fh_cp);
+      float cant_p=Float.parseFloat(ctd_p);
+      float cant_t=Float.parseFloat(ctd_t);
       
-      Class_compra au=new DAOcompra().Insertar(cod, vrd, ctd, ctdt,fh_c, cod_p,cod_lab);
+      Class_compra au=new DAOcompra().Insertar(cod_comp, vrd_p, cant_p, cant_t, cod_pro, fec, cod_ltb);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
   }catch (Exception e){
       e.printStackTrace();
