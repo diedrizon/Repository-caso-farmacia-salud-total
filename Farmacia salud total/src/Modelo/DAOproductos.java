@@ -8,21 +8,24 @@ import java.util.*;
 
 
 public class DAOproductos {
+
+    
+    
     public Class_productos Insertar(int cod_prod, String nbr_prod, float prec_cp,
        float prec_vt, String exite_prod ,String lab_prod ,String dcrip_prod, java.sql.Date fh_venc){
         
-String transaccion = "INSERT INTO Autor VALUES('"
+String transaccion = "INSERT INTO productos VALUES('"
         + cod_prod + "', '"
         + nbr_prod + "','"
+        + exite_prod + "', '" 
         + prec_cp + "', '"
         + prec_vt + "', '" 
-        + exite_prod + "', '" 
         + lab_prod + "', '" 
         + dcrip_prod + "', '" 
         + fh_venc +  "')"; 
 //Llamar al metodo Actualizar ubicado en DateBase.java
 if (new DataBase().Actualizar(transaccion) > 0){
-    return new Class_productos(nbr_prod, prec_cp, prec_vt, exite_prod, lab_prod,dcrip_prod,fh_venc );
+    return new Class_productos(cod_prod,nbr_prod,exite_prod,prec_cp, prec_vt, lab_prod,dcrip_prod,fh_venc );
 }
 return null;
 }
@@ -43,7 +46,7 @@ public int Actualizar(int cod,String nbr_prod, float prec_cp,
 }
       
 public List obtenerDatos(){
-    String transaccion = "SELECT * FROM laboratorios";
+    String transaccion = "SELECT * FROM productos";
     //Llama a metodos listar de DateBase.java
     List<Map> registros = new DataBase().Listar(transaccion);
     List<Class_productos> productos = new ArrayList(); // Areglos de autores

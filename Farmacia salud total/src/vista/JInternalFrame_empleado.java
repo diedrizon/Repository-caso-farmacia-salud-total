@@ -165,6 +165,10 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         jTextField_h_salida = new javax.swing.JTextField();
         jTextField_tp_de_turno = new javax.swing.JTextField();
 
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));

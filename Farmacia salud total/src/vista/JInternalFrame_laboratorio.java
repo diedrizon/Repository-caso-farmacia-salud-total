@@ -38,6 +38,7 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
             String[]renglon={Integer.toString(au.getCod_lab()),au.getNbr_lab(),
                     au.getDirec_lab(),
                     au.getTelf_lab().toString()}; 
+            modelo.addRow(renglon);
         }
         jTable_laboratorio.setModel(modelo);
     }
@@ -81,6 +82,8 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_laboratorio = new javax.swing.JTable();
+
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -390,18 +393,23 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField_telf_labActionPerformed
 
     private void jButton_agregar_labActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregar_labActionPerformed
-       String cod=jTextField_cod_lab.getText();
+       String cod_lab=jTextField_cod_lab.getText();
        String nbr=jTextField_nbr_lab.getText();
        String direc=jTextField_direc_lab.getText();
        String telf=jTextField_telf_lab.getText();
        
        
-       if(cod.contentEquals("")||nbr.contentEquals("")||direc.contentEquals("")
+       if(cod_lab.contentEquals("")||nbr.contentEquals("")||direc.contentEquals("")
               || telf.contentEquals("")){
         JOptionPane.showMessageDialog(rootpane,
         "Todos los campos son obligatorios");
+      
+  }else{  
+           
    try{
-      Class_laboratorio au=new DAOlaboratorio().Insertar(cod, nbr, direc, telf);
+       int cod=Integer.parseInt(cod_lab);
+       
+      Class_laboratorio au=new DAOlaboratorio().Insertar(cod,nbr, direc, telf);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
       
   }catch (Exception e){
@@ -428,17 +436,18 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_salir_laboratorioActionPerformed
 
     private void jButton_editar_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editar_laboratorioActionPerformed
-          int fila=this.jTable_laboratorio.getSelectedRow();
+        jTextField_cod_lab.setEnabled(false);
+        int fila=this.jTable_laboratorio.getSelectedRow();
       if(fila==-1){
       
           JOptionPane.showMessageDialog(rootpane, "Seleccione un registro de la table");
       }
       else{ 
           try{
-              int id=Integer.parseInt((String)this.jTable_laboratorio.getValueAt(fila, 1).toString());
-              String nbr=(String)this.jTable_laboratorio.getValueAt(fila,2);
-              String direc=(String)this.jTable_laboratorio.getValueAt(fila,3);
-              String telf=(String)this.jTable_laboratorio.getValueAt(fila,4).toString();
+              int id=Integer.parseInt((String)this.jTable_laboratorio.getValueAt(fila, 0).toString());
+              String nbr=(String)this.jTable_laboratorio.getValueAt(fila,1);
+              String direc=(String)this.jTable_laboratorio.getValueAt(fila,2);
+              String telf=(String)this.jTable_laboratorio.getValueAt(fila,3).toString();
              
               jTextField_cod_lab.setText(""+id);
               jTextField_nbr_lab.setText(nbr);

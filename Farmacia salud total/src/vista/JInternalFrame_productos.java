@@ -20,6 +20,7 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
     }
     public void limpiarCampos(){
         jTextField_cod_prod.setText("");
+        jTextField_exite_prod.setText("");
         jTextField_nbr_prod.setText("");
         jTextField_prec_cp.setText("");
         jTextField_prec_vt.setText("");
@@ -38,7 +39,7 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         
         modelo.setColumnIdentifiers(columnas);
         for(Class_productos au:productos){
-            String[]renglon0={Integer.toString(au.getCod_prod()),au.getNbr_prod(),
+            String[]renglon0={Integer.toString(au.getCod_prod()),au.getNbr_prod(),au.getExite_prod(),
                    Float.toString(au.getPrec_cp()) ,
                    Float.toString(au.getPrec_vt()),au.getLab_prod(),
                    au.getDcrip_prod(),au.getFh_venc().toString()};    
@@ -47,7 +48,9 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
                 
     }
          public void actualizarproductos(){
-        int nbr=Integer.parseInt(this.jTextField_nbr_prod.getText());
+        int cod_prod=Integer.parseInt(this.jTextField_cod_prod.getText());
+        String nbr_prod=this.jTextField_nbr_prod.getText();
+        String exite_prod=this.jTextField_exite_prod.getText();
         float prec_c=Float.parseFloat(this.jTextField_prec_cp.getText());
         float prec_v=Float.parseFloat(this.jTextField_prec_vt.getText());
         String lab=this.jTextField_lab_prod.getText();
@@ -55,7 +58,7 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         Date fh=Date.valueOf(this.jTextField_fh_venc.getText());
         
         DAOproductos doa=new DAOproductos();
-        int res=doa.Actualizar(nbr, dcrip, prec_c, prec_v, title, lab, dcrip, fh);
+        int res=doa.Actualizar(cod_prod, nbr_prod, prec_c, prec_v, exite_prod, nbr_prod, nbr_prod, fh);
         if(res==1){
             JOptionPane.showMessageDialog(rootpane, "¡producto actualizado!");
         }
@@ -140,74 +143,34 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         jTextField_prec_cp.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_prec_cp.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_prec_cp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_prec_cp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_prec_cpActionPerformed(evt);
-            }
-        });
 
         jTextField_cod_prod.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_cod_prod.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_cod_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_cod_prod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_cod_prodActionPerformed(evt);
-            }
-        });
 
         jTextField_nbr_prod.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_nbr_prod.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_nbr_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_nbr_prod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_nbr_prodActionPerformed(evt);
-            }
-        });
 
         jTextField_prec_vt.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_prec_vt.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_prec_vt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_prec_vt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_prec_vtActionPerformed(evt);
-            }
-        });
 
         jTextField_fh_venc.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_fh_venc.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_fh_venc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_fh_venc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_fh_vencActionPerformed(evt);
-            }
-        });
 
         jTextField_dcrip_prod.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_dcrip_prod.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_dcrip_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_dcrip_prod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_dcrip_prodActionPerformed(evt);
-            }
-        });
 
         jTextField_lab_prod.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_lab_prod.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_lab_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_lab_prod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_lab_prodActionPerformed(evt);
-            }
-        });
 
         jTextField_exite_prod.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_exite_prod.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_exite_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_exite_prod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_exite_prodActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -474,48 +437,17 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField_cod_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cod_prodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_cod_prodActionPerformed
-
-    private void jTextField_nbr_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_nbr_prodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_nbr_prodActionPerformed
-
-    private void jTextField_prec_cpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_prec_cpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_prec_cpActionPerformed
-
-    private void jTextField_prec_vtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_prec_vtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_prec_vtActionPerformed
-
-    private void jTextField_exite_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_exite_prodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_exite_prodActionPerformed
-
-    private void jTextField_lab_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_lab_prodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_lab_prodActionPerformed
-
-    private void jTextField_dcrip_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_dcrip_prodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_dcrip_prodActionPerformed
-
-    private void jTextField_fh_vencActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_fh_vencActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_fh_vencActionPerformed
-
     private void jButton_agregar_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregar_prodActionPerformed
        String cod=jTextField_cod_prod.getText();
        String nbr=jTextField_nbr_prod.getText();
+       String exiten=jTextField_exite_prod.getText();
        String prec_c=jTextField_prec_cp.getText();
        String prec_v=jTextField_prec_vt.getText();
        String lab=jTextField_lab_prod.getText();
        String dcrip=jTextField_dcrip_prod.getText();
        String fh=jTextField_fh_venc.getText();
        
-       if(cod.contentEquals("")||nbr.contentEquals("")||prec_c.contentEquals("")
+       if(cod.contentEquals("")||nbr.contentEquals("")||exiten.contentEquals("")||prec_c.contentEquals("")
               || prec_v.contentEquals("")||lab.contentEquals("")
                ||dcrip.contentEquals("")||fh.contentEquals("")){
         JOptionPane.showMessageDialog(rootpane,
@@ -523,10 +455,12 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
  
      
    try{
-      //Convierte de String a Date
+      int cod_p=Integer.parseInt(cod);
       Date fech=Date.valueOf(fh);
+      float prec_compra=Float.parseFloat(prec_c);
+      float prec_venta=Float.parseFloat(prec_v);
       
-      Class_productos au=new DAOproductos().Insertar(cod, nbr, prec_c, prec_v ,lab, dcrip,fh);
+      Class_productos au=new DAOproductos().Insertar(cod_p, nbr, prec_compra, prec_venta, exiten, lab, dcrip, fech);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
   }catch (Exception e){
       e.printStackTrace();

@@ -37,6 +37,14 @@ public class Class_productos {
         this.fh_venc = fh_venc;
     }
 
+    Class_productos(int cod_prod, String nbr_prod, String exite_prod) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    Class_productos(int cod_prod, String nbr_prod, String exite_prod, float prec_cp, float prec_vt, String lab_prod, String dcrip_prod, Date fh_venc) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public int getCod_prod() {
         return cod_prod;
     }

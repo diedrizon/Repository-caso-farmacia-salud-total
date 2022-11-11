@@ -18,6 +18,7 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
     
     public SistemaDeInventarioMDI() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     
@@ -253,9 +254,14 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void jButton_laboratorio_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_laboratorio_panelActionPerformed
+       
         JInternalFrame_laboratorio est = new JInternalFrame_laboratorio();
+        int x=(jDesktopPane1.getWidth()/2)-est.getWidth()/2;
+        int y=(jDesktopPane1.getHeight()/2)-est.getHeight()/2;
+        est.setLocation(x, y);
+        est.obtenerDatos();
         jDesktopPane1.add(est);
-        est.show();
+        est.setVisible(true);
     }//GEN-LAST:event_jButton_laboratorio_panelActionPerformed
 
     private void jButton_compra_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_compra_panelActionPerformed

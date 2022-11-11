@@ -521,7 +521,7 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_buscar_cliActionPerformed
 
     private void jButton_salir_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salir_clienteActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton_salir_clienteActionPerformed
 
     private void jButton_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editarActionPerformed

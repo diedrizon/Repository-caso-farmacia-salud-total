@@ -9,8 +9,8 @@ import java.util.*;
 
 public class DataBase {
     
-private final String URL="jdbc:sqlserver://localhost:1433;datebaseName=DB_farmacia_salud_total;"+
-            "integratedSecurity=true;"+"encrypt=true;trustserverCertificate=true;";
+private final String URL="jdbc:sqlserver://localhost:1433;databaseName=DB_farmacia_salud_total;"+
+            "integratedSecurity=true;"+"encrypt=true;trustServerCertificate=true;";
  
 private Connection conexion; //Para conexión con la BD
     

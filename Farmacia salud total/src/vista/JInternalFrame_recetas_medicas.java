@@ -97,6 +97,8 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
 
         jLabel7.setText("jLabel7");
 
+        setClosable(true);
+
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
