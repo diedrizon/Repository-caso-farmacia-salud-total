@@ -11,7 +11,7 @@ public class DAOcompra {
     public Class_compra Insertar(int cod_cp, String vrd_p, float ctd_p,
         float ctd_t,java.sql.Date fh_cp,int cod_p, int cod_lab){
 String transaccion = "INSERT INTO compra VALUES('"
-        + cod_cp + "', '"
+        + cod_cp + "','"
         + vrd_p + "','"
         + ctd_p + "', '"
         + ctd_t + "', '" 
@@ -30,11 +30,11 @@ return null;
       String transaccion = "UPDATE compra SET vrd_p ='"
         + vrd_p + "', ctd_p= '"
         + ctd_p + "', ctd_t= '"
-        + ctd_t +   "', cod_p= '" 
+        + ctd_t + "', cod_p= '" 
         + cod_p + "', fh_cp= '"  
         + fh_cp + "', cod_lab= '"
         + cod_lab + "' WHERE cod_cp= "
-        + cod_cp  ;
+        + cod_cp;
         return new DataBase().Actualizar(transaccion);
     }
     public List obtenerDatos(){
@@ -57,8 +57,8 @@ return null;
 return compras; 
 
 }
-    public int Eliminar(int cod){
-    String transaccion = "DELETE FROM compra WHERE cod_cp='"+cod +"'";
+    public int Eliminar(int id){
+    String transaccion = "DELETE FROM compra WHERE cod_cp='"+id +"'";
  
     return new DataBase().Actualizar(transaccion);
     

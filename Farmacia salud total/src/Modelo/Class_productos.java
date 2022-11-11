@@ -11,39 +11,24 @@ public class Class_productos {
     private String nbr_prod;
     private float prec_cp;
     private float prec_vt;
-    private String exite_prod;
+    private String existe_prod;
     private String lab_prod;
     private String dcrip_prod;
     private Date fh_venc;
 
-    public Class_productos(String nbr_prod, float prec_cp, float prec_vt, String exite_prod, String lab_prod, String dcrip_prod, Date fh_venc) {
-        this.nbr_prod = nbr_prod;
-        this.prec_cp = prec_cp;
-        this.prec_vt = prec_vt;
-        this.exite_prod = exite_prod;
-        this.lab_prod = lab_prod;
-        this.dcrip_prod = dcrip_prod;
-        this.fh_venc = fh_venc;
-    }
-      
-    public Class_productos(int cod_prod, String nbr_prod, float prec_cp, float prec_vt, String exite_prod, String lab_prod, String dcrip_prod, Date fh_venc) {
+    public Class_productos(int cod_prod, String nbr_prod, float prec_cp, float prec_vt, String existe_prod, String lab_prod, String dcrip_prod, Date fh_venc) {
         this.cod_prod = cod_prod;
         this.nbr_prod = nbr_prod;
         this.prec_cp = prec_cp;
         this.prec_vt = prec_vt;
-        this.exite_prod = exite_prod;
+        this.existe_prod = existe_prod;
         this.lab_prod = lab_prod;
         this.dcrip_prod = dcrip_prod;
         this.fh_venc = fh_venc;
     }
 
-    Class_productos(int cod_prod, String nbr_prod, String exite_prod) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  
 
-    Class_productos(int cod_prod, String nbr_prod, String exite_prod, float prec_cp, float prec_vt, String lab_prod, String dcrip_prod, Date fh_venc) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     public int getCod_prod() {
         return cod_prod;
@@ -77,12 +62,12 @@ public class Class_productos {
         this.prec_vt = prec_vt;
     }
 
-    public String getExite_prod() {
-        return exite_prod;
+    public String getExiste_prod() {
+        return existe_prod;
     }
 
-    public void setExite_prod(String exite_prod) {
-        this.exite_prod = exite_prod;
+    public void setExiste_prod(String existe_prod) {
+        this.existe_prod = existe_prod;
     }
 
     public String getLab_prod() {

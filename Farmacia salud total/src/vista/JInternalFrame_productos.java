@@ -20,45 +20,47 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
     }
     public void limpiarCampos(){
         jTextField_cod_prod.setText("");
-        jTextField_exite_prod.setText("");
         jTextField_nbr_prod.setText("");
         jTextField_prec_cp.setText("");
         jTextField_prec_vt.setText("");
+        jTextField_existe_prod.setText("");
         jTextField_lab_prod.setText("");
         jTextField_dcrip_prod.setText("");
         jTextField_fh_venc.setText(""); 
     }
      public void obtenerDatos(){
         
-        List<Class_productos> productos=new DAOproductos().obtenerDatos();
+        List<Class_productos> productos= new DAOproductos().obtenerDatos();
         
         DefaultTableModel modelo=new DefaultTableModel();
        
-        String[] columnas={"Código","Nombre","Precio compra",
-        "Precio venta","Exitencia producto","Laboratorio","Descripcion", "Fecha vecimiento"};
+        String[] columns={"cod_prod","nbr_prod","prec_cp",
+        "prec_vt","existe_prod","lab_prod","dcrip_prod", "fh_venc"};
         
-        modelo.setColumnIdentifiers(columnas);
+        modelo.setColumnIdentifiers(columns);
         for(Class_productos au:productos){
-            String[]renglon0={Integer.toString(au.getCod_prod()),au.getNbr_prod(),au.getExite_prod(),
+            String[]renglon={Integer.toString(au.getCod_prod()),au.getNbr_prod()
+                    ,au.getExiste_prod(),
                    Float.toString(au.getPrec_cp()) ,
                    Float.toString(au.getPrec_vt()),au.getLab_prod(),
-                   au.getDcrip_prod(),au.getFh_venc().toString()};    
+                   au.getDcrip_prod(),au.getFh_venc().toString()};  
+            modelo.addRow(renglon);
         }
         jTable_productos.setModel(modelo);
                 
     }
-         public void actualizarproductos(){
-        int cod_prod=Integer.parseInt(this.jTextField_cod_prod.getText());
-        String nbr_prod=this.jTextField_nbr_prod.getText();
-        String exite_prod=this.jTextField_exite_prod.getText();
+        public void actualizarproductos(){
+        int cod=Integer.parseInt(this.jTextField_cod_prod.getText());
+        String nbr_p=this.jTextField_nbr_prod.getText();
         float prec_c=Float.parseFloat(this.jTextField_prec_cp.getText());
         float prec_v=Float.parseFloat(this.jTextField_prec_vt.getText());
+        String exite_p=this.jTextField_existe_prod.getText();
         String lab=this.jTextField_lab_prod.getText();
         String dcrip=this.jTextField_dcrip_prod.getText();
         Date fh=Date.valueOf(this.jTextField_fh_venc.getText());
         
         DAOproductos doa=new DAOproductos();
-        int res=doa.Actualizar(cod_prod, nbr_prod, prec_c, prec_v, exite_prod, nbr_prod, nbr_prod, fh);
+        int res=doa.Actualizar(cod, nbr_p, prec_c, prec_v, exite_p, lab, dcrip, fh);
         if(res==1){
             JOptionPane.showMessageDialog(rootpane, "¡producto actualizado!");
         }
@@ -88,7 +90,7 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         jTextField_fh_venc = new javax.swing.JTextField();
         jTextField_dcrip_prod = new javax.swing.JTextField();
         jTextField_lab_prod = new javax.swing.JTextField();
-        jTextField_exite_prod = new javax.swing.JTextField();
+        jTextField_existe_prod = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton_actualizar_productos = new javax.swing.JButton();
         jButton_buscar_prod = new javax.swing.JButton();
@@ -168,9 +170,14 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         jTextField_lab_prod.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_lab_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextField_exite_prod.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField_exite_prod.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField_exite_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextField_existe_prod.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField_existe_prod.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField_existe_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextField_existe_prod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_existe_prodActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -201,7 +208,7 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
                             .addComponent(jTextField_lab_prod, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(jTextField_dcrip_prod)
                             .addComponent(jTextField_fh_venc)
-                            .addComponent(jTextField_exite_prod)))
+                            .addComponent(jTextField_existe_prod)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addComponent(jLabel1)))
@@ -217,7 +224,7 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_exite_prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_existe_prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_cod_prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -438,30 +445,32 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_agregar_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregar_prodActionPerformed
-       String cod=jTextField_cod_prod.getText();
-       String nbr=jTextField_nbr_prod.getText();
-       String exiten=jTextField_exite_prod.getText();
+       String cod_prod=jTextField_cod_prod.getText();
+       String nbr_p=jTextField_nbr_prod.getText();
        String prec_c=jTextField_prec_cp.getText();
        String prec_v=jTextField_prec_vt.getText();
-       String lab=jTextField_lab_prod.getText();
-       String dcrip=jTextField_dcrip_prod.getText();
-       String fh=jTextField_fh_venc.getText();
+       String existe_p=jTextField_existe_prod.getText();
+       String lab_p=jTextField_lab_prod.getText();
+       String dcrip_p=jTextField_dcrip_prod.getText();
+       String fh_v=jTextField_fh_venc.getText();
        
-       if(cod.contentEquals("")||nbr.contentEquals("")||exiten.contentEquals("")||prec_c.contentEquals("")
-              || prec_v.contentEquals("")||lab.contentEquals("")
-               ||dcrip.contentEquals("")||fh.contentEquals("")){
+       if(cod_prod.contentEquals("")||nbr_p.contentEquals("")||prec_c.contentEquals("")||prec_v.contentEquals("")
+              || existe_p.contentEquals("")||lab_p.contentEquals("")
+               ||dcrip_p.contentEquals("")||fh_v.contentEquals("")){
         JOptionPane.showMessageDialog(rootpane,
         "Todos los campos son obligatorios");
  
+       }else{
      
    try{
-      int cod_p=Integer.parseInt(cod);
-      Date fech=Date.valueOf(fh);
+      int cod_p=Integer.parseInt(cod_prod);
       float prec_compra=Float.parseFloat(prec_c);
       float prec_venta=Float.parseFloat(prec_v);
+      Date fech=Date.valueOf(fh_v);
       
-      Class_productos au=new DAOproductos().Insertar(cod_p, nbr, prec_compra, prec_venta, exiten, lab, dcrip, fech);
+      Class_productos au=new DAOproductos().Insertar(cod_p, nbr_p, prec_compra, prec_venta, existe_p, lab_p, dcrip_p, fech);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
+      
   }catch (Exception e){
       e.printStackTrace();
       JOptionPane.showMessageDialog(rootpane, "No se agrego el registro");
@@ -487,29 +496,32 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_salir_productosActionPerformed
 
     private void jButton_editar_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editar_compraActionPerformed
-        int fila=this.jTable_productos.getSelectedRow();
+       jTextField_cod_prod.setEnabled(false);
+       int fila=this.jTable_productos.getSelectedRow();
       if(fila==-1){
       
           JOptionPane.showMessageDialog(rootpane, "Seleccione un registro de la table");
       }
       else{ 
           try{
-              int cod=Integer.parseInt((String)this.jTable_productos.getValueAt(fila, 1).toString());
-              String nbr=(String)this.jTable_productos.getValueAt(fila,2);
-              String prec_c=(String)this.jTable_productos.getValueAt(fila,3);
-              String prec_v=(String)this.jTable_productos.getValueAt(fila,4);
-              String lab=(String)this.jTable_productos.getValueAt(fila,5);
+              int cod=Integer.parseInt((String)this.jTable_productos.getValueAt(fila,0));
+              String nbr=(String)this.jTable_productos.getValueAt(fila,1);
+              float prec_c=Float.parseFloat((String)this.jTable_productos.getValueAt(fila,2));
+              float prec_v=Float.parseFloat((String)this.jTable_productos.getValueAt(fila,3));
+              String existe_p=(String)this.jTable_productos.getValueAt(fila,4);
+              String lab=(String)this.jTable_productos.getValueAt(fila, 5);
               String dcrip=(String)this.jTable_productos.getValueAt(fila,6);
-              Date fh=Date.valueOf((String)this.jTable_productos.getValueAt(fila,5).toString());
+              Date fh=Date.valueOf((String)this.jTable_productos.getValueAt(fila,7));
              
               jTextField_cod_prod.setText(""+cod);
               jTextField_nbr_prod.setText(nbr);
-              jTextField_prec_cp.setText(prec_c);
-              jTextField_prec_vt.setText(prec_v);
+              jTextField_prec_cp.setText(Float.toString(prec_c));
+              jTextField_prec_vt.setText(Float.toString(prec_v));
+              jTextField_existe_prod.setText(existe_p);
               jTextField_lab_prod.setText(lab);
               jTextField_dcrip_prod.setText(dcrip);
               jTextField_fh_venc.setText(String.valueOf(fh));
-          }catch(Exception e){
+          }catch(NumberFormatException e){
               e.printStackTrace();
           }
       }
@@ -522,6 +534,10 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
     private void jTable_productosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable_productosAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable_productosAncestorAdded
+
+    private void jTextField_existe_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_existe_prodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_existe_prodActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -548,7 +564,7 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField_buscar_compra;
     private javax.swing.JTextField jTextField_cod_prod;
     private javax.swing.JTextField jTextField_dcrip_prod;
-    private javax.swing.JTextField jTextField_exite_prod;
+    private javax.swing.JTextField jTextField_existe_prod;
     private javax.swing.JTextField jTextField_fh_venc;
     private javax.swing.JTextField jTextField_lab_prod;
     private javax.swing.JTextField jTextField_nbr_prod;
