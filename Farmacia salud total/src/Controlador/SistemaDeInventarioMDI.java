@@ -31,8 +31,8 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
         jButton_laboratorio_panel = new javax.swing.JButton();
         jButton_compra_panel = new javax.swing.JButton();
         jButton_producto_panel = new javax.swing.JButton();
-        jButton_empleado_panel = new javax.swing.JButton();
         jButton_ventas_panel = new javax.swing.JButton();
+        jButton_empleado_panel = new javax.swing.JButton();
         jButton_clientes_panel = new javax.swing.JButton();
         jButton_rece_mdc_panel = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
@@ -112,20 +112,6 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton_producto_panel);
 
-        jButton_empleado_panel.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_empleado_panel.setForeground(new java.awt.Color(0, 0, 0));
-        jButton_empleado_panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon empleado.png"))); // NOI18N
-        jButton_empleado_panel.setText("Empleado");
-        jButton_empleado_panel.setFocusable(false);
-        jButton_empleado_panel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton_empleado_panel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton_empleado_panel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_empleado_panelActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton_empleado_panel);
-
         jButton_ventas_panel.setBackground(new java.awt.Color(255, 255, 255));
         jButton_ventas_panel.setForeground(new java.awt.Color(0, 0, 0));
         jButton_ventas_panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon venta.png"))); // NOI18N
@@ -139,6 +125,20 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jButton_ventas_panel);
+
+        jButton_empleado_panel.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_empleado_panel.setForeground(new java.awt.Color(0, 0, 0));
+        jButton_empleado_panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon empleado.png"))); // NOI18N
+        jButton_empleado_panel.setText("Empleado");
+        jButton_empleado_panel.setFocusable(false);
+        jButton_empleado_panel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_empleado_panel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_empleado_panel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_empleado_panelActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton_empleado_panel);
 
         jButton_clientes_panel.setBackground(new java.awt.Color(255, 255, 255));
         jButton_clientes_panel.setForeground(new java.awt.Color(0, 0, 0));
@@ -265,15 +265,24 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_laboratorio_panelActionPerformed
 
     private void jButton_compra_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_compra_panelActionPerformed
+       
         JInternalFrame_compra est = new JInternalFrame_compra();
+        int x=(jDesktopPane1.getWidth()/2)-est.getWidth()/2;
+        int y=(jDesktopPane1.getHeight()/2)-est.getHeight()/2;
+        est.setLocation(x, y);
+        est.obtenerDatos();
         jDesktopPane1.add(est);
         est.show();
     }//GEN-LAST:event_jButton_compra_panelActionPerformed
 
     private void jButton_producto_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_producto_panelActionPerformed
         JInternalFrame_productos est = new JInternalFrame_productos();
+       int x=(jDesktopPane1.getWidth()/2)-est.getWidth()/2;
+        int y=(jDesktopPane1.getHeight()/2)-est.getHeight()/2;
+        est.setLocation(x, y);
+        est.obtenerDatos();
         jDesktopPane1.add(est);
-        est.show();
+        est.setVisible(true);
     }//GEN-LAST:event_jButton_producto_panelActionPerformed
 
     private void jButton_ventas_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ventas_panelActionPerformed
@@ -284,20 +293,32 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
 
     private void jButton_empleado_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_empleado_panelActionPerformed
         JInternalFrame_empleado est = new JInternalFrame_empleado();
+        int x=(jDesktopPane1.getWidth()/2)-est.getWidth()/2;
+        int y=(jDesktopPane1.getHeight()/2)-est.getHeight()/2;
+        est.setLocation(x, y);
+        est.obtenerDatos();
         jDesktopPane1.add(est);
-        est.show();
+        est.setVisible(true);
     }//GEN-LAST:event_jButton_empleado_panelActionPerformed
 
     private void jButton_clientes_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_clientes_panelActionPerformed
         JInternalFrame_clientes est = new JInternalFrame_clientes();
+        int x=(jDesktopPane1.getWidth()/2)-est.getWidth()/2;
+        int y=(jDesktopPane1.getHeight()/2)-est.getHeight()/2;
+        est.setLocation(x, y);
+        est.obtenerDatos();
         jDesktopPane1.add(est);
-        est.show();
+       est.setVisible(true);
     }//GEN-LAST:event_jButton_clientes_panelActionPerformed
 
     private void jButton_rece_mdc_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_rece_mdc_panelActionPerformed
         JInternalFrame_recetas_medicas est = new JInternalFrame_recetas_medicas();
+          int x=(jDesktopPane1.getWidth()/2)-est.getWidth()/2;
+        int y=(jDesktopPane1.getHeight()/2)-est.getHeight()/2;
+        est.setLocation(x, y);
+        est.obtenerDatos();
         jDesktopPane1.add(est);
-        est.show();
+        est.setVisible(true);
     }//GEN-LAST:event_jButton_rece_mdc_panelActionPerformed
 
     /**

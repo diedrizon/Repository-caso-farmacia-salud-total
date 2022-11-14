@@ -3,6 +3,9 @@ package vista;
 
 import Modelo.*;
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Time;
@@ -34,33 +37,29 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
        jTextField_h_salida.setText("");
     }
         public void obtenerDatos(){
-        
-        List<Class_empleado> empleados=new DAOempleado().obtenerDatos();
-        
+        List<Class_empleado> empleado=new DAOempleado().obtenerDatos();
         
         DefaultTableModel modelo=new DefaultTableModel();
         
         String[] columns={"cod_emp","ced_emp","nbr_1_emp",
         "nbr_2_emp","apelli_1_emp", "apelli_2_emp","direc_emp","telf_emp",
-        "tp_de_cargo","tp_de_turno","h_entrada","h_salida"};
+        "tp_de_cargo","tp_de_turno"};
         
         modelo.setColumnIdentifiers(columns);
-        for(Class_empleado au:empleados){
-            String[]renglono={Integer.toString(au.getCod_emp()),au.getCed_emp(),
+        for(Class_empleado au:empleado){
+            String[]renglon={Integer.toString(au.getCod_emp()),au.getCed_emp(),
                     au.getNbr_1_emp(),au.getNbr_2_emp(),au.getApelli_1_emp(),
                     au.getApelli_2_emp(),au.getDirec_emp(),au.getTel_emp(),
                     au.getTp_de_cargo(),
                     Integer.toString (au.getTp_de_turno())};
+            modelo.addRow(renglon);
   
         }
         jTable_empleado.setModel(modelo);
         }
         
         public void obtenerturno(){
-        String trasaccion = "SELECT * FROM turno";
-            
         List<Class_turno> turno = new DOAturno().obtenerDatos();
-        
         
         DefaultTableModel modelo=new DefaultTableModel();
         
@@ -69,15 +68,13 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         modelo.setColumnIdentifiers(columns);
         
         for(Class_turno au: turno){
-         String [] renglono={Integer.toString (au.getTp_de_turno()),
-          (java.sql.Time.valueOf ("h_entrada").toString()), 
+         String [] renglon={Integer.toString (au.getTp_de_turno()),
+           (java.sql.Time.valueOf ("h_entrada").toString()), 
            (java.sql.Time.valueOf ("h_salida").toString())};
+         modelo.addRow(renglon);
         }
-        jTable_turno.setModel(modelo);
-        
-        
-    
-}
+        jTable_turno.setModel(modelo); 
+      }
     
     public void actualizarempleado(){
         int cod=Integer.parseInt(this.jTextField_cod_emp.getText());
@@ -90,7 +87,6 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         String telf=this.jTextField_telf_emp.getText();
         String tp_c=this.jTextField_tp_de_cargo.getText();
         int tp_t=Integer.parseInt (this.jTextField_tp_de_turno.getText());
-        
         
         DAOempleado doa=new DAOempleado();
         int res=doa.Actualizar(cod, ced, nbr1, nbr2, ape1, ape2, direc, telf, tp_c, tp_t);
@@ -148,7 +144,6 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         jButton_eliminar_emp = new javax.swing.JButton();
         jButton_actualizar_emp = new javax.swing.JButton();
         jButton_buscar_emp = new javax.swing.JButton();
-        jButton_salir_de_empleado = new javax.swing.JButton();
         jButton_editar_empleado = new javax.swing.JButton();
         jTextField_buscar = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -167,7 +162,6 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
-        setIconifiable(true);
         setMaximizable(true);
         getContentPane().setLayout(null);
 
@@ -217,83 +211,38 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         jTextField_cod_emp.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_cod_emp.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_cod_emp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_cod_emp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_cod_empActionPerformed(evt);
-            }
-        });
 
         jTextField_nbr_2_emp.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_nbr_2_emp.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_nbr_2_emp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_nbr_2_emp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_nbr_2_empActionPerformed(evt);
-            }
-        });
 
         jTextField_nbr_1_emp.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_nbr_1_emp.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_nbr_1_emp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_nbr_1_emp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_nbr_1_empActionPerformed(evt);
-            }
-        });
 
         jTextField_ced_emp.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_ced_emp.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_ced_emp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_ced_emp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_ced_empActionPerformed(evt);
-            }
-        });
 
         jTextField_apelli_1_emp.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_apelli_1_emp.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_apelli_1_emp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_apelli_1_emp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_apelli_1_empActionPerformed(evt);
-            }
-        });
 
         jTextField_apelli_2_emp.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_apelli_2_emp.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_apelli_2_emp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_apelli_2_emp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_apelli_2_empActionPerformed(evt);
-            }
-        });
 
         jTextField_direc_emp.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_direc_emp.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_direc_emp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_direc_emp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_direc_empActionPerformed(evt);
-            }
-        });
 
         jTextField_telf_emp.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_telf_emp.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_telf_emp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_telf_emp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_telf_empActionPerformed(evt);
-            }
-        });
 
         jTextField_tp_de_cargo.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_tp_de_cargo.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_tp_de_cargo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_tp_de_cargo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_tp_de_cargoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -432,17 +381,6 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton_salir_de_empleado.setBackground(new java.awt.Color(204, 204, 255));
-        jButton_salir_de_empleado.setForeground(new java.awt.Color(0, 0, 0));
-        jButton_salir_de_empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon salir.png"))); // NOI18N
-        jButton_salir_de_empleado.setText("Salir");
-        jButton_salir_de_empleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
-        jButton_salir_de_empleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_salir_de_empleadoActionPerformed(evt);
-            }
-        });
-
         jButton_editar_empleado.setBackground(new java.awt.Color(204, 204, 255));
         jButton_editar_empleado.setForeground(new java.awt.Color(0, 0, 0));
         jButton_editar_empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon Editar.png"))); // NOI18N
@@ -457,57 +395,43 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         jTextField_buscar.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_buscar.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_buscarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton_buscar_emp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton_agregar_emp)
-                                .addGap(79, 79, 79)
-                                .addComponent(jButton_eliminar_emp))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jButton_editar_empleado)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton_actualizar_emp))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jButton_buscar_emp)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jButton_salir_de_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                            .addComponent(jButton_editar_empleado)
+                            .addComponent(jButton_agregar_emp))
+                        .addGap(79, 79, 79)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton_actualizar_emp)
+                            .addComponent(jButton_eliminar_emp)))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(62, 62, 62)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_buscar_emp)
                     .addComponent(jTextField_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_agregar_emp)
-                    .addComponent(jButton_eliminar_emp))
-                .addGap(44, 44, 44)
+                    .addComponent(jButton_eliminar_emp)
+                    .addComponent(jButton_agregar_emp))
+                .addGap(58, 58, 58)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_editar_empleado)
                     .addComponent(jButton_actualizar_emp))
-                .addGap(41, 41, 41)
-                .addComponent(jButton_salir_de_empleado)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(65, 65, 65))
         );
 
         getContentPane().add(jPanel2);
@@ -610,11 +534,6 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         jTextField_h_entrada.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_h_entrada.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_h_entrada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_h_entrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_h_entradaActionPerformed(evt);
-            }
-        });
 
         jLabel14.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 255));
@@ -622,20 +541,10 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
 
         jTextField_h_salida.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_h_salida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_h_salida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_h_salidaActionPerformed(evt);
-            }
-        });
 
         jTextField_tp_de_turno.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_tp_de_turno.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_tp_de_turno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_tp_de_turno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_tp_de_turnoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -682,50 +591,6 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField_cod_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cod_empActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_cod_empActionPerformed
-
-    private void jTextField_nbr_1_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_nbr_1_empActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_nbr_1_empActionPerformed
-
-    private void jTextField_nbr_2_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_nbr_2_empActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_nbr_2_empActionPerformed
-
-    private void jTextField_apelli_1_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_apelli_1_empActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_apelli_1_empActionPerformed
-
-    private void jTextField_apelli_2_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_apelli_2_empActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_apelli_2_empActionPerformed
-
-    private void jTextField_direc_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_direc_empActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_direc_empActionPerformed
-
-    private void jTextField_telf_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_telf_empActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_telf_empActionPerformed
-
-    private void jTextField_tp_de_cargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_tp_de_cargoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_tp_de_cargoActionPerformed
-
-    private void jTextField_tp_de_turnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_tp_de_turnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_tp_de_turnoActionPerformed
-
-    private void jTextField_h_entradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_h_entradaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_h_entradaActionPerformed
-
-    private void jTextField_h_salidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_h_salidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_h_salidaActionPerformed
-
     private void jButton_agregar_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregar_empActionPerformed
        String cod=jTextField_cod_emp.getText();
        String ced=jTextField_ced_emp.getText();
@@ -737,25 +602,26 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
        String telf=jTextField_telf_emp.getText();
        String tp_c=jTextField_tp_de_cargo.getText();
        String tp_t=jTextField_tp_de_turno.getText();
-       String h_e=jTextField_h_entrada.getText();
-       String h_s=jTextField_h_salida.getText();
      
        if(cod.contentEquals("")||ced.contentEquals("")||nbr1.contentEquals("")
               || nbr2.contentEquals("")||ape1.contentEquals("") || ape2.contentEquals("") || direc.contentEquals("")
-                || telf.contentEquals("") || tp_c.contentEquals("") || tp_t.contentEquals("") || h_e.contentEquals("")
-                || h_s.contentEquals("")){
+                || telf.contentEquals("") || tp_c.contentEquals("") || tp_t.contentEquals("")){
         JOptionPane.showMessageDialog(rootpane,
         "Por favor llene todo los campos si no chinguese");
  
-     
+   }else{
+        
    try{
+       int cod_e=Integer.parseInt(cod);
+       int tp_tu=Integer.parseInt(tp_t);
       
-      Class_empleado au=new DAOempleado().Insertar(WIDTH, ced, nbr1, nbr2, ape1, ape2, direc, telf, tp_c, WIDTH);
+      Class_empleado au=new DAOempleado().Insertar(cod_e, ced, nbr1, nbr2, ape1, ape2, direc, telf, tp_c, tp_tu);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
   }catch (Exception e){
       e.printStackTrace();
-      JOptionPane.showMessageDialog(rootpane, "No se agrego el registro");
-       }  
+      JOptionPane.showMessageDialog(rootpane, "No se agrego el registro"); 
+  }  
+  
   }
       obtenerDatos();
       limpiarCampos();
@@ -767,10 +633,11 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootpane, "Selecione el registro de la tabla");
         }
         else{
-            int id=Integer.parseInt((String)this.jTable_empleado.getValueAt(fila, 0).toString());
+            int cod=Integer.parseInt((String)this.jTable_empleado.getValueAt(fila, 0).toString());
             DAOempleado dao=new DAOempleado();
-            dao.Eliminar(id);
+            dao.Eliminar(cod);
             obtenerDatos();
+        
         }
     }//GEN-LAST:event_jButton_eliminar_empActionPerformed
 
@@ -784,30 +651,28 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         limpiarCampos();
     }//GEN-LAST:event_jButton_actualizar_empActionPerformed
 
-    private void jButton_salir_de_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salir_de_empleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_salir_de_empleadoActionPerformed
-
     private void jButton_editar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editar_empleadoActionPerformed
-         int fila=this.jTable_empleado.getSelectedRow();
+       jTextField_cod_emp.setEnabled(false);
+       jTextField_tp_de_turno.setEnabled(false);
+      int fila=this.jTable_empleado.getSelectedRow();
       if(fila==-1){
       
           JOptionPane.showMessageDialog(rootpane, "Seleccione un registro de la table");
       }
       else{ 
           try{
-              int cod=Integer.parseInt((String)this.jTable_empleado.getValueAt(fila, 1).toString());
-              String ced=(String)this.jTable_empleado.getValueAt(fila,2);
-              String nbr1=(String)this.jTable_empleado.getValueAt(fila,3);
-              String nbr2=(String)this.jTable_empleado.getValueAt(fila,4);
-              String ape1=(String)this.jTable_empleado.getValueAt(fila,5);
-              String ape2=(String)this.jTable_empleado.getValueAt(fila,6);
-              String direc=(String)this.jTable_empleado.getValueAt(fila,7);
-              String telf=(String)this.jTable_empleado.getValueAt(fila,8);
-              String tp_c=(String)this.jTable_empleado.getValueAt(fila,9);
-              int tp_t=Integer.parseInt((String)this.jTable_empleado.getValueAt(fila,10));
-              java.sql.Time h_e=Time.valueOf((String)this.jTable_empleado.getValueAt(fila,11).toString());
-              java.sql.Time h_s=Time.valueOf((String)this.jTable_empleado.getValueAt(fila,12).toString());
+              int cod=Integer.parseInt((String)this.jTable_empleado.getValueAt(fila, 0).toString());
+              String ced=(String)this.jTable_empleado.getValueAt(fila,1);
+              String nbr1=(String)this.jTable_empleado.getValueAt(fila,2);
+              String nbr2=(String)this.jTable_empleado.getValueAt(fila,3);
+              String ape1=(String)this.jTable_empleado.getValueAt(fila,4);
+              String ape2=(String)this.jTable_empleado.getValueAt(fila,5);
+              String direc=(String)this.jTable_empleado.getValueAt(fila,6);
+              String telf=(String)this.jTable_empleado.getValueAt(fila,7);
+              String tp_c=(String)this.jTable_empleado.getValueAt(fila,8);
+              int tp_t=Integer.parseInt((String)this.jTable_empleado.getValueAt(fila,9));
+              java.sql.Time h_e=Time.valueOf((String)this.jTable_empleado.getValueAt(fila,10).toString());
+              java.sql.Time h_s=Time.valueOf((String)this.jTable_empleado.getValueAt(fila,11).toString());
               
               jTextField_cod_emp.setText(""+cod);
               jTextField_ced_emp.setText(ced);
@@ -828,17 +693,9 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
       }
     }//GEN-LAST:event_jButton_editar_empleadoActionPerformed
 
-    private void jTextField_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_buscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_buscarActionPerformed
-
     private void jTable_empleadoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable_empleadoAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable_empleadoAncestorAdded
-
-    private void jTextField_ced_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_ced_empActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_ced_empActionPerformed
 
     private void jTable_turnoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable_turnoAncestorAdded
         // TODO add your handling code here:
@@ -851,7 +708,6 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton_buscar_emp;
     private javax.swing.JButton jButton_editar_empleado;
     private javax.swing.JButton jButton_eliminar_emp;
-    private javax.swing.JButton jButton_salir_de_empleado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

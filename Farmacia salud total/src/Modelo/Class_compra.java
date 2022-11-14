@@ -25,9 +25,6 @@ public class Class_compra {
         this.cod_lab = cod_lab;
     }
 
-    
-    
-
     public int getCod_cp() {
         return cod_cp;
     }

@@ -13,10 +13,6 @@ public class Class_turno {
     private java.sql.Time h_entrada;
     private java.sql.Time h_salida;
 
-    public Class_turno(Time h_entrada, Time h_salida) {
-        this.h_entrada = h_entrada;
-        this.h_salida = h_salida;
-    }
   
     public Class_turno(int tp_de_turno, Time h_entrada, Time h_salida) {
         this.tp_de_turno = tp_de_turno;

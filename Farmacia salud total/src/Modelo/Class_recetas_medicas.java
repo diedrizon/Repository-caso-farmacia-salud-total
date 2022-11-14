@@ -13,18 +13,6 @@ public class Class_recetas_medicas {
     private String telf_medico;
     private String ced_cli;
     private java.sql.Date fh_indicaciones;
-
-    
-    
-
-    public Class_recetas_medicas(int cod_medico, String clinica, String telf_medico, java.sql.Date fh_indicaciones, String ced_cli) {
-        this.cod_medico = cod_medico;
-        this.clinica = clinica;
-        this.telf_medico = telf_medico;
-        this.fh_indicaciones = fh_indicaciones;
-        this.ced_cli = ced_cli;
-    }
-    
     
 
     public Class_recetas_medicas(int cod_rece_mdc, int cod_medico, String clinica, String telf_medico, java.sql.Date fh_indicaciones, String ced_cli) {
@@ -36,9 +24,6 @@ public class Class_recetas_medicas {
         this.ced_cli = ced_cli;
     }
 
-    Class_recetas_medicas(int cod_rece_mdc, int cod_medico, String clinica, String telf_medico, String ced_cli) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 
     public int getCod_rece_mdc() {

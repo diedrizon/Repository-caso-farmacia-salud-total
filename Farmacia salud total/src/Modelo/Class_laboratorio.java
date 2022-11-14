@@ -7,7 +7,7 @@ import java.sql.Date;
 
 
 public class Class_laboratorio {
-     private int cod_lab;
+    private int cod_lab;
     private String nbr_lab;
     private String direc_lab;
     private String telf_lab;

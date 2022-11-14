@@ -3,6 +3,9 @@ package vista;
 
 import Modelo.*;
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Date;
@@ -32,14 +35,13 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         List<Class_compra> compra=new DAOcompra().obtenerDatos();
         
         DefaultTableModel modelo=new DefaultTableModel();
-       
         String[] columns={"cod_cp","vrd_p","ctd_p",
-        "ctd_t","fh_cp", "cod_p","cod_lab"};
+        "ctd_t","fh_cp","cod_p","cod_lab"};
        
         modelo.setColumnIdentifiers(columns);
         for(Class_compra au:compra){
-            
-            String[]renglon={Integer.toString(au.getCod_cp()),au.getVrd_p(),
+            String[]renglon={Integer.toString(au.getCod_cp()),
+                    au.getVrd_p(),
                     Float.toString(au.getCtd_p()),
                     Float.toString(au.getCtd_t()),
                     au.getFh_cp().toString(),
@@ -54,10 +56,10 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         String vrd_p=this.jTextField_vrd_p.getText();
         float ctd_p=Float.parseFloat(this.jTextField_ctd_p.getText());
         float ct_t=Float.parseFloat(this.jTextField_ctd_t.getText());
+        java.sql.Date fh_cp=Date.valueOf(this.jTextField_fh_compra.getText());
         int cod_p=Integer.parseInt (this.jTextField_cod_prod.getText());
         int cod_lab=Integer.parseInt(this.jTextField_cod_lab.getText());
-        Date fh_cp=Date.valueOf(this.jTextField_fh_compra.getText());
-        
+       
         DAOcompra doa=new DAOcompra();
         int res=doa.Actualizar(cod_cp, vrd_p, ctd_p, ct_t, fh_cp, cod_p, cod_lab);
         if(res==1){
@@ -94,7 +96,6 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         jButton_agregar_compra = new javax.swing.JButton();
         jButton_buscar_compra = new javax.swing.JButton();
         jButton_actualizar_compra = new javax.swing.JButton();
-        jButton_salir_compra = new javax.swing.JButton();
         jButton_editar_compra = new javax.swing.JButton();
         jTextField_buscar_compra = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -113,6 +114,8 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -147,56 +150,26 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         jTextField_ctd_p.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_ctd_p.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_ctd_p.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_ctd_p.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_ctd_pActionPerformed(evt);
-            }
-        });
 
         jTextField_vrd_p.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_vrd_p.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_vrd_p.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_vrd_p.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_vrd_pActionPerformed(evt);
-            }
-        });
 
         jTextField_cod_compra.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_cod_compra.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_cod_compra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_cod_compra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_cod_compraActionPerformed(evt);
-            }
-        });
 
         jTextField_cod_prod.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_cod_prod.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_cod_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_cod_prod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_cod_prodActionPerformed(evt);
-            }
-        });
 
         jTextField_fh_compra.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_fh_compra.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_fh_compra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_fh_compra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_fh_compraActionPerformed(evt);
-            }
-        });
 
         jTextField_ctd_t.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_ctd_t.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_ctd_t.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_ctd_t.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_ctd_tActionPerformed(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 255));
@@ -205,11 +178,6 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         jTextField_cod_lab.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_cod_lab.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_cod_lab.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_cod_lab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_cod_labActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -321,17 +289,6 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton_salir_compra.setBackground(new java.awt.Color(204, 204, 255));
-        jButton_salir_compra.setForeground(new java.awt.Color(0, 0, 0));
-        jButton_salir_compra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon salir.png"))); // NOI18N
-        jButton_salir_compra.setText("Salir");
-        jButton_salir_compra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
-        jButton_salir_compra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_salir_compraActionPerformed(evt);
-            }
-        });
-
         jButton_editar_compra.setBackground(new java.awt.Color(204, 204, 255));
         jButton_editar_compra.setForeground(new java.awt.Color(0, 0, 0));
         jButton_editar_compra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon Editar.png"))); // NOI18N
@@ -346,11 +303,6 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         jTextField_buscar_compra.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_buscar_compra.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_buscar_compra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_buscar_compra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_buscar_compraActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -366,14 +318,14 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_agregar_compra)
-                            .addComponent(jButton_actualizar_compra))
+                        .addComponent(jButton_agregar_compra)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_editar_compra, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton_salir_compra, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(jButton_editar_compra)
                         .addGap(24, 24, 24))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jButton_actualizar_compra)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,15 +334,13 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_buscar_compra)
                     .addComponent(jTextField_buscar_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_agregar_compra)
                     .addComponent(jButton_editar_compra))
-                .addGap(48, 48, 48)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_actualizar_compra)
-                    .addComponent(jButton_salir_compra))
-                .addGap(31, 31, 31))
+                .addGap(44, 44, 44)
+                .addComponent(jButton_actualizar_compra)
+                .addGap(35, 35, 35))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
@@ -459,30 +409,6 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField_cod_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cod_compraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_cod_compraActionPerformed
-
-    private void jTextField_vrd_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_vrd_pActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_vrd_pActionPerformed
-
-    private void jTextField_ctd_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_ctd_pActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_ctd_pActionPerformed
-
-    private void jTextField_ctd_tActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_ctd_tActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_ctd_tActionPerformed
-
-    private void jTextField_fh_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_fh_compraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_fh_compraActionPerformed
-
-    private void jTextField_cod_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cod_prodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_cod_prodActionPerformed
-
     private void jButton_agregar_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregar_compraActionPerformed
        String cod_cp=jTextField_cod_compra.getText();
        String vrd_p=jTextField_vrd_p.getText();
@@ -501,13 +427,13 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
   }else{
      
    try{
-      int cod_pro=Integer.parseInt(cod_p);
-      int cod_ltb=Integer.parseInt(cod_lab);
       int cod_comp=Integer.parseInt(cod_cp);
-      Date fec=Date.valueOf(fh_cp);
       float cant_p=Float.parseFloat(ctd_p);
       float cant_t=Float.parseFloat(ctd_t);
-      
+      java.sql.Date fec=Date.valueOf(fh_cp);
+      int cod_ltb=Integer.parseInt(cod_lab);
+      int cod_pro=Integer.parseInt(cod_p);
+            
       Class_compra au=new DAOcompra().Insertar(cod_comp, vrd_p, cant_p, cant_t,fec, cod_pro, cod_ltb);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
   
@@ -531,13 +457,8 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         limpiarCampos();
     }//GEN-LAST:event_jButton_actualizar_compraActionPerformed
 
-    private void jButton_salir_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salir_compraActionPerformed
-        
-    }//GEN-LAST:event_jButton_salir_compraActionPerformed
-
     private void jButton_editar_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editar_compraActionPerformed
         jTextField_cod_compra.setEnabled(false);
-        
         int fila=this.jTable_compra.getSelectedRow();
       if(fila==-1){
       
@@ -545,21 +466,21 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
       }
       else{ 
           try{
-              int cod=Integer.parseInt((String)this.jTable_compra.getValueAt(fila, 0).toString());
+              int id=Integer.parseInt((String)this.jTable_compra.getValueAt(fila, 0).toString());
               String vrd=(String)this.jTable_compra.getValueAt(fila,1).toString();
-              float ctd=Float.parseFloat ((String)this.jTable_compra.getValueAt(fila,2).toString());
-              float ctdt=Float.parseFloat((String)this.jTable_compra.getValueAt(fila,3).toString());
-              java.sql.Date fh_c=Date.valueOf((String)this.jTable_compra.getValueAt(fila,4).toString());
-              int cod_p=Integer.parseInt((String)this.jTable_compra.getValueAt(fila,5).toString());
+              float ctd=Float.parseFloat ((String)this.jTable_compra.getValueAt(fila,2));
+              float ctdt=Float.parseFloat((String)this.jTable_compra.getValueAt(fila,3));
+              java.sql.Date fh_c=Date.valueOf((String)this.jTable_compra.getValueAt(fila,4));
+              int cod_p=Integer.parseInt((String)this.jTable_compra.getValueAt(fila,5));
               int cod_lab=Integer.parseInt((String)this.jTable_compra.getValueAt(fila,6).toString());
              
-              jTextField_cod_compra.setText(""+cod);
+              jTextField_cod_compra.setText(""+id);
               jTextField_vrd_p.setText(vrd);
-              jTextField_ctd_p.setText(String.valueOf(ctd));
-              jTextField_ctd_t.setText(String.valueOf(ctdt));
+              jTextField_ctd_p.setText(Float.toString(ctd));
+              jTextField_ctd_t.setText(Float.toString(ctdt));
               jTextField_fh_compra.setText(String.valueOf(fh_c));
-              jTextField_cod_prod.setText(String.valueOf(cod_p));
-              jTextField_cod_lab.setText(String.valueOf(cod_lab));
+              jTextField_cod_prod.setText(Integer.toString(cod_p));
+              jTextField_cod_lab.setText(Integer.toString(cod_lab));
           }catch(NumberFormatException e){
               e.printStackTrace();
           }
@@ -567,21 +488,15 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
     }                                             
 
     private void jButtonActualizaActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        
+        actualizarcompra();
+        obtenerDatos();
+        limpiarCampos();
     
     }//GEN-LAST:event_jButton_editar_compraActionPerformed
-
-    private void jTextField_buscar_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_buscar_compraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_buscar_compraActionPerformed
 
     private void jTable_compraAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable_compraAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable_compraAncestorAdded
-
-    private void jTextField_cod_labActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cod_labActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_cod_labActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -589,7 +504,6 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton_agregar_compra;
     private javax.swing.JButton jButton_buscar_compra;
     private javax.swing.JButton jButton_editar_compra;
-    private javax.swing.JButton jButton_salir_compra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

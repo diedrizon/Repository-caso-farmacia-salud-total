@@ -27,9 +27,6 @@ public class Class_productos {
         this.fh_venc = fh_venc;
     }
 
-  
-
-
     public int getCod_prod() {
         return cod_prod;
     }

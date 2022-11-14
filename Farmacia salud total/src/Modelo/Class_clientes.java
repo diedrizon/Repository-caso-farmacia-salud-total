@@ -13,16 +13,6 @@ public class Class_clientes {
     private String apelli_2_cli;
     private String direc_cli;
     private String telf_cli;
-
-
-    public Class_clientes(String nbr_1_cli, String nbr_2_cli, String apelli_1_cli, String apelli_2_cli, String direc_cli, String tel_cli) {
-        this.nbr_1_cli = nbr_1_cli;
-        this.nbr_2_cli = nbr_2_cli;
-        this.apelli_1_cli = apelli_1_cli;
-        this.apelli_2_cli = apelli_2_cli;
-        this.direc_cli = direc_cli;
-        this.telf_cli = tel_cli;
-    }
     
     public Class_clientes(String ced_cli, String nbr_1_cli, String nbr_2_cli, String apelli_1_cli, String apelli_2_cli, String direc_cli, String tel_cli) {
         this.ced_cli = ced_cli;

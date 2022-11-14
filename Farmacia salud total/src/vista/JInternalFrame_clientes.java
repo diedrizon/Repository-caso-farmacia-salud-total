@@ -4,7 +4,6 @@ package vista;
 import Modelo.Class_clientes;
 import Modelo.DAOclientes;
 import java.awt.Component;
-import java.sql.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,29 +31,33 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
     }
     public void obtenerDatos(){
         List<Class_clientes> clientes =new DAOclientes ().obtenerDatos();
+        
         DefaultTableModel modelo=new DefaultTableModel();
-        String[] columnas={"ced_cli", "nbr_1_cli", "nbr_2_cli",
+        String[] columns={"ced_cli", "nbr_1_cli", "nbr_2_cli",
         "apelli_1_cli", "apelli_2_cli", "direc_cli", "telf_cli"};
-        modelo.setColumnIdentifiers(columnas);
+        
+        modelo.setColumnIdentifiers(columns);
         for(Class_clientes au:clientes){
-            String[]renglon0={au.getCed_cli(),au.getNbr_1_cli(),
+            String[]renglon={au.getCed_cli(),au.getNbr_1_cli(),
                     au.getNbr_2_cli(),au.getApelli_1_cli(),au.getApelli_2_cli(),
                     au.getDirec_cli(),au.getTel_cli()};  
+            modelo.addRow(renglon);
         }
         jTable_cliente.setModel(modelo);
                 
     }
     public void actualizarcliente(){
-        String ced=this.jTextField_ced_cli.getText();
-        String nbr1=this.jTextField_nbr_1_cli.getText();
-        String nbr2=this.jTextField_nbr_2_cli.getText();
-        String ape1=this.jTextField_apelli_1_cli.getText();
-        String ape2=this.jTextField_apelli_2_cli.getText();
-        String direc=this.jTextField_direc_cli.getText();
-        String telf=this.jTextField_telf_cli.getText();
+        String ced_cli=this.jTextField_ced_cli.getText();
+        String nbr_1_cli=this.jTextField_nbr_1_cli.getText();
+        String nbr_2_cli=this.jTextField_nbr_2_cli.getText();
+        String apelli_1_cli=this.jTextField_apelli_1_cli.getText();
+        String apelli_2_cli=this.jTextField_apelli_2_cli.getText();
+        String direc_cli=this.jTextField_direc_cli.getText();
+        String telf_cli=this.jTextField_telf_cli.getText();
         
         DAOclientes doa=new DAOclientes();
-        int res=doa.Actualizar(ced, nbr1, nbr2, ape1, ape2, direc, telf);
+        int res=doa.Actualizar(ced_cli, nbr_1_cli, nbr_2_cli, apelli_1_cli,
+                apelli_2_cli, direc_cli, telf_cli);
         if(res==1){
             JOptionPane.showMessageDialog(rootpane, "¡cliente actualizado!");
         }
@@ -90,7 +93,6 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
         jButton_agregar_cli = new javax.swing.JButton();
         jButton_buscar_cli = new javax.swing.JButton();
         jButton_actualizar_cli = new javax.swing.JButton();
-        jButton_salir_cliente = new javax.swing.JButton();
         jButton_editar = new javax.swing.JButton();
         jTextField_buscar = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -109,6 +111,8 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane2.setViewportView(jTable1);
+
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -148,66 +152,31 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
         jTextField_apelli_1_cli.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_apelli_1_cli.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_apelli_1_cli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_apelli_1_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_apelli_1_cliActionPerformed(evt);
-            }
-        });
 
         jTextField_nbr_2_cli.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_nbr_2_cli.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_nbr_2_cli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_nbr_2_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_nbr_2_cliActionPerformed(evt);
-            }
-        });
 
         jTextField_nbr_1_cli.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_nbr_1_cli.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_nbr_1_cli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_nbr_1_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_nbr_1_cliActionPerformed(evt);
-            }
-        });
 
         jTextField_ced_cli.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_ced_cli.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_ced_cli.setToolTipText("");
         jTextField_ced_cli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_ced_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_ced_cliActionPerformed(evt);
-            }
-        });
 
         jTextField_apelli_2_cli.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_apelli_2_cli.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_apelli_2_cli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_apelli_2_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_apelli_2_cliActionPerformed(evt);
-            }
-        });
 
         jTextField_direc_cli.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_direc_cli.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_direc_cli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_direc_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_direc_cliActionPerformed(evt);
-            }
-        });
 
         jTextField_telf_cli.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_telf_cli.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_telf_cli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_telf_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_telf_cliActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -313,18 +282,6 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton_salir_cliente.setBackground(new java.awt.Color(204, 204, 255));
-        jButton_salir_cliente.setForeground(new java.awt.Color(0, 0, 0));
-        jButton_salir_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon salir.png"))); // NOI18N
-        jButton_salir_cliente.setText("Salir");
-        jButton_salir_cliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 255), 0));
-        jButton_salir_cliente.setMargin(new java.awt.Insets(8, 14, 8, 14));
-        jButton_salir_cliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_salir_clienteActionPerformed(evt);
-            }
-        });
-
         jButton_editar.setBackground(new java.awt.Color(204, 204, 255));
         jButton_editar.setForeground(new java.awt.Color(0, 0, 0));
         jButton_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon editar.png"))); // NOI18N
@@ -339,37 +296,33 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
         jTextField_buscar.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_buscar.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_buscarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton_buscar_cli)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton_buscar_cli)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton_agregar_cli)
+                                .addGap(62, 62, 62)
+                                .addComponent(jButton_editar))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_agregar_cli)
-                            .addComponent(jButton_actualizar_cli))
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_salir_cliente)
-                            .addComponent(jButton_editar))))
+                        .addGap(89, 89, 89)
+                        .addComponent(jButton_actualizar_cli)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_buscar_cli)
                     .addComponent(jTextField_buscar))
@@ -377,11 +330,9 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_agregar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_editar))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_actualizar_cli)
-                    .addComponent(jButton_salir_cliente))
-                .addGap(50, 50, 50))
+                .addGap(33, 33, 33)
+                .addComponent(jButton_actualizar_cli)
+                .addGap(35, 35, 35))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
@@ -450,35 +401,6 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField_ced_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_ced_cliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_ced_cliActionPerformed
-
-    private void jTextField_nbr_1_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_nbr_1_cliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_nbr_1_cliActionPerformed
-
-    private void jTextField_nbr_2_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_nbr_2_cliActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_nbr_2_cliActionPerformed
-
-    private void jTextField_apelli_1_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_apelli_1_cliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_apelli_1_cliActionPerformed
-
-    private void jTextField_apelli_2_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_apelli_2_cliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_apelli_2_cliActionPerformed
-
-    private void jTextField_direc_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_direc_cliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_direc_cliActionPerformed
-
-    private void jTextField_telf_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_telf_cliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_telf_cliActionPerformed
-
     private void jButton_agregar_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregar_cliActionPerformed
        String ced=jTextField_ced_cli.getText();
        String nbr1=jTextField_nbr_1_cli.getText();
@@ -495,12 +417,14 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(rootpane,
         "Todos los campos son obligatorios");
  
-     
+   }else{
+           
    try{
       
       Class_clientes au=new DAOclientes().Insertar(ced, nbr1, nbr2, ape1, ape2,
       direc, telf);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
+      
   }catch (Exception e){
       e.printStackTrace();
       JOptionPane.showMessageDialog(rootpane, "No se agrego el registro");
@@ -520,25 +444,22 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_buscar_cliActionPerformed
 
-    private void jButton_salir_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salir_clienteActionPerformed
-        
-    }//GEN-LAST:event_jButton_salir_clienteActionPerformed
-
     private void jButton_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editarActionPerformed
-        int fila=this.jTable_cliente.getSelectedRow();
+     jTextField_ced_cli.setEnabled(false);
+      int fila=this.jTable_cliente.getSelectedRow();
       if(fila==-1){
       
           JOptionPane.showMessageDialog(rootpane, "Seleccione un registro de la table");
       }
       else{ 
           try{
-              String ced=(String)this.jTable_cliente.getValueAt(fila,1);
+              String ced=(String)this.jTable_cliente.getValueAt(fila,0);
               String nbr1=(String)this.jTable_cliente.getValueAt(fila,1);
               String nbr2=(String)this.jTable_cliente.getValueAt(fila,2);
               String ape1=(String)this.jTable_cliente.getValueAt(fila,3);
               String ape2=(String)this.jTable_cliente.getValueAt(fila,4);
-              String direc=(String)this.jTable_cliente.getValueAt(fila,4);
-              String telf=(String)this.jTable_cliente.getValueAt(fila,4);
+              String direc=(String)this.jTable_cliente.getValueAt(fila,5);
+              String telf=(String)this.jTable_cliente.getValueAt(fila,6);
              
               jTextField_ced_cli.setText(""+ced);
               jTextField_nbr_1_cli.setText(nbr1);
@@ -553,10 +474,6 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
       }
     }//GEN-LAST:event_jButton_editarActionPerformed
 
-    private void jTextField_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_buscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_buscarActionPerformed
-
     private void jTable_clienteAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable_clienteAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable_clienteAncestorAdded
@@ -567,7 +484,6 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton_agregar_cli;
     private javax.swing.JButton jButton_buscar_cli;
     private javax.swing.JButton jButton_editar;
-    private javax.swing.JButton jButton_salir_cliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

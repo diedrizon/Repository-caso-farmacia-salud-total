@@ -34,20 +34,23 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
         DefaultTableModel modelo=new DefaultTableModel();
         
         String[] columns={"cod_rece_mdc","cod_medico","clinica",
-        "telf_medico","fh_indicaciones", "ced_cli"};
+        "telf_medico","fh_indicaciones","ced_cli"};
         
         modelo.setColumnIdentifiers(columns);
         for(Class_recetas_medicas au:recetas){
-            
-            String[]renglon={Integer.toString(au.getCod_rece_mdc(), au.getCod_medico()),
-                    au.getClinica(),au.getTelf_medico(),au.getCed_cli(),
-                    au.getFh_indicaciones().toString()};    
+            String[]renglon={Integer.toString(au.getCod_rece_mdc()),
+                    Integer.toString(au.getCod_medico()),
+                    au.getClinica(),
+                    au.getTelf_medico(),
+                    au.getFh_indicaciones().toString(),
+                    au.getCed_cli().toString()}; 
+            modelo.addRow(renglon);
         }
          jTable_recetas_medica.setModel(modelo);
                 
     }
     public void actualizar_recetas_medicas(){
-        int cod=Integer.parseInt(this.jTextField_cod_rece_mdc.getText());
+        int cod_d=Integer.parseInt(this.jTextField_cod_rece_mdc.getText());
         int cod_m=Integer.parseInt(this.jTextField_cod_medico.getText());
         String clinica=this.jTextField_clinica.getText();
         String telf=this.jTextField_tel_medico.getText();
@@ -55,7 +58,7 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
         Date fec=Date.valueOf(this.jTextField_fh_indicaciones.getText());
         
         DAOrecetas_medicas dao=new DAOrecetas_medicas();
-        int res=dao.Actualizar(cod, cod_m, clinica, telf, ced, fec);
+        int res=dao.Actualizar(cod_d, cod_m, clinica, telf, fec, ced);
         if(res==1){
             JOptionPane.showMessageDialog(rootpane, "¡Receta actualizada!");
         }
@@ -90,7 +93,6 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
         jButton_buscar_rece_mdc = new javax.swing.JButton();
         jButton_editar_receta_medica = new javax.swing.JButton();
         jTextField_buscar_receta_medica = new javax.swing.JTextField();
-        jButton_salir_receta_medicas = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_recetas_medica = new javax.swing.JTable();
@@ -130,47 +132,22 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
         jTextField_cod_medico.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_cod_medico.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_cod_medico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_cod_medico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_cod_medicoActionPerformed(evt);
-            }
-        });
 
         jTextField_cod_rece_mdc.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_cod_rece_mdc.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_cod_rece_mdc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_cod_rece_mdc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_cod_rece_mdcActionPerformed(evt);
-            }
-        });
 
         jTextField_clinica.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_clinica.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_clinica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_clinica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_clinicaActionPerformed(evt);
-            }
-        });
 
         jTextField_tel_medico.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_tel_medico.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_tel_medico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_tel_medico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_tel_medicoActionPerformed(evt);
-            }
-        });
 
         jTextField_fh_indicaciones.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_fh_indicaciones.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_fh_indicaciones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_fh_indicaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_fh_indicacionesActionPerformed(evt);
-            }
-        });
 
         jLabel8.setBackground(new java.awt.Color(0, 0, 255));
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -180,11 +157,6 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
         jTextField_ced_cli.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_ced_cli.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_ced_cli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_ced_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_ced_cliActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -308,22 +280,6 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
         jTextField_buscar_receta_medica.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_buscar_receta_medica.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_buscar_receta_medica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_buscar_receta_medica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_buscar_receta_medicaActionPerformed(evt);
-            }
-        });
-
-        jButton_salir_receta_medicas.setBackground(new java.awt.Color(204, 204, 255));
-        jButton_salir_receta_medicas.setForeground(new java.awt.Color(0, 0, 0));
-        jButton_salir_receta_medicas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon salir.png"))); // NOI18N
-        jButton_salir_receta_medicas.setText("Salir");
-        jButton_salir_receta_medicas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
-        jButton_salir_receta_medicas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_salir_receta_medicasActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -337,13 +293,11 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_editar_receta_medica))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton_actualizar_receta_medicas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_salir_receta_medicas))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton_buscar_rece_mdc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField_buscar_receta_medica, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_actualizar_receta_medicas)
+                            .addComponent(jTextField_buscar_receta_medica, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -354,15 +308,13 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_buscar_rece_mdc)
                     .addComponent(jTextField_buscar_receta_medica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_agregar_rece_mdc)
                     .addComponent(jButton_editar_receta_medica))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_actualizar_receta_medicas)
-                    .addComponent(jButton_salir_receta_medicas))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_actualizar_receta_medicas)
+                .addGap(34, 34, 34))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
@@ -429,47 +381,31 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField_cod_rece_mdcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cod_rece_mdcActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_cod_rece_mdcActionPerformed
-
-    private void jTextField_cod_medicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cod_medicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_cod_medicoActionPerformed
-
-    private void jTextField_clinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_clinicaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_clinicaActionPerformed
-
-    private void jTextField_tel_medicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_tel_medicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_tel_medicoActionPerformed
-
-    private void jTextField_fh_indicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_fh_indicacionesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_fh_indicacionesActionPerformed
-
     private void jButton_agregar_rece_mdcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregar_rece_mdcActionPerformed
-       String cod=jTextField_cod_rece_mdc.getText();
-       String cod_m=jTextField_cod_medico.getText();
+       String cod_rece_mdc=jTextField_cod_rece_mdc.getText();
+       String cod_medico=jTextField_cod_medico.getText();
        String clinica=jTextField_clinica.getText();
-       String tel=jTextField_tel_medico.getText();
-       String ced=jTextField_ced_cli.getText();
-       String fecN=jTextField_fh_indicaciones.getText();
+       String telf_medico=jTextField_tel_medico.getText();
+       String fh_indicaciones=jTextField_fh_indicaciones.getText();
+       String ced_cli=jTextField_ced_cli.getText();
        
-       if(cod.contentEquals("")||cod_m.contentEquals("")||clinica.contentEquals("")
-              || ced.contentEquals("")||fecN.contentEquals("")||tel.contentEquals("")){
+       
+       if(cod_rece_mdc.contentEquals("")||cod_medico.contentEquals("")||clinica.contentEquals("")
+             ||telf_medico.contentEquals("") ||fh_indicaciones.contentEquals("")|| ced_cli.contentEquals("")){
         JOptionPane.showMessageDialog(rootpane,
         "Todos los campos son obligatorios");
  
+    }else{
      
    try{
-      //Convierte de String a Date
-      Date fech=Date.valueOf(fecN);
+      int cod_r=Integer.parseInt(cod_rece_mdc);
+      int cod_me=Integer.parseInt(cod_medico);
+      java.sql.Date fech=Date.valueOf(fh_indicaciones);
     
-      Class_recetas_medicas au=new DAOrecetas_medicas().Insertar(cod, cod_m, clinica, tel,ced, fech);
+      Class_recetas_medicas au=new DAOrecetas_medicas().Insertar(cod_r, cod_me, clinica, telf_medico, fech, ced_cli);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
-  }catch (Exception e){
+ 
+   }catch (Exception e){
       e.printStackTrace();
       JOptionPane.showMessageDialog(rootpane, "No se agrego el registro");
        }  
@@ -489,12 +425,9 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
         limpiarCampos();
     }//GEN-LAST:event_jButton_actualizar_receta_medicasActionPerformed
 
-    private void jButton_salir_receta_medicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salir_receta_medicasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_salir_receta_medicasActionPerformed
-
     private void jButton_editar_receta_medicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editar_receta_medicaActionPerformed
-        int fila=this. jTable_recetas_medica.getSelectedRow();
+     jTextField_cod_rece_mdc.setEnabled(false);
+      int fila=this. jTable_recetas_medica.getSelectedRow();
       if(fila==-1){
       
           JOptionPane.showMessageDialog(rootpane, "Seleccione un registro de la table");
@@ -514,23 +447,15 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
               jTextField_tel_medico.setText(tel);
               jTextField_ced_cli.setText(ced_cli);
               jTextField_fh_indicaciones.setText(String.valueOf(fec));
-          }catch(Exception e){
+          }catch(NumberFormatException e){
               e.printStackTrace();
           }
       }
     }//GEN-LAST:event_jButton_editar_receta_medicaActionPerformed
 
-    private void jTextField_buscar_receta_medicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_buscar_receta_medicaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_buscar_receta_medicaActionPerformed
-
     private void jTable_recetas_medicaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable_recetas_medicaAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable_recetas_medicaAncestorAdded
-
-    private void jTextField_ced_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_ced_cliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_ced_cliActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -538,7 +463,6 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton_agregar_rece_mdc;
     private javax.swing.JButton jButton_buscar_rece_mdc;
     private javax.swing.JButton jButton_editar_receta_medica;
-    private javax.swing.JButton jButton_salir_receta_medicas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

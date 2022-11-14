@@ -3,6 +3,9 @@ package vista;
 
 import Modelo.*;
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Date;
@@ -27,36 +30,36 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
     jTextField_ced_cli.setText("");
     }
     public void obtenerDatos(){
-        
         List<Class_ventas> ventas=new DAOventas().obtenerDatos();
         
         DefaultTableModel modelo=new DefaultTableModel();
         
-        String[] columns={"N factura","Monto venta","Cantidad venta",
-        "Fecha venta","Código de empleado","Cédula de empleado"};
+        String[] columns={"n_factura","monto_vt","cant_vt",
+        "fh_vt","cod_emp","ced_cli"};
         
         modelo.setColumnIdentifiers(columns);
+      
         for(Class_ventas au:ventas){
-            
             String[]renglon={Integer.toString(au.getN_factura()),
                    Float.toString( au.getMonto_vt()),
                    Float.toString( au.getCant_vt()),
+                    au.getFh_vt().toString(),
                    Integer.toString(au.getCod_emp()),
-                   au.getCed_cli(),
-                   au.getFh_vt().toString()}; 
+                   au.getCed_cli().toString()}; 
+            modelo.addRow(renglon);
         }
         jTable_venta.setModel(modelo);
     }
         public void actualizarventas(){
-        int n_f=Integer.parseInt(this.jTextField_n_factura.getText());
-        String mt=this.jTextField_monto_vt.getText();
-        String ctd=this.jTextField_cant_vt.getText();
-        String fh=(this.jTextField_fh_vt.getText());
-        int cod_em=Integer.parseInt(this.jTextField_cod_emp.getText());
+        int n_factura=Integer.parseInt(this.jTextField_n_factura.getText());
+        float monto_vt=Float.parseFloat(this.jTextField_monto_vt.getText());
+        float cant_vt=Float.parseFloat(this.jTextField_cant_vt.getText());
+        java.sql.Date fh_vt=Date.valueOf(this.jTextField_fh_vt.getText());
+        int cod_emp=Integer.parseInt(this.jTextField_cod_emp.getText());
         String ced_cli=this.jTextField_ced_cli.getText();
         
         DAOventas doa=new DAOventas();
-        int res=doa.Actualizar(n_f, mt, ctd, fh,cod_em,ced_cli);
+        int res=doa.Actualizar(n_factura, monto_vt, cant_vt, fh_vt, cod_emp, ced_cli);
         if(res==1){
             JOptionPane.showMessageDialog(rootpane, "¡venta actualizada!");
         }
@@ -89,10 +92,11 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
         jButton_editar_venta = new javax.swing.JButton();
         jTextField_buscar_venta = new javax.swing.JTextField();
         jButton_agregar_venta = new javax.swing.JButton();
-        jButton_salir_ventas = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_venta = new javax.swing.JTable();
+
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -119,38 +123,18 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
         jTextField_n_factura.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_n_factura.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_n_factura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_n_factura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_n_facturaActionPerformed(evt);
-            }
-        });
 
         jTextField_monto_vt.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_monto_vt.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_monto_vt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_monto_vt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_monto_vtActionPerformed(evt);
-            }
-        });
 
         jTextField_cant_vt.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_cant_vt.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_cant_vt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_cant_vt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_cant_vtActionPerformed(evt);
-            }
-        });
 
         jTextField_fh_vt.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_fh_vt.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_fh_vt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_fh_vt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_fh_vtActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 255));
@@ -163,20 +147,10 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
         jTextField_cod_emp.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_cod_emp.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_cod_emp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_cod_emp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_cod_empActionPerformed(evt);
-            }
-        });
 
         jTextField_ced_cli.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_ced_cli.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_ced_cli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_ced_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_ced_cliActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -185,21 +159,14 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField_monto_vt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(jTextField_n_factura, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jTextField_cant_vt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextField_monto_vt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(jTextField_n_factura, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel4)
+                            .addComponent(jTextField_cant_vt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField_cod_emp, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
@@ -287,11 +254,6 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
         jTextField_buscar_venta.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_buscar_venta.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_buscar_venta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField_buscar_venta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_buscar_ventaActionPerformed(evt);
-            }
-        });
 
         jButton_agregar_venta.setBackground(new java.awt.Color(204, 204, 255));
         jButton_agregar_venta.setForeground(new java.awt.Color(0, 0, 0));
@@ -304,54 +266,40 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton_salir_ventas.setBackground(new java.awt.Color(204, 204, 255));
-        jButton_salir_ventas.setForeground(new java.awt.Color(0, 0, 0));
-        jButton_salir_ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon salir.png"))); // NOI18N
-        jButton_salir_ventas.setText("Salir");
-        jButton_salir_ventas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
-        jButton_salir_ventas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_salir_ventasActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton_agregar_venta)
+                        .addGap(88, 88, 88)
+                        .addComponent(jButton_editar_venta))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jButton_actualizar_ventas))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton_buscar_venta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_buscar_venta))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton_agregar_venta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_editar_venta))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton_actualizar_ventas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                        .addComponent(jButton_salir_ventas)))
+                        .addComponent(jTextField_buscar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_buscar_venta)
                     .addComponent(jTextField_buscar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_editar_venta)
-                    .addComponent(jButton_agregar_venta))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_actualizar_ventas)
-                    .addComponent(jButton_salir_ventas))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_editar_venta, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton_agregar_venta, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addComponent(jButton_actualizar_ventas)
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
@@ -370,7 +318,7 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "N° Factura", "Mónto de venta", "Cantidad venta", "Fecha venta", "Código de empleado", "Cédula de cliente"
+                "n_factura", "monto_vt", "cant_vt", "fh_vt", "cod_emp", "ced_cli"
             }
         ));
         jTable_venta.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -418,37 +366,31 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField_n_facturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_n_facturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_n_facturaActionPerformed
-
-    private void jTextField_monto_vtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_monto_vtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_monto_vtActionPerformed
-
-    private void jTextField_cant_vtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cant_vtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_cant_vtActionPerformed
-
-    private void jTextField_fh_vtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_fh_vtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_fh_vtActionPerformed
-
     private void jButton_agregar_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregar_ventaActionPerformed
-       String n=jTextField_n_factura.getText();
-       String mt=jTextField_monto_vt.getText();
-       String cant=jTextField_cant_vt.getText();
-       String fh=jTextField_fh_vt.getText();
+       String n_factura=jTextField_n_factura.getText();
+       String monto_vt=jTextField_monto_vt.getText();
+       String cant_vt=jTextField_cant_vt.getText();
+       String fh_vt=jTextField_fh_vt.getText();
        String cod_emp=jTextField_cod_emp.getText();
        String ced_cli=jTextField_ced_cli.getText();
        
-       if(n.contentEquals("")||mt.contentEquals("")||cant.contentEquals("")
-              || fh.contentEquals("")||cod_emp.contentEquals("")||ced_cli.contentEquals("")){
+       if(n_factura.contentEquals("")||monto_vt.contentEquals("")||cant_vt.contentEquals("")
+              || fh_vt.contentEquals("")||cod_emp.contentEquals("")||ced_cli.contentEquals("")){
         JOptionPane.showMessageDialog(rootpane,
         "Todos los campos son obligatorios");
+        
+  }else{      
+        
    try{
-      Class_ventas au=new DAOventas().Insertar(n, mt, cant,fh,cod_emp,ced_cli );
+       int n_f=Integer.parseInt(n_factura);
+       float mnt_vt=Float.parseFloat(monto_vt);
+       float cnt_vt=Float.parseFloat(cant_vt);
+       java.sql.Date fh_v=Date.valueOf(fh_vt);
+       int cod_em=Integer.parseInt(cod_emp);
+       
+      Class_ventas au=new DAOventas().Insertar(n_f, mnt_vt, cnt_vt, fh_v, cod_em, ced_cli);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
+      
   }catch (Exception e){
       e.printStackTrace();
       JOptionPane.showMessageDialog(rootpane, "No se agrego el registro");
@@ -468,53 +410,38 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
         limpiarCampos();
     }//GEN-LAST:event_jButton_actualizar_ventasActionPerformed
 
-    private void jButton_salir_ventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salir_ventasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_salir_ventasActionPerformed
-
     private void jButton_editar_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editar_ventaActionPerformed
-         int fila=this.jTable_venta.getSelectedRow();
+     jTextField_n_factura.setEnabled(false);
+     int fila=this.jTable_venta.getSelectedRow();
       if(fila==-1){
       
           JOptionPane.showMessageDialog(rootpane, "Seleccione un registro de la table");
       }
       else{ 
           try{
-              int n=Integer.parseInt((String)this.jTable_venta.getValueAt(fila, 1).toString());
-              String mt=(String)this.jTable_venta.getValueAt(fila,2);
-              String cant=(String)this.jTable_venta.getValueAt(fila,3);
-              String fh=(String)this.jTable_venta.getValueAt(fila,4).toString();
-              int cod_emp=Integer.parseInt((String)this.jTable_venta.getValueAt(fila,5).toString());
-              String ced_cli=(String)this.jTable_venta.getValueAt(fila,6);
+              int n_factura=Integer.parseInt((String)this.jTable_venta.getValueAt(fila, 0).toString());
+              float monto_vt=Float.parseFloat((String)this.jTable_venta.getValueAt(fila,1));
+              float cant_vt=Float.parseFloat((String)this.jTable_venta.getValueAt(fila,2));
+              java.sql.Date fh_vt=Date.valueOf((String)this.jTable_venta.getValueAt(fila,3));
+              int cod_emp=Integer.parseInt((String)this.jTable_venta.getValueAt(fila,4));
+              String ced_cli=(String)this.jTable_venta.getValueAt(fila,5).toString();
               
-              jTextField_n_factura.setText(""+n);
-              jTextField_monto_vt.setText(mt);
-              jTextField_cant_vt.setText(cant);
-              jTextField_fh_vt.setText(fh);
+              jTextField_n_factura.setText(""+n_factura);
+              jTextField_monto_vt.setText(Float.toString(monto_vt));
+              jTextField_cant_vt.setText(Float.toString(cant_vt));
+              jTextField_fh_vt.setText(String.valueOf(fh_vt));
               jTextField_cod_emp.setText(Integer.toString(cod_emp));
               jTextField_ced_cli.setText(ced_cli);
               
-          }catch(Exception e){
+          }catch(NumberFormatException e){
               e.printStackTrace();
           }
       }
     }//GEN-LAST:event_jButton_editar_ventaActionPerformed
 
-    private void jTextField_buscar_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_buscar_ventaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_buscar_ventaActionPerformed
-
     private void jTable_ventaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable_ventaAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable_ventaAncestorAdded
-
-    private void jTextField_cod_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cod_empActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_cod_empActionPerformed
-
-    private void jTextField_ced_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_ced_cliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_ced_cliActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -522,7 +449,6 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton_agregar_venta;
     private javax.swing.JButton jButton_buscar_venta;
     private javax.swing.JButton jButton_editar_venta;
-    private javax.swing.JButton jButton_salir_ventas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -10,20 +10,12 @@ public class Class_ventas {
      private int n_factura;  
       private float monto_vt;
       private float cant_vt;
-      private Date fh_vt;
+      private java.sql.Date fh_vt;
       private int cod_emp;
       private String ced_cli;
 
-    public Class_ventas(int n_factura, float monto_vt, float cant_vt, Date fh_vt, int cod_emp, String ced_cli) {
+    public Class_ventas(int n_factura, float monto_vt, float cant_vt, java.sql.Date fh_vt, int cod_emp, String ced_cli) {
         this.n_factura = n_factura;
-        this.monto_vt = monto_vt;
-        this.cant_vt = cant_vt;
-        this.fh_vt = fh_vt;
-        this.cod_emp = cod_emp;
-        this.ced_cli = ced_cli;
-    }
-
-    public Class_ventas(float monto_vt, float cant_vt, Date fh_vt, int cod_emp, String ced_cli) {
         this.monto_vt = monto_vt;
         this.cant_vt = cant_vt;
         this.fh_vt = fh_vt;
@@ -56,11 +48,11 @@ public class Class_ventas {
         this.cant_vt = cant_vt;
     }
 
-    public Date getFh_vt() {
+    public java.sql.Date getFh_vt() {
         return fh_vt;
     }
 
-    public void setFh_vt(Date fh_vt) {
+    public void setFh_vt(java.sql.Date fh_vt) {
         this.fh_vt = fh_vt;
     }
 

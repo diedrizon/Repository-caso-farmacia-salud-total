@@ -45,13 +45,13 @@ public int Actualizar(int cod_prod,String nbr_prod, float prec_cp,
         + lab_prod + "', dcrip_prod='"    
         + dcrip_prod + "', fh_venc='"
         + fh_venc +  "' WHERE cod_prod="
-        + cod_prod ;
+        + cod_prod;
     return new DataBase().Actualizar(transaccion);
 }
       
 public List obtenerDatos(){
     String transaccion = "SELECT * FROM productos";
-
+    //Llama a metodos listar de DateBase.java
     List<Map> registros = new DataBase().Listar(transaccion);
     List<Class_productos> productos = new ArrayList(); 
     

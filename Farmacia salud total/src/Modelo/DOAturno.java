@@ -12,9 +12,9 @@ import java.util.Map;
 public class DOAturno {
     public Class_turno Insertar(int tp_de_turno, java.sql.Time h_entrada,java.sql.Time h_salida){
         String transaccion = "INSERT INTO turno VALUES('"
-        + tp_de_turno + "', '"
+        + tp_de_turno + "','"
         + h_entrada + "','"
-        + h_salida+ ")" ;
+        + h_salida+ "')";
                  
     if (new DataBase().Actualizar(transaccion) > 0){
     return new Class_turno (tp_de_turno ,h_entrada ,h_salida );
@@ -25,8 +25,8 @@ return null;
      public int Actualizar(int tp_de_turno, java.sql.Time h_entrada, java.sql.Time h_salida ){
     
     String transaccion = "UPDATE turno SET h_entrada='"
-        + h_entrada + "', h_salida= '"
-        + h_salida + "', WHERE tp_de_turno= '"
+        + h_entrada + "', h_salida='"
+        + h_salida + "' WHERE tp_de_turno="
         + tp_de_turno;
         
                 

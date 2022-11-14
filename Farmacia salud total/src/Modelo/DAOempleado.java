@@ -21,13 +21,13 @@ public class DAOempleado {
         + direc_emp + "','"
         + telf_emp + "','"
         + tp_de_cargo + "','"
-        + tp_de_turno + ")" ;      
+        + tp_de_turno + "')" ;      
        
         
         
     if (new DataBase().Actualizar(transaccion) > 0){
-    return new Class_empleado (ced_emp ,nbr_1_emp ,nbr_2_emp,apelli_1_emp,apelli_2_emp ,direc_emp ,telf_emp ,tp_de_cargo );
-           
+    return new Class_empleado (cod_emp,ced_emp ,nbr_1_emp ,nbr_2_emp,apelli_1_emp,
+            apelli_2_emp ,direc_emp ,telf_emp ,tp_de_cargo,tp_de_turno );
 }
 return null;
 }
@@ -37,17 +37,16 @@ return null;
        int tp_de_turno ){
     
     String transaccion = "UPDATE empleado SET ced_emp='"
-        + ced_emp + "', nbr_1_emp= '"
-        + nbr_1_emp + "', nbr_2_emp= '"
-        + nbr_2_emp + "', apelli_1_emp= '"
-        + apelli_1_emp + "', apelli_2_emp= '"
-        + apelli_2_emp + "', direc_emp= '" 
-        + direc_emp + "', telf_emp= '"
-        + telf_emp + "', ced_emp= '" 
-        + ced_emp + "', tp_de_cargo= '"
-        + tp_de_cargo + "', tp_de_turno= '"
-        + tp_de_turno + "', WHERE cod_emp= '"
-        + cod_emp ;
+        + ced_emp + "', nbr_1_emp='"
+        + nbr_1_emp + "', nbr_2_emp='"
+        + nbr_2_emp + "', apelli_1_emp='"
+        + apelli_1_emp + "', apelli_2_emp='"
+        + apelli_2_emp + "', direc_emp='" 
+        + direc_emp + "', telf_emp='"
+        + telf_emp + "', tp_de_cargo='" 
+        + tp_de_cargo + "', tp_de_turno='"
+        + tp_de_turno + "' WHERE cod_emp="
+        + cod_emp;
                 
     return new DataBase().Actualizar(transaccion);
 }   
@@ -58,17 +57,19 @@ return null;
     List<Class_empleado> empleado = new ArrayList(); 
     
     for(Map registro : registros) {
-        Class_empleado aut = new  Class_empleado
-          ((int) registro.get("cod_emp"),
-          (int) registro.get("ced_emp"),
-          (String) registro.get("nbr_1_emp"),
-          (String) registro.get("nbr_2_emp"),
-          (String) registro.get("apelli_1_emp"), 
-          (String) registro.get("apelli_2_emp"), 
-          (String) registro.get("direc_emp"), 
-          (String) registro.get("tp_de_cargo"),
-          (int) registro.get("tp_de_turno"));   
-        empleado.add(aut);
+       Class_empleado aut = new Class_empleado
+               ((int) registro.get("cod_emp"),
+               (String) registro.get("ced_emp"),
+               (String) registro.get("nbr_1_emp"),
+               (String) registro.get("nbr_2_emp"),
+               (String) registro.get("apelli_1_emp"), 
+               (String) registro.get("apelli_2_emp"),
+               (String) registro.get("direc_emp"), 
+               (String) registro.get("telf_emp"),
+               (String) registro.get("tp_de_cargo"),
+               (int) registro.get("tp_de_turno"));
+       empleado.add(aut);
+         
     }
     return empleado; 
 

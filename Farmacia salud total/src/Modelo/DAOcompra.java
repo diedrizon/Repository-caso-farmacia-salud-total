@@ -27,13 +27,13 @@ return null;
     public int Actualizar (int cod_cp, String vrd_p, float ctd_p,
         float ctd_t,java.sql.Date fh_cp, int cod_p,int cod_lab){
         
-      String transaccion = "UPDATE compra SET vrd_p ='"
-        + vrd_p + "', ctd_p= '"
-        + ctd_p + "', ctd_t= '"
-        + ctd_t + "', cod_p= '" 
-        + cod_p + "', fh_cp= '"  
-        + fh_cp + "', cod_lab= '"
-        + cod_lab + "' WHERE cod_cp= "
+      String transaccion = "UPDATE compra SET vrd_p='"
+        + vrd_p + "', ctd_p='"
+        + ctd_p + "', ctd_t='"
+        + ctd_t + "', cod_p='" 
+        + cod_p + "', fh_cp='"  
+        + fh_cp + "', cod_lab='"
+        + cod_lab + "' WHERE cod_cp="
         + cod_cp;
         return new DataBase().Actualizar(transaccion);
     }

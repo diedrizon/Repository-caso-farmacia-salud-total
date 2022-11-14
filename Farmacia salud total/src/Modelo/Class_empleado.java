@@ -18,22 +18,8 @@ public class Class_empleado {
     private String telf_emp;
     private String tp_de_cargo;
     private int tp_de_turno;
-   
 
-    public Class_empleado(String ced_emp, String nbr_1_emp, String nbr_2_emp, String apelli_1_emp, String apelli_2_emp, String direc_emp, String tel_emp, String tp_de_cargo, Time h_entrada, Time h_salida) {
-        this.ced_emp = ced_emp;
-        this.nbr_1_emp = nbr_1_emp;
-        this.nbr_2_emp = nbr_2_emp;
-        this.apelli_1_emp = apelli_1_emp;
-        this.apelli_2_emp = apelli_2_emp;
-        this.direc_emp = direc_emp;
-        this.telf_emp = tel_emp;
-        this.tp_de_cargo = tp_de_cargo;
-        
-    }
-    
-
-    public Class_empleado(int cod_emp, String ced_emp, String nbr_1_emp, String nbr_2_emp, String apelli_1_emp, String apelli_2_emp, String direc_emp, String tel_emp, String tp_de_cargo, int tp_de_turno, Time h_entrada, Time h_salida) {
+    public Class_empleado(int cod_emp, String ced_emp, String nbr_1_emp, String nbr_2_emp, String apelli_1_emp, String apelli_2_emp, String direc_emp, String tel_emp, String tp_de_cargo, int tp_de_turno) {
         this.cod_emp = cod_emp;
         this.ced_emp = ced_emp;
         this.nbr_1_emp = nbr_1_emp;
@@ -47,15 +33,6 @@ public class Class_empleado {
         
     }
 
-    Class_empleado(String ced_emp, String nbr_1_emp, String nbr_2_emp, String apelli_1_emp, String apelli_2_emp, String direc_emp, String telf_emp, String tp_de_cargo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    Class_empleado(int i, int i0, String string, String string0, String string1, String string2, String string3, String string4, int i1) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-  
     public int getCod_emp() {
         return cod_emp;
     }
