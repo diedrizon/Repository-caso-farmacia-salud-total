@@ -11,27 +11,22 @@ public class DAOproductos {
 
     
     
-    public Class_productos Insertar(int cod_prod, String nbr_prod, float prec_cp,
-       float prec_vt, String existe_prod ,String lab_prod ,String dcrip_prod, java.sql.Date fh_venc){
+    public Class_productos Insertar(int cod_prod, String nbr_prod, float prec_cp, float prec_vt, String existe_prod ,String lab_prod ,String dcrip_prod, java.sql.Date fh_venc){
         
-String transaccion = "INSERT INTO productos VALUES('"
-        + cod_prod + "', '"
-        + nbr_prod + "', '" 
-        + prec_cp +  "', '"
-        + prec_vt +  "', '" 
-        + existe_prod + "', '"
-        + lab_prod + "', '" 
-        + dcrip_prod + "', '" 
-        + fh_venc +  "')"; 
-
-
-
-if (new DataBase().Actualizar(transaccion) > 0){
-    return new Class_productos(cod_prod,nbr_prod,prec_cp, prec_vt,existe_prod, lab_prod,dcrip_prod,fh_venc );
-
-}
-return null;
-}
+        String transaccion = "INSERT INTO productos VALUES('"
+                + cod_prod + "', '"
+                + nbr_prod + "', '" 
+                + prec_cp +  "', '"
+                + prec_vt +  "', '" 
+                + existe_prod + "', '"
+                + lab_prod + "', '" 
+                + dcrip_prod + "', '" 
+                + fh_venc +  "')"; 
+        if (new DataBase().Actualizar(transaccion) > 0){
+            return new Class_productos(cod_prod,nbr_prod,prec_cp, prec_vt,existe_prod, lab_prod,dcrip_prod,fh_venc );
+        }
+        return null;
+    }
 
     
 public int Actualizar(int cod_prod,String nbr_prod, float prec_cp,
@@ -51,23 +46,22 @@ public int Actualizar(int cod_prod,String nbr_prod, float prec_cp,
       
 public List obtenerDatos(){
     String transaccion = "SELECT * FROM productos";
-    //Llama a metodos listar de DateBase.java
+
     List<Map> registros = new DataBase().Listar(transaccion);
     List<Class_productos> productos = new ArrayList(); 
     
     for(Map registro : registros) {
         Class_productos aut = new Class_productos ((int) registro.get("cod_prod"),
           (String) registro.get("nbr_prod"),
-          (float) registro.get("prec_cp"),
-          (float) registro.get("prec_vt"),
+          (float) (double) registro.get("prec_cp"),
+          (float) (double) registro.get("prec_vt"),
           (String) registro.get("existe_prod"),
           (String) registro.get("lab_prod"),
           (String) registro.get("dcrip_prod"),
           (java.sql.Date) registro.get("fh_venc"));
         productos.add(aut);
-}
-return productos; 
-
+    }           
+    return productos; 
 }
   
      public int Eliminar(int id){

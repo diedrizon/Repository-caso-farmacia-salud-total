@@ -41,8 +41,8 @@ return null;
     for(Map registro : registros) {
         Class_turno aut = new  Class_turno
           ((int) registro.get("tp_de_turno"),
-          (java.sql.Time) registro.get("h_entrada"),
-          (java.sql.Time) registro.get("h_salida"));  
+          (java.sql.Time.valueOf( registro.get("h_entrada").toString())),
+          (java.sql.Time.valueOf( registro.get("h_salida").toString())));  
         turno.add(aut);
     }
     return turno; 

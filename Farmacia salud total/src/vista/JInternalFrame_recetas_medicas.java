@@ -435,14 +435,15 @@ public class JInternalFrame_recetas_medicas extends javax.swing.JInternalFrame {
       else{ 
           try{
               int cod=Integer.parseInt((String)this. jTable_recetas_medica.getValueAt(fila, 0).toString());
-              String cod_m=(String)this. jTable_recetas_medica.getValueAt(fila,1);
+              int cod_m=Integer.parseInt((String)this. jTable_recetas_medica.getValueAt(fila,1));
               String clinica=(String)this. jTable_recetas_medica.getValueAt(fila,2);
               String tel=(String)this. jTable_recetas_medica.getValueAt(fila,3);
-              String ced_cli=(String)this. jTable_recetas_medica.getValueAt(fila,4);
-              Date fec=Date.valueOf((String)this. jTable_recetas_medica.getValueAt(fila,5).toString());
+              Date fec=Date.valueOf((String)this. jTable_recetas_medica.getValueAt(fila,4).toString());
+              String ced_cli=(String)this. jTable_recetas_medica.getValueAt(fila,5);
+            ;
               
               jTextField_cod_rece_mdc.setText(""+cod);
-              jTextField_cod_medico.setText(cod_m);
+              jTextField_cod_medico.setText(String.valueOf(cod_m));
               jTextField_clinica.setText(clinica);
               jTextField_tel_medico.setText(tel);
               jTextField_ced_cli.setText(ced_cli);

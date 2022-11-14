@@ -20,20 +20,20 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
         initComponents();
     }
     public void limpiarCampos(){
-    jTextField_cod_lab.setText("");
-    jTextField_nbr_lab.setText("");
-    jTextField_direc_lab.setText("");
-    jTextField_telf_lab.setText("");
-}
+        jTextField_cod_lab.setText("");
+        jTextField_nbr_lab.setText("");
+        jTextField_direc_lab.setText("");
+        jTextField_telf_lab.setText("");
+    }
     
     public void obtenerDatos(){
         List<Class_laboratorio> laboratorio=new DAOlaboratorio().obtenerDatos();
         
-        DefaultTableModel modelo=new DefaultTableModel();
-        String[] columns={"cod_lab","nbr_lab","direc_lab",
-        "telf_lab"};
+        DefaultTableModel modelo = new DefaultTableModel();
+        String[] columns = {"cod_lab","nbr_lab","direc_lab","telf_lab"};
         
         modelo.setColumnIdentifiers(columns);
+        
         for(Class_laboratorio au:laboratorio){
             String[]renglon={Integer.toString(au.getCod_lab()),au.getNbr_lab(),
                     au.getDirec_lab(),
@@ -42,12 +42,13 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
         }
         jTable_laboratorio.setModel(modelo);
     }
-     public void actualizarlaboratorio(){
+    
+    public void actualizarlaboratorio(){
         int cod=Integer.parseInt(this.jTextField_cod_lab.getText());
         String nbr=this.jTextField_nbr_lab.getText();
         String direc=this.jTextField_direc_lab.getText();
         String telf=(this.jTextField_telf_lab.getText());
-        
+
         DAOlaboratorio doa=new DAOlaboratorio();
         int res=doa.Actualizar(cod, nbr, direc, telf);
         if(res==1){
@@ -56,7 +57,7 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
         else{
             JOptionPane.showMessageDialog(rootpane, "¡Ocurrio un ERROR!");
         }
-       }
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -63,7 +63,6 @@ private Connection conexion; //Para conexión con la BD
              Statement st=conexion.createStatement();
              rs=st.executeQuery(consulta);
              resultado=OrganizarDatos(rs);
-             
          }catch(SQLException e){
              System.out.println("No se realizo la consulta");
              e.printStackTrace();

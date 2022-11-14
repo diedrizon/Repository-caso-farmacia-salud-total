@@ -67,6 +67,7 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
         );
 
         jToolBar1.setBackground(new java.awt.Color(204, 255, 255));
+        jToolBar1.setFloatable(false);
         jToolBar1.setForeground(new java.awt.Color(0, 0, 0));
         jToolBar1.setRollover(true);
 
@@ -288,6 +289,7 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
     private void jButton_ventas_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ventas_panelActionPerformed
         JInternalFrame_ventas est = new JInternalFrame_ventas();
         jDesktopPane1.add(est);
+        est.obtenerDatos();
         est.show();
     }//GEN-LAST:event_jButton_ventas_panelActionPerformed
 
@@ -297,6 +299,7 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
         int y=(jDesktopPane1.getHeight()/2)-est.getHeight()/2;
         est.setLocation(x, y);
         est.obtenerDatos();
+        est.obtenerturno();
         jDesktopPane1.add(est);
         est.setVisible(true);
     }//GEN-LAST:event_jButton_empleado_panelActionPerformed

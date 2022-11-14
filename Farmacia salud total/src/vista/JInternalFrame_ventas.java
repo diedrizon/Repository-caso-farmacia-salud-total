@@ -307,7 +307,7 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
         jPanel3.setForeground(new java.awt.Color(0, 0, 0));
 
         jTable_venta.setBackground(new java.awt.Color(255, 255, 255));
-        jTable_venta.setForeground(new java.awt.Color(255, 255, 255));
+        jTable_venta.setForeground(new java.awt.Color(0, 0, 0));
         jTable_venta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -412,6 +412,8 @@ public class JInternalFrame_ventas extends javax.swing.JInternalFrame {
 
     private void jButton_editar_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editar_ventaActionPerformed
      jTextField_n_factura.setEnabled(false);
+     jTextField_cod_emp.setEnabled(false);
+     jTextField_ced_cli.setEnabled(false);
      int fila=this.jTable_venta.getSelectedRow();
       if(fila==-1){
       

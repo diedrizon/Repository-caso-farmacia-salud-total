@@ -25,6 +25,16 @@ public class Class_compra {
         this.cod_lab = cod_lab;
     }
 
+    public Class_compra(String vrd_p, float ctd_p, float ctd_t, Date fh_cp, int cod_p, int cod_lab) {
+        this.vrd_p = vrd_p;
+        this.ctd_p = ctd_p;
+        this.ctd_t = ctd_t;
+        this.fh_cp = fh_cp;
+        this.cod_p = cod_p;
+        this.cod_lab = cod_lab;
+    }
+
+    
     public int getCod_cp() {
         return cod_cp;
     }

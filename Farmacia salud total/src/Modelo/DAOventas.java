@@ -47,8 +47,8 @@ return null;
     for(Map registro : registros) {
         Class_ventas aut = new Class_ventas 
          ((int) registro.get("n_factura"),
-          (float) registro.get("monto_vt"),
-          (float) registro.get("cant_vt"),
+          (Float.parseFloat( registro.get("monto_vt").toString())),
+          (Float.parseFloat(registro.get("cant_vt").toString())),
           (java.sql.Date) registro.get("fh_vt"),
           (int) registro.get("cod_emp"),
           (String) registro.get("ced_cli"));

@@ -46,25 +46,27 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
         jTable_cliente.setModel(modelo);
                 
     }
+    
     public void actualizarcliente(){
-        String ced_cli=this.jTextField_ced_cli.getText();
-        String nbr_1_cli=this.jTextField_nbr_1_cli.getText();
-        String nbr_2_cli=this.jTextField_nbr_2_cli.getText();
-        String apelli_1_cli=this.jTextField_apelli_1_cli.getText();
-        String apelli_2_cli=this.jTextField_apelli_2_cli.getText();
-        String direc_cli=this.jTextField_direc_cli.getText();
-        String telf_cli=this.jTextField_telf_cli.getText();
+        String ced_cli = this.jTextField_ced_cli.getText();
+        String nbr_1_cli = this.jTextField_nbr_1_cli.getText();
+        String nbr_2_cli = this.jTextField_nbr_2_cli.getText();
+        String apelli_1_cli = this.jTextField_apelli_1_cli.getText();
+        String apelli_2_cli = this.jTextField_apelli_2_cli.getText();
+        String direc_cli = this.jTextField_direc_cli.getText();
+        String telf_cli = this.jTextField_telf_cli.getText();
         
-        DAOclientes doa=new DAOclientes();
-        int res=doa.Actualizar(ced_cli, nbr_1_cli, nbr_2_cli, apelli_1_cli,
-                apelli_2_cli, direc_cli, telf_cli);
+        System.out.println("Hello");
+        
+        DAOclientes doa = new DAOclientes();
+        int res = doa.Actualizar(ced_cli, nbr_1_cli, nbr_2_cli, apelli_1_cli, apelli_2_cli, direc_cli, telf_cli);
         if(res==1){
-            JOptionPane.showMessageDialog(rootpane, "¡cliente actualizado!");
+            JOptionPane.showMessageDialog(rootpane, "¡Cliente actualizado!");
         }
         else{
             JOptionPane.showMessageDialog(rootpane, "¡Ocurrio un ERROR!");
         }
-       }
+    }
 
     
     @SuppressWarnings("unchecked")

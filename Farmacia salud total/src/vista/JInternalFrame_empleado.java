@@ -37,43 +37,42 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
        jTextField_h_salida.setText("");
     }
         public void obtenerDatos(){
-        List<Class_empleado> empleado=new DAOempleado().obtenerDatos();
-        
-        DefaultTableModel modelo=new DefaultTableModel();
-        
-        String[] columns={"cod_emp","ced_emp","nbr_1_emp",
-        "nbr_2_emp","apelli_1_emp", "apelli_2_emp","direc_emp","telf_emp",
-        "tp_de_cargo","tp_de_turno"};
-        
-        modelo.setColumnIdentifiers(columns);
-        for(Class_empleado au:empleado){
-            String[]renglon={Integer.toString(au.getCod_emp()),au.getCed_emp(),
-                    au.getNbr_1_emp(),au.getNbr_2_emp(),au.getApelli_1_emp(),
-                    au.getApelli_2_emp(),au.getDirec_emp(),au.getTel_emp(),
-                    au.getTp_de_cargo(),
-                    Integer.toString (au.getTp_de_turno())};
-            modelo.addRow(renglon);
-  
-        }
-        jTable_empleado.setModel(modelo);
+            List<Class_empleado> empleado = new DAOempleado().obtenerDatos();
+
+            DefaultTableModel modelo = new DefaultTableModel();
+
+            String[] columns={"cod_emp","ced_emp","nbr_1_emp",
+            "nbr_2_emp","apelli_1_emp", "apelli_2_emp","direc_emp","telf_emp",
+            "tp_de_cargo","tp_de_turno"};
+
+            modelo.setColumnIdentifiers(columns);
+            for(Class_empleado au:empleado){
+                String[]renglon={Integer.toString(au.getCod_emp()),au.getCed_emp(),
+                        au.getNbr_1_emp(),au.getNbr_2_emp(),au.getApelli_1_emp(),
+                        au.getApelli_2_emp(),au.getDirec_emp(),au.getTel_emp(),
+                        au.getTp_de_cargo(),
+                        Integer.toString (au.getTp_de_turno())};
+                modelo.addRow(renglon);
+            }
+            jTable_empleado.setModel(modelo);
         }
         
         public void obtenerturno(){
-        List<Class_turno> turno = new DOAturno().obtenerDatos();
-        
-        DefaultTableModel modelo=new DefaultTableModel();
-        
-        String [] columns={"tp_de_turno","h_entrada","h_salida"};
-       
-        modelo.setColumnIdentifiers(columns);
-        
-        for(Class_turno au: turno){
-         String [] renglon={Integer.toString (au.getTp_de_turno()),
-           (java.sql.Time.valueOf ("h_entrada").toString()), 
-           (java.sql.Time.valueOf ("h_salida").toString())};
-         modelo.addRow(renglon);
-        }
-        jTable_turno.setModel(modelo); 
+            List<Class_turno> turno = new DOAturno().obtenerDatos();
+
+            DefaultTableModel modelo = new DefaultTableModel();
+
+            String [] columns = {"tp_de_turno","h_entrada","h_salida"};
+
+            modelo.setColumnIdentifiers(columns);
+
+            for(Class_turno au: turno){
+             String [] renglon={Integer.toString (au.getTp_de_turno()),
+               au.getH_entrada().toString(), 
+               au.getH_salida().toString()};
+             modelo.addRow(renglon);
+            }
+            jTable_turno.setModel(modelo); 
       }
     
     public void actualizarempleado(){
@@ -601,20 +600,32 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
        String direc=jTextField_direc_emp.getText();
        String telf=jTextField_telf_emp.getText();
        String tp_c=jTextField_tp_de_cargo.getText();
-       String tp_t=jTextField_tp_de_turno.getText();
+      
+       
+            int fila2=this.jTable_turno.getSelectedRow();  
+            jTextField_tp_de_turno.setText((String)this.jTable_turno.getValueAt(fila2,0).toString());
+                java.sql.Time h_e=Time.valueOf((String)this.jTable_turno.getValueAt(fila2,1).toString());
+                java.sql.Time h_s=Time.valueOf((String)this.jTable_turno.getValueAt(fila2,2).toString());
+                jTextField_h_entrada.setText(String.valueOf(h_e));
+                jTextField_h_salida.setText(String.valueOf(h_s));
+               
+                
+                 String tp_t=jTextField_tp_de_turno.getText();
      
        if(cod.contentEquals("")||ced.contentEquals("")||nbr1.contentEquals("")
               || nbr2.contentEquals("")||ape1.contentEquals("") || ape2.contentEquals("") || direc.contentEquals("")
-                || telf.contentEquals("") || tp_c.contentEquals("") || tp_t.contentEquals("")){
+                || telf.contentEquals("") || tp_c.contentEquals("") || tp_t.contentEquals("")||fila2==-1){
         JOptionPane.showMessageDialog(rootpane,
-        "Por favor llene todo los campos si no chinguese");
+        "Por favor llene todo los campos y seleccione un registro de la tabla turnos"
+                + "si no chinguese");
  
    }else{
         
    try{
        int cod_e=Integer.parseInt(cod);
        int tp_tu=Integer.parseInt(tp_t);
-      
+       
+         
       Class_empleado au=new DAOempleado().Insertar(cod_e, ced, nbr1, nbr2, ape1, ape2, direc, telf, tp_c, tp_tu);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
   }catch (Exception e){
@@ -655,9 +666,10 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
        jTextField_cod_emp.setEnabled(false);
        jTextField_tp_de_turno.setEnabled(false);
       int fila=this.jTable_empleado.getSelectedRow();
-      if(fila==-1){
+      int fila2=this.jTable_turno.getSelectedRow();
+      if((fila==-1)||(fila2==-1)){
       
-          JOptionPane.showMessageDialog(rootpane, "Seleccione un registro de la table");
+          JOptionPane.showMessageDialog(rootpane, "Seleccione un registro de la tabla empleado y uno de turnos");
       }
       else{ 
           try{
@@ -671,8 +683,8 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
               String telf=(String)this.jTable_empleado.getValueAt(fila,7);
               String tp_c=(String)this.jTable_empleado.getValueAt(fila,8);
               int tp_t=Integer.parseInt((String)this.jTable_empleado.getValueAt(fila,9));
-              java.sql.Time h_e=Time.valueOf((String)this.jTable_empleado.getValueAt(fila,10).toString());
-              java.sql.Time h_s=Time.valueOf((String)this.jTable_empleado.getValueAt(fila,11).toString());
+              
+             
               
               jTextField_cod_emp.setText(""+cod);
               jTextField_ced_emp.setText(ced);
@@ -684,8 +696,21 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
               jTextField_telf_emp.setText(telf);
               jTextField_tp_de_cargo.setText(tp_c);
               jTextField_tp_de_turno.setText(Integer.toString(tp_t));
-              jTextField_h_entrada.setText(String.valueOf(h_e));
-              jTextField_h_salida.setText(String.valueOf(h_s));
+              
+              //Turnos
+              if(tp_t==1){
+                   //Turnos
+                java.sql.Time h_e=Time.valueOf((String)this.jTable_turno.getValueAt(0,1).toString());
+                java.sql.Time h_s=Time.valueOf((String)this.jTable_turno.getValueAt(0,2).toString());
+                jTextField_h_entrada.setText(String.valueOf(h_e));
+                jTextField_h_salida.setText(String.valueOf(h_s));
+              }else{
+                java.sql.Time h_e=Time.valueOf((String)this.jTable_turno.getValueAt(1,1).toString());
+                java.sql.Time h_s=Time.valueOf((String)this.jTable_turno.getValueAt(1,2).toString());
+                jTextField_h_entrada.setText(String.valueOf(h_e));
+                jTextField_h_salida.setText(String.valueOf(h_s));
+              }
+             
               
           }catch(Exception e){
               e.printStackTrace();

@@ -22,21 +22,19 @@ public class JInternalFrame_compra extends javax.swing.JInternalFrame {
         initComponents();
     }
     public void limpiarCampos(){
-    jTextField_cod_compra.setText("");
-    jTextField_vrd_p.setText("");
-    jTextField_ctd_p.setText("");
-    jTextField_ctd_t.setText("");
-    jTextField_fh_compra.setText("");
-    jTextField_cod_prod.setText("");
-    jTextField_cod_lab.setText("");
+        jTextField_cod_compra.setText("");
+        jTextField_vrd_p.setText("");
+        jTextField_ctd_p.setText("");
+        jTextField_ctd_t.setText("");
+        jTextField_fh_compra.setText("");
+        jTextField_cod_prod.setText("");
+        jTextField_cod_lab.setText("");
     }
-     public void obtenerDatos(){
-        
-        List<Class_compra> compra=new DAOcompra().obtenerDatos();
-        
+    
+    public void obtenerDatos(){
+        List<Class_compra> compra = new DAOcompra().obtenerDatos();
         DefaultTableModel modelo=new DefaultTableModel();
-        String[] columns={"cod_cp","vrd_p","ctd_p",
-        "ctd_t","fh_cp","cod_p","cod_lab"};
+        String[] columns={"cod_cp","vrd_p","ctd_p","ctd_t","fh_cp","cod_p","cod_lab"};
        
         modelo.setColumnIdentifiers(columns);
         for(Class_compra au:compra){

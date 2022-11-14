@@ -29,8 +29,7 @@ if (new DataBase().Actualizar(transaccion) > 0){
 return null;
 }
 
-public int Actualizar(String ced_cli,String nbr_1_cli, String nbr_2_cli,
-        String apelli_1_cli, String apelli_2_cli,String direc_cli, String telf_cli){
+public int Actualizar(String ced_cli,String nbr_1_cli, String nbr_2_cli,String apelli_1_cli, String apelli_2_cli,String direc_cli, String telf_cli){
    
     String transaccion = "UPDATE clientes SET nbr_1_cli='"
         + nbr_1_cli + "', nbr_2_cli='"
@@ -39,7 +38,7 @@ public int Actualizar(String ced_cli,String nbr_1_cli, String nbr_2_cli,
         + apelli_2_cli + "', direc_cli='" 
         + direc_cli +   "', telf_cli='" 
         + telf_cli + "' WHERE ced_cli="   
-        + ced_cli;
+        + "'"+ced_cli+"'";
     return new DataBase().Actualizar(transaccion);
 }
       
