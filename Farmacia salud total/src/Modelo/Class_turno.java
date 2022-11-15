@@ -43,5 +43,10 @@ public class Class_turno {
     public void setH_salida(Time h_salida) {
         this.h_salida = h_salida;
     }
+    
+    public String toString()  {
+        return tp_de_turno + " - " + tp_de_turno ;
     }
+    
+}
    

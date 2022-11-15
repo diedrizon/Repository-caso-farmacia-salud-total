@@ -6,7 +6,6 @@ import java.sql.Time;
 
 /** @author diedr */
 
-
 public class Class_empleado {
     private int cod_emp;
     private String ced_emp;
@@ -112,8 +111,6 @@ public class Class_empleado {
     public void setTp_de_turno(int tp_de_turno) {
         this.tp_de_turno = tp_de_turno;
     }
-
-    
     }
     
     

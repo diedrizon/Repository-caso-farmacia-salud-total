@@ -90,6 +90,5 @@ public class Class_productos {
     public void setFh_venc(Date fh_venc) {
         this.fh_venc = fh_venc;
     }
-  
-            
+         
 }

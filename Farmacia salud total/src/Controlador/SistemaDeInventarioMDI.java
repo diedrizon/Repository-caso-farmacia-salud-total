@@ -37,18 +37,7 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
         jButton_rece_mdc_panel = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        openMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        saveAsMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,19 +161,6 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
 
-        openMenuItem.setMnemonic('o');
-        openMenuItem.setText("Open");
-        fileMenu.add(openMenuItem);
-
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Save");
-        fileMenu.add(saveMenuItem);
-
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Save As ...");
-        saveAsMenuItem.setDisplayedMnemonicIndex(5);
-        fileMenu.add(saveAsMenuItem);
-
         exitMenuItem.setMnemonic('x');
         exitMenuItem.setText("Exit");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -195,40 +171,6 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
         fileMenu.add(exitMenuItem);
 
         menuBar.add(fileMenu);
-
-        editMenu.setMnemonic('e');
-        editMenu.setText("Edit");
-
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
-        editMenu.add(cutMenuItem);
-
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        editMenu.add(copyMenuItem);
-
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        editMenu.add(pasteMenuItem);
-
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        editMenu.add(deleteMenuItem);
-
-        menuBar.add(editMenu);
-
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Help");
-
-        contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Contents");
-        helpMenu.add(contentMenuItem);
-
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
-        helpMenu.add(aboutMenuItem);
-
-        menuBar.add(helpMenu);
 
         setJMenuBar(menuBar);
 
@@ -288,6 +230,9 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
 
     private void jButton_ventas_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ventas_panelActionPerformed
         JInternalFrame_ventas est = new JInternalFrame_ventas();
+        int x=(jDesktopPane1.getWidth()/2)-est.getWidth()/2;
+        int y=(jDesktopPane1.getHeight()/2)-est.getHeight()/2;
+        est.setLocation(x, y);
         jDesktopPane1.add(est);
         est.obtenerDatos();
         est.show();
@@ -316,7 +261,7 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
 
     private void jButton_rece_mdc_panelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_rece_mdc_panelActionPerformed
         JInternalFrame_recetas_medicas est = new JInternalFrame_recetas_medicas();
-          int x=(jDesktopPane1.getWidth()/2)-est.getWidth()/2;
+       int x=(jDesktopPane1.getWidth()/2)-est.getWidth()/2;
         int y=(jDesktopPane1.getHeight()/2)-est.getHeight()/2;
         est.setLocation(x, y);
         est.obtenerDatos();
@@ -337,15 +282,8 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
-    private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
     private javax.swing.JButton jButton_clientes_panel;
     private javax.swing.JButton jButton_compra_panel;
     private javax.swing.JButton jButton_empleado_panel;
@@ -356,10 +294,6 @@ public class SistemaDeInventarioMDI extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JMenuItem pasteMenuItem;
-    private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }

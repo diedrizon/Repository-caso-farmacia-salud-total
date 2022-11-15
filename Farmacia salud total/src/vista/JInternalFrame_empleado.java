@@ -1,119 +1,148 @@
-
 package vista;
 
 import Modelo.*;
 import java.awt.Component;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Time;
 import javax.swing.JOptionPane;
 
-/** @author diedr */
-
-
+/**
+ * @author diedr
+ */
 public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
 
     private Component rootpane;
-   
+
     public JInternalFrame_empleado() {
         initComponents();
+        llenarcombo();
     }
-    
-    public void limpiarCampos(){
-       jTextField_cod_emp.setText("");
-       jTextField_ced_emp.setText("");
-       jTextField_nbr_1_emp.setText("");
-       jTextField_nbr_2_emp.setText("");
-       jTextField_apelli_1_emp.setText("");
-       jTextField_apelli_2_emp.setText("");
-       jTextField_direc_emp.setText("");
-       jTextField_telf_emp.setText("");
-       jTextField_tp_de_cargo.setText("");
-       jTextField_tp_de_turno.setText("");
-       jTextField_h_entrada.setText("");
-       jTextField_h_salida.setText("");
+
+    public void limpiarCampos() {
+        jTextField_cod_emp.setText("");
+        jTextField_ced_emp.setText("");
+        jTextField_nbr_1_emp.setText("");
+        jTextField_nbr_2_emp.setText("");
+        jTextField_apelli_1_emp.setText("");
+        jTextField_apelli_2_emp.setText("");
+        jTextField_direc_emp.setText("");
+        jTextField_telf_emp.setText("");
+        jTextField_tp_de_cargo.setText("");
+        jTextField_tp_de_turno.setText("");
+        jTextField_h_entrada.setText("");
+        jTextField_h_salida.setText("");
     }
-        public void obtenerDatos(){
-            List<Class_empleado> empleado = new DAOempleado().obtenerDatos();
 
-            DefaultTableModel modelo = new DefaultTableModel();
+    public void llenarcombo() {
+        List<Class_turno> turno = new DOAturno().obtenerDatos();
+        for (int i = 0; i < turno.size(); i++)
+        {
 
-            String[] columns={"cod_emp","ced_emp","nbr_1_emp",
-            "nbr_2_emp","apelli_1_emp", "apelli_2_emp","direc_emp","telf_emp",
-            "tp_de_cargo","tp_de_turno"};
-
-            modelo.setColumnIdentifiers(columns);
-            for(Class_empleado au:empleado){
-                String[]renglon={Integer.toString(au.getCod_emp()),au.getCed_emp(),
-                        au.getNbr_1_emp(),au.getNbr_2_emp(),au.getApelli_1_emp(),
-                        au.getApelli_2_emp(),au.getDirec_emp(),au.getTel_emp(),
-                        au.getTp_de_cargo(),
-                        Integer.toString (au.getTp_de_turno())};
-                modelo.addRow(renglon);
-            }
-            jTable_empleado.setModel(modelo);
+            jComboBox1.addItem(new Class_turno(turno.get(i).getTp_de_turno(), turno.get(i).getH_entrada(),
+                    turno.get(i).getH_salida()));
         }
-        
-        public void obtenerturno(){
-            List<Class_turno> turno = new DOAturno().obtenerDatos();
+        int id = jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).getTp_de_turno();
 
-            DefaultTableModel modelo = new DefaultTableModel();
+        jTextField_tp_de_turno.setText("" + id);
+    }
 
-            String [] columns = {"tp_de_turno","h_entrada","h_salida"};
+    public void obtenerDatos() {
+        List<Class_empleado> empleado = new DAOempleado().obtenerDatos();
 
-            modelo.setColumnIdentifiers(columns);
+        DefaultTableModel modelo = new DefaultTableModel();
 
-            for(Class_turno au: turno){
-             String [] renglon={Integer.toString (au.getTp_de_turno()),
-               au.getH_entrada().toString(), 
-               au.getH_salida().toString()};
-             modelo.addRow(renglon);
-            }
-            jTable_turno.setModel(modelo); 
-      }
-    
-    public void actualizarempleado(){
-        int cod=Integer.parseInt(this.jTextField_cod_emp.getText());
-        String ced=this.jTextField_ced_emp.getText();
-        String nbr1=this.jTextField_nbr_1_emp.getText();
-        String nbr2=this.jTextField_nbr_2_emp.getText();
-        String ape1=this.jTextField_apelli_1_emp.getText();
-        String ape2=this.jTextField_apelli_2_emp.getText();
-        String direc=this.jTextField_direc_emp.getText();
-        String telf=this.jTextField_telf_emp.getText();
-        String tp_c=this.jTextField_tp_de_cargo.getText();
-        int tp_t=Integer.parseInt (this.jTextField_tp_de_turno.getText());
-        
-        DAOempleado doa=new DAOempleado();
-        int res=doa.Actualizar(cod, ced, nbr1, nbr2, ape1, ape2, direc, telf, tp_c, tp_t);
-        if(res==1){
+        String[] columns =
+        {
+            "cod_emp", "ced_emp", "nbr_1_emp",
+            "nbr_2_emp", "apelli_1_emp", "apelli_2_emp", "direc_emp", "telf_emp",
+            "tp_de_cargo", "tp_de_turno"
+        };
+
+        modelo.setColumnIdentifiers(columns);
+        for (Class_empleado au : empleado)
+        {
+            String[] renglon =
+            {
+                Integer.toString(au.getCod_emp()), au.getCed_emp(),
+                au.getNbr_1_emp(), au.getNbr_2_emp(), au.getApelli_1_emp(),
+                au.getApelli_2_emp(), au.getDirec_emp(), au.getTel_emp(),
+                au.getTp_de_cargo(),
+                Integer.toString(au.getTp_de_turno())
+            };
+            modelo.addRow(renglon);
+        }
+        jTable_empleado.setModel(modelo);
+    }
+
+    public void obtenerturno() {
+        List<Class_turno> turno = new DOAturno().obtenerDatos();
+
+        DefaultTableModel modelo = new DefaultTableModel();
+
+        String[] columns =
+        {
+            "tp_de_turno", "h_entrada", "h_salida"
+        };
+
+        modelo.setColumnIdentifiers(columns);
+
+        for (Class_turno au : turno)
+        {
+            String[] renglon =
+            {
+                Integer.toString(au.getTp_de_turno()),
+                au.getH_entrada().toString(),
+                au.getH_salida().toString()
+            };
+            modelo.addRow(renglon);
+        }
+        jTable_turno.setModel(modelo);
+    }
+
+    public void actualizarempleado() {
+        int cod = Integer.parseInt(this.jTextField_cod_emp.getText());
+        String ced = this.jTextField_ced_emp.getText();
+        String nbr1 = this.jTextField_nbr_1_emp.getText();
+        String nbr2 = this.jTextField_nbr_2_emp.getText();
+        String ape1 = this.jTextField_apelli_1_emp.getText();
+        String ape2 = this.jTextField_apelli_2_emp.getText();
+        String direc = this.jTextField_direc_emp.getText();
+        String telf = this.jTextField_telf_emp.getText();
+        String tp_c = this.jTextField_tp_de_cargo.getText();
+        int tp_t = Integer.parseInt(this.jTextField_tp_de_turno.getText());
+
+        DAOempleado doa = new DAOempleado();
+        int res = doa.Actualizar(cod, ced, nbr1, nbr2, ape1, ape2, direc, telf, tp_c, tp_t);
+        if (res == 1)
+        {
             JOptionPane.showMessageDialog(rootpane, "¡Empleado actualizado!");
-        }
-        else{
+        } else
+        {
             JOptionPane.showMessageDialog(rootpane, "¡Ocurrio un ERROR!");
-            
+
         }
-        
-       }
-    public void actualizarturno(){
-       int tp_de_turno=Integer.parseInt (this.jTextField_tp_de_turno.getText());
-       Time h_entrada=Time.valueOf(this.jTextField_h_entrada.getText());
-       Time h_salida=Time.valueOf(this.jTextField_h_salida.getText());
-       
-       DOAturno doa = new DOAturno();
-       int res =doa.Actualizar(tp_de_turno, h_entrada, h_salida);
-        if(res==1){
+
+    }
+
+    public void actualizarturno() {
+        int tp_de_turno = Integer.parseInt(this.jTextField_tp_de_turno.getText());
+        Time h_entrada = Time.valueOf(this.jTextField_h_entrada.getText());
+        Time h_salida = Time.valueOf(this.jTextField_h_salida.getText());
+
+        DOAturno doa = new DOAturno();
+        int res = doa.Actualizar(tp_de_turno, h_entrada, h_salida);
+        if (res == 1)
+        {
             JOptionPane.showMessageDialog(rootpane, "¡Empleado actualizado!");
-        }
-        else{
+        } else
+        {
             JOptionPane.showMessageDialog(rootpane, "¡Ocurrio un ERROR!");
-            
+
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -158,6 +187,7 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         jLabel14 = new javax.swing.JLabel();
         jTextField_h_salida = new javax.swing.JTextField();
         jTextField_tp_de_turno = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -545,6 +575,12 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         jTextField_tp_de_turno.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_tp_de_turno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -558,11 +594,16 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
                             .addComponent(jTextField_h_entrada, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField_tp_de_turno, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
-                        .addComponent(jLabel11)))
+                        .addComponent(jLabel11))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel14))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -575,13 +616,15 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
                 .addComponent(jTextField_tp_de_turno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_h_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField_h_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(jTextField_h_salida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
 
         getContentPane().add(jPanel4);
@@ -591,64 +634,66 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_agregar_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregar_empActionPerformed
-       String cod=jTextField_cod_emp.getText();
-       String ced=jTextField_ced_emp.getText();
-       String nbr1=jTextField_nbr_1_emp.getText();
-       String nbr2=jTextField_nbr_2_emp.getText();
-       String ape1=jTextField_apelli_1_emp.getText();
-       String ape2=jTextField_apelli_2_emp.getText();
-       String direc=jTextField_direc_emp.getText();
-       String telf=jTextField_telf_emp.getText();
-       String tp_c=jTextField_tp_de_cargo.getText();
-      
-       
-            int fila2=this.jTable_turno.getSelectedRow();  
-            jTextField_tp_de_turno.setText((String)this.jTable_turno.getValueAt(fila2,0).toString());
-                java.sql.Time h_e=Time.valueOf((String)this.jTable_turno.getValueAt(fila2,1).toString());
-                java.sql.Time h_s=Time.valueOf((String)this.jTable_turno.getValueAt(fila2,2).toString());
-                jTextField_h_entrada.setText(String.valueOf(h_e));
-                jTextField_h_salida.setText(String.valueOf(h_s));
-               
-                
-                 String tp_t=jTextField_tp_de_turno.getText();
-     
-       if(cod.contentEquals("")||ced.contentEquals("")||nbr1.contentEquals("")
-              || nbr2.contentEquals("")||ape1.contentEquals("") || ape2.contentEquals("") || direc.contentEquals("")
-                || telf.contentEquals("") || tp_c.contentEquals("") || tp_t.contentEquals("")||fila2==-1){
-        JOptionPane.showMessageDialog(rootpane,
-        "Por favor llene todo los campos y seleccione un registro de la tabla turnos"
-                + "si no chinguese");
- 
-   }else{
-        
-   try{
-       int cod_e=Integer.parseInt(cod);
-       int tp_tu=Integer.parseInt(tp_t);
-       
-         
-      Class_empleado au=new DAOempleado().Insertar(cod_e, ced, nbr1, nbr2, ape1, ape2, direc, telf, tp_c, tp_tu);
-      JOptionPane.showMessageDialog(rootpane, "Registro agregado");
-  }catch (Exception e){
-      e.printStackTrace();
-      JOptionPane.showMessageDialog(rootpane, "No se agrego el registro"); 
-  }  
-  
-  }
-      obtenerDatos();
-      limpiarCampos();
+        String cod = jTextField_cod_emp.getText();
+        String ced = jTextField_ced_emp.getText();
+        String nbr1 = jTextField_nbr_1_emp.getText();
+        String nbr2 = jTextField_nbr_2_emp.getText();
+        String ape1 = jTextField_apelli_1_emp.getText();
+        String ape2 = jTextField_apelli_2_emp.getText();
+        String direc = jTextField_direc_emp.getText();
+        String telf = jTextField_telf_emp.getText();
+        String tp_c = jTextField_tp_de_cargo.getText();
+
+        int fila2 = this.jTable_turno.getSelectedRow();
+        jTextField_tp_de_turno.setText((String) this.jTable_turno.getValueAt(fila2, 0).toString());
+        java.sql.Time h_e = Time.valueOf((String) this.jTable_turno.getValueAt(fila2, 1).toString());
+        java.sql.Time h_s = Time.valueOf((String) this.jTable_turno.getValueAt(fila2, 2).toString());
+        jTextField_h_entrada.setText(String.valueOf(h_e));
+        jTextField_h_salida.setText(String.valueOf(h_s));
+
+        String tp_t = jTextField_tp_de_turno.getText();
+
+        if (cod.contentEquals("") || ced.contentEquals("") || nbr1.contentEquals("")
+                || nbr2.contentEquals("") || ape1.contentEquals("") || ape2.contentEquals("") || direc.contentEquals("")
+                || telf.contentEquals("") || tp_c.contentEquals("") || tp_t.contentEquals("") || fila2 == -1)
+        {
+            JOptionPane.showMessageDialog(rootpane,
+                    "Por favor llene todo los campos y seleccione un registro de la tabla turnos"
+                    + "si no chinguese");
+
+        } else
+        {
+
+            try
+            {
+                int cod_e = Integer.parseInt(cod);
+                int tp_tu = Integer.parseInt(tp_t);
+
+                Class_empleado au = new DAOempleado().Insertar(cod_e, ced, nbr1, nbr2, ape1, ape2, direc, telf, tp_c, tp_tu);
+                JOptionPane.showMessageDialog(rootpane, "Registro agregado");
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(rootpane, "No se agrego el registro");
+            }
+
+        }
+        obtenerDatos();
+        limpiarCampos();
     }//GEN-LAST:event_jButton_agregar_empActionPerformed
 
     private void jButton_eliminar_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminar_empActionPerformed
-        int fila=this.jTable_empleado.getSelectedRow();
-        if(fila==-1){
+        int fila = this.jTable_empleado.getSelectedRow();
+        if (fila == -1)
+        {
             JOptionPane.showMessageDialog(rootpane, "Selecione el registro de la tabla");
-        }
-        else{
-            int cod=Integer.parseInt((String)this.jTable_empleado.getValueAt(fila, 0).toString());
-            DAOempleado dao=new DAOempleado();
+        } else
+        {
+            int cod = Integer.parseInt((String) this.jTable_empleado.getValueAt(fila, 0).toString());
+            DAOempleado dao = new DAOempleado();
             dao.Eliminar(cod);
             obtenerDatos();
-        
+
         }
     }//GEN-LAST:event_jButton_eliminar_empActionPerformed
 
@@ -663,59 +708,61 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_actualizar_empActionPerformed
 
     private void jButton_editar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editar_empleadoActionPerformed
-       jTextField_cod_emp.setEnabled(false);
-       jTextField_tp_de_turno.setEnabled(false);
-      int fila=this.jTable_empleado.getSelectedRow();
-      int fila2=this.jTable_turno.getSelectedRow();
-      if((fila==-1)||(fila2==-1)){
-      
-          JOptionPane.showMessageDialog(rootpane, "Seleccione un registro de la tabla empleado y uno de turnos");
-      }
-      else{ 
-          try{
-              int cod=Integer.parseInt((String)this.jTable_empleado.getValueAt(fila, 0).toString());
-              String ced=(String)this.jTable_empleado.getValueAt(fila,1);
-              String nbr1=(String)this.jTable_empleado.getValueAt(fila,2);
-              String nbr2=(String)this.jTable_empleado.getValueAt(fila,3);
-              String ape1=(String)this.jTable_empleado.getValueAt(fila,4);
-              String ape2=(String)this.jTable_empleado.getValueAt(fila,5);
-              String direc=(String)this.jTable_empleado.getValueAt(fila,6);
-              String telf=(String)this.jTable_empleado.getValueAt(fila,7);
-              String tp_c=(String)this.jTable_empleado.getValueAt(fila,8);
-              int tp_t=Integer.parseInt((String)this.jTable_empleado.getValueAt(fila,9));
-              
-             
-              
-              jTextField_cod_emp.setText(""+cod);
-              jTextField_ced_emp.setText(ced);
-              jTextField_nbr_1_emp.setText(nbr1);
-              jTextField_nbr_2_emp.setText(nbr2);
-              jTextField_apelli_1_emp.setText(ape1);
-              jTextField_apelli_2_emp.setText(ape2);
-              jTextField_direc_emp.setText(direc);
-              jTextField_telf_emp.setText(telf);
-              jTextField_tp_de_cargo.setText(tp_c);
-              jTextField_tp_de_turno.setText(Integer.toString(tp_t));
-              
-              //Turnos
-              if(tp_t==1){
-                   //Turnos
-                java.sql.Time h_e=Time.valueOf((String)this.jTable_turno.getValueAt(0,1).toString());
-                java.sql.Time h_s=Time.valueOf((String)this.jTable_turno.getValueAt(0,2).toString());
-                jTextField_h_entrada.setText(String.valueOf(h_e));
-                jTextField_h_salida.setText(String.valueOf(h_s));
-              }else{
-                java.sql.Time h_e=Time.valueOf((String)this.jTable_turno.getValueAt(1,1).toString());
-                java.sql.Time h_s=Time.valueOf((String)this.jTable_turno.getValueAt(1,2).toString());
-                jTextField_h_entrada.setText(String.valueOf(h_e));
-                jTextField_h_salida.setText(String.valueOf(h_s));
-              }
-             
-              
-          }catch(Exception e){
-              e.printStackTrace();
-          }
-      }
+        jTextField_cod_emp.setEnabled(false);
+        jTextField_tp_de_turno.setEnabled(false);
+        int fila = this.jTable_empleado.getSelectedRow();
+        int fila2 = this.jTable_turno.getSelectedRow();
+        if ((fila == -1) || (fila2 == -1))
+        {
+
+            JOptionPane.showMessageDialog(rootpane, "Seleccione un registro de la tabla empleado y uno de turnos");
+        } else
+        {
+            try
+            {
+                int cod = Integer.parseInt((String) this.jTable_empleado.getValueAt(fila, 0).toString());
+                String ced = (String) this.jTable_empleado.getValueAt(fila, 1);
+                String nbr1 = (String) this.jTable_empleado.getValueAt(fila, 2);
+                String nbr2 = (String) this.jTable_empleado.getValueAt(fila, 3);
+                String ape1 = (String) this.jTable_empleado.getValueAt(fila, 4);
+                String ape2 = (String) this.jTable_empleado.getValueAt(fila, 5);
+                String direc = (String) this.jTable_empleado.getValueAt(fila, 6);
+                String telf = (String) this.jTable_empleado.getValueAt(fila, 7);
+                String tp_c = (String) this.jTable_empleado.getValueAt(fila, 8);
+                int tp_t = Integer.parseInt((String) this.jTable_empleado.getValueAt(fila, 9));
+
+                jTextField_cod_emp.setText("" + cod);
+                jTextField_ced_emp.setText(ced);
+                jTextField_nbr_1_emp.setText(nbr1);
+                jTextField_nbr_2_emp.setText(nbr2);
+                jTextField_apelli_1_emp.setText(ape1);
+                jTextField_apelli_2_emp.setText(ape2);
+                jTextField_direc_emp.setText(direc);
+                jTextField_telf_emp.setText(telf);
+                jTextField_tp_de_cargo.setText(tp_c);
+                jTextField_tp_de_turno.setText(Integer.toString(tp_t));
+
+                //Turnos
+                if (tp_t == 1)
+                {
+                    //Turnos
+                    java.sql.Time h_e = Time.valueOf((String) this.jTable_turno.getValueAt(0, 1).toString());
+                    java.sql.Time h_s = Time.valueOf((String) this.jTable_turno.getValueAt(0, 2).toString());
+                    jTextField_h_entrada.setText(String.valueOf(h_e));
+                    jTextField_h_salida.setText(String.valueOf(h_s));
+                } else
+                {
+                    java.sql.Time h_e = Time.valueOf((String) this.jTable_turno.getValueAt(1, 1).toString());
+                    java.sql.Time h_s = Time.valueOf((String) this.jTable_turno.getValueAt(1, 2).toString());
+                    jTextField_h_entrada.setText(String.valueOf(h_e));
+                    jTextField_h_salida.setText(String.valueOf(h_s));
+                }
+
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jButton_editar_empleadoActionPerformed
 
     private void jTable_empleadoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable_empleadoAncestorAdded
@@ -726,6 +773,12 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable_turnoAncestorAdded
 
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        int id = jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).getTp_de_turno();
+
+        jTextField_tp_de_turno.setText("" + id);
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_actualizar_emp;
@@ -733,6 +786,7 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton_buscar_emp;
     private javax.swing.JButton jButton_editar_empleado;
     private javax.swing.JButton jButton_eliminar_emp;
+    private javax.swing.JComboBox<Class_turno> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

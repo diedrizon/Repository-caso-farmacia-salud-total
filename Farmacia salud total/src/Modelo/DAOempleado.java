@@ -81,7 +81,6 @@ return null;
     return new DataBase().Actualizar(transaccion);
 }
 
-   
     }
     
 

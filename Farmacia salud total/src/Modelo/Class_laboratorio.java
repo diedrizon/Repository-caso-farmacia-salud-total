@@ -55,9 +55,5 @@ public class Class_laboratorio {
 
     public void setTelf_lab(String telf_lab) {
         this.telf_lab = telf_lab;
-    }
-    
-   
-   
-    
+    }  
 }
