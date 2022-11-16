@@ -9,28 +9,26 @@ import java.util.*;
 
 public class DAOventas {
     
-    public Class_ventas Insertar(int n_factura, float monto_vt , float cant_vt, java.sql.Date fh_vt,
+    public Class_ventas Insertar(int n_factura, float monto_vt ,java.sql.Date fh_vt,
             int cod_emp,String ced_cli){
         String transaccion = "INSERT INTO ventas VALUES('"
         + n_factura + "', '"
         + monto_vt + "', '"
-        + cant_vt + "', '"
         + fh_vt + "','"
         + cod_emp + "','"
         + ced_cli + "')"; 
         
         
     if (new DataBase().Actualizar(transaccion) > 0){
-    return new Class_ventas(n_factura,monto_vt,cant_vt,fh_vt,cod_emp,ced_cli );
+    return new Class_ventas(n_factura,monto_vt,fh_vt,cod_emp,ced_cli );
 }
 return null;
 }
-     public int Actualizar(int n_factura,float monto_vt,float cant_vt, 
+     public int Actualizar(int n_factura,float monto_vt,
         java.sql.Date fh_vt, int cod_emp, String ced_cli){
     
     String transaccion = "UPDATE ventas SET monto_vt='"
-        + monto_vt + "', cant_vt='"
-        + cant_vt + "', fh_vt='"
+        + monto_vt + "', fh_vt='"
         + fh_vt + "',cod_emp='"
         + cod_emp + "',ced_cli='"
         + ced_cli + "' WHERE n_factura="
@@ -48,7 +46,6 @@ return null;
         Class_ventas aut = new Class_ventas 
          ((int) registro.get("n_factura"),
           (Float.parseFloat( registro.get("monto_vt").toString())),
-          (Float.parseFloat(registro.get("cant_vt").toString())),
           (java.sql.Date) registro.get("fh_vt"),
           (int) registro.get("cod_emp"),
           (String) registro.get("ced_cli"));

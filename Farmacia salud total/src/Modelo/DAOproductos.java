@@ -11,7 +11,7 @@ public class DAOproductos {
 
     
     
-    public Class_productos Insertar(int cod_prod, String nbr_prod, float prec_cp, float prec_vt, String existe_prod ,String lab_prod ,String dcrip_prod, java.sql.Date fh_venc){
+    public Class_productos Insertar(int cod_prod, String nbr_prod, float prec_cp, float prec_vt, float existe_prod ,String dcrip_prod, java.sql.Date fh_venc){
         
         String transaccion = "INSERT INTO productos VALUES('"
                 + cod_prod + "', '"
@@ -19,25 +19,23 @@ public class DAOproductos {
                 + prec_cp +  "', '"
                 + prec_vt +  "', '" 
                 + existe_prod + "', '"
-                + lab_prod + "', '" 
                 + dcrip_prod + "', '" 
                 + fh_venc +  "')"; 
         if (new DataBase().Actualizar(transaccion) > 0){
-            return new Class_productos(cod_prod,nbr_prod,prec_cp, prec_vt,existe_prod, lab_prod,dcrip_prod,fh_venc );
+            return new Class_productos(cod_prod,nbr_prod,prec_cp, prec_vt,existe_prod,dcrip_prod,fh_venc );
         }
         return null;
     }
 
     
 public int Actualizar(int cod_prod,String nbr_prod, float prec_cp,
-        float prec_vt, String existe_prod, String lab_prod ,String dcrip_prod, java.sql.Date fh_venc){
+        float prec_vt, float existe_prod, String dcrip_prod, java.sql.Date fh_venc){
     
     String transaccion = "UPDATE productos SET nbr_prod='"
         + nbr_prod + "', prec_cp='"
         + prec_cp + "', prec_vt='"
         + prec_vt + "', existe_prod='"
-        + existe_prod + "', lab_prod='" 
-        + lab_prod + "', dcrip_prod='"    
+        + existe_prod + "', dcrip_prod='"     
         + dcrip_prod + "', fh_venc='"
         + fh_venc +  "' WHERE cod_prod="
         + cod_prod;
@@ -55,8 +53,7 @@ public List obtenerDatos(){
           (String) registro.get("nbr_prod"),
           (float) (double) registro.get("prec_cp"),
           (float) (double) registro.get("prec_vt"),
-          (String) registro.get("existe_prod"),
-          (String) registro.get("lab_prod"),
+          (float) (double) registro.get("existe_prod"),
           (String) registro.get("dcrip_prod"),
           (java.sql.Date) registro.get("fh_venc"));
         productos.add(aut);

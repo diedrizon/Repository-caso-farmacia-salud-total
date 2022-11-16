@@ -93,10 +93,9 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
         jTextField_telf_cli = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton_agregar_cli = new javax.swing.JButton();
-        jButton_buscar_cli = new javax.swing.JButton();
         jButton_actualizar_cli = new javax.swing.JButton();
         jButton_editar = new javax.swing.JButton();
-        jTextField_buscar = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_cliente = new javax.swing.JTable();
@@ -208,16 +207,15 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
                                     .addComponent(jTextField_direc_cli)
                                     .addComponent(jTextField_telf_cli)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
+                        .addGap(134, 134, 134)
                         .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(10, 10, 10)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4))
@@ -262,17 +260,6 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton_buscar_cli.setBackground(new java.awt.Color(204, 204, 255));
-        jButton_buscar_cli.setForeground(new java.awt.Color(0, 0, 0));
-        jButton_buscar_cli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon buscar.png"))); // NOI18N
-        jButton_buscar_cli.setText("Buscar");
-        jButton_buscar_cli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
-        jButton_buscar_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_buscar_cliActionPerformed(evt);
-            }
-        });
-
         jButton_actualizar_cli.setBackground(new java.awt.Color(204, 204, 255));
         jButton_actualizar_cli.setForeground(new java.awt.Color(0, 0, 0));
         jButton_actualizar_cli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon actualizar.png"))); // NOI18N
@@ -295,46 +282,41 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextField_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField_buscar.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel9.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel9.setText("Transacciones");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jButton_agregar_cli)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_editar)
+                .addGap(40, 40, 40))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton_buscar_cli)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton_agregar_cli)
-                                .addGap(62, 62, 62)
-                                .addComponent(jButton_editar))))
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel9))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
+                        .addGap(118, 118, 118)
                         .addComponent(jButton_actualizar_cli)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_buscar_cli)
-                    .addComponent(jTextField_buscar))
-                .addGap(31, 31, 31)
+                .addComponent(jLabel9)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_agregar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_editar))
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_actualizar_cli)
-                .addGap(35, 35, 35))
+                .addGap(74, 74, 74))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
@@ -442,10 +424,6 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
         limpiarCampos();
     }//GEN-LAST:event_jButton_actualizar_cliActionPerformed
 
-    private void jButton_buscar_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar_cliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_buscar_cliActionPerformed
-
     private void jButton_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editarActionPerformed
      jTextField_ced_cli.setEnabled(false);
       int fila=this.jTable_cliente.getSelectedRow();
@@ -484,7 +462,6 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_actualizar_cli;
     private javax.swing.JButton jButton_agregar_cli;
-    private javax.swing.JButton jButton_buscar_cli;
     private javax.swing.JButton jButton_editar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -494,6 +471,7 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -503,7 +481,6 @@ public class JInternalFrame_clientes extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable_cliente;
     private javax.swing.JTextField jTextField_apelli_1_cli;
     private javax.swing.JTextField jTextField_apelli_2_cli;
-    private javax.swing.JTextField jTextField_buscar;
     private javax.swing.JTextField jTextField_ced_cli;
     private javax.swing.JTextField jTextField_direc_cli;
     private javax.swing.JTextField jTextField_nbr_1_cli;

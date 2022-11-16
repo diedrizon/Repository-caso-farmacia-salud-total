@@ -171,9 +171,8 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
         jButton_agregar_emp = new javax.swing.JButton();
         jButton_eliminar_emp = new javax.swing.JButton();
         jButton_actualizar_emp = new javax.swing.JButton();
-        jButton_buscar_emp = new javax.swing.JButton();
         jButton_editar_empleado = new javax.swing.JButton();
-        jTextField_buscar = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_empleado = new javax.swing.JTable();
@@ -399,17 +398,6 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton_buscar_emp.setBackground(new java.awt.Color(204, 204, 255));
-        jButton_buscar_emp.setForeground(new java.awt.Color(0, 0, 0));
-        jButton_buscar_emp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon buscar.png"))); // NOI18N
-        jButton_buscar_emp.setText("Buscar");
-        jButton_buscar_emp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
-        jButton_buscar_emp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_buscar_empActionPerformed(evt);
-            }
-        });
-
         jButton_editar_empleado.setBackground(new java.awt.Color(204, 204, 255));
         jButton_editar_empleado.setForeground(new java.awt.Color(0, 0, 0));
         jButton_editar_empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon Editar.png"))); // NOI18N
@@ -421,46 +409,45 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextField_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField_buscar.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField_buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel15.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel15.setText("Transacciones");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton_buscar_emp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton_editar_empleado)
-                            .addComponent(jButton_agregar_emp))
-                        .addGap(79, 79, 79)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton_actualizar_emp)
-                            .addComponent(jButton_eliminar_emp)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(jLabel15)
+                        .addGap(55, 55, 55))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton_agregar_emp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_eliminar_emp)
+                        .addGap(37, 37, 37))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton_editar_empleado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_actualizar_emp)
+                        .addGap(24, 24, 24))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addComponent(jLabel15)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_buscar_emp)
-                    .addComponent(jTextField_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_eliminar_emp)
-                    .addComponent(jButton_agregar_emp))
-                .addGap(58, 58, 58)
+                    .addComponent(jButton_agregar_emp)
+                    .addComponent(jButton_eliminar_emp))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_editar_empleado)
                     .addComponent(jButton_actualizar_emp))
-                .addGap(65, 65, 65))
+                .addGap(123, 123, 123))
         );
 
         getContentPane().add(jPanel2);
@@ -593,17 +580,18 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
                             .addComponent(jTextField_h_salida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(jTextField_h_entrada, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField_tp_de_turno, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextField_tp_de_turno, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jLabel11))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel14))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel14)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -612,19 +600,19 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
                 .addComponent(jLabel11)
                 .addGap(23, 23, 23)
                 .addComponent(jLabel12)
-                .addGap(12, 12, 12)
-                .addComponent(jTextField_tp_de_turno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_tp_de_turno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jLabel14)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField_h_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField_h_salida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel4);
@@ -683,23 +671,19 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_agregar_empActionPerformed
 
     private void jButton_eliminar_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminar_empActionPerformed
-        int fila = this.jTable_empleado.getSelectedRow();
+        int fila = this.jTable_turno.getSelectedRow();
         if (fila == -1)
         {
             JOptionPane.showMessageDialog(rootpane, "Selecione el registro de la tabla");
         } else
         {
-            int cod = Integer.parseInt((String) this.jTable_empleado.getValueAt(fila, 0).toString());
-            DAOempleado dao = new DAOempleado();
+            int cod = Integer.parseInt((String) this.jTable_turno.getValueAt(fila, 0).toString());
+            DOAturno dao = new DOAturno();
             dao.Eliminar(cod);
-            obtenerDatos();
+            obtenerturno();
 
         }
     }//GEN-LAST:event_jButton_eliminar_empActionPerformed
-
-    private void jButton_buscar_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar_empActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_buscar_empActionPerformed
 
     private void jButton_actualizar_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_actualizar_empActionPerformed
         actualizarempleado();
@@ -783,7 +767,6 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_actualizar_emp;
     private javax.swing.JButton jButton_agregar_emp;
-    private javax.swing.JButton jButton_buscar_emp;
     private javax.swing.JButton jButton_editar_empleado;
     private javax.swing.JButton jButton_eliminar_emp;
     private javax.swing.JComboBox<Class_turno> jComboBox1;
@@ -793,6 +776,7 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -811,7 +795,6 @@ public class JInternalFrame_empleado extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable_turno;
     private javax.swing.JTextField jTextField_apelli_1_emp;
     private javax.swing.JTextField jTextField_apelli_2_emp;
-    private javax.swing.JTextField jTextField_buscar;
     private javax.swing.JTextField jTextField_ced_emp;
     private javax.swing.JTextField jTextField_cod_emp;
     private javax.swing.JTextField jTextField_direc_emp;

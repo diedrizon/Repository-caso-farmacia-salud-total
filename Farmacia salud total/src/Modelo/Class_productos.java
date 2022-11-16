@@ -11,18 +11,16 @@ public class Class_productos {
     private String nbr_prod;
     private float prec_cp;
     private float prec_vt;
-    private String existe_prod;
-    private String lab_prod;
+    private float existe_prod;
     private String dcrip_prod;
     private Date fh_venc;
 
-    public Class_productos(int cod_prod, String nbr_prod, float prec_cp, float prec_vt, String existe_prod, String lab_prod, String dcrip_prod, Date fh_venc) {
+    public Class_productos(int cod_prod, String nbr_prod, float prec_cp, float prec_vt, float existe_prod, String dcrip_prod, Date fh_venc) {
         this.cod_prod = cod_prod;
         this.nbr_prod = nbr_prod;
         this.prec_cp = prec_cp;
         this.prec_vt = prec_vt;
         this.existe_prod = existe_prod;
-        this.lab_prod = lab_prod;
         this.dcrip_prod = dcrip_prod;
         this.fh_venc = fh_venc;
     }
@@ -59,20 +57,12 @@ public class Class_productos {
         this.prec_vt = prec_vt;
     }
 
-    public String getExiste_prod() {
+    public float getExiste_prod() {
         return existe_prod;
     }
 
-    public void setExiste_prod(String existe_prod) {
+    public void setExiste_prod(float existe_prod) {
         this.existe_prod = existe_prod;
-    }
-
-    public String getLab_prod() {
-        return lab_prod;
-    }
-
-    public void setLab_prod(String lab_prod) {
-        this.lab_prod = lab_prod;
     }
 
     public String getDcrip_prod() {

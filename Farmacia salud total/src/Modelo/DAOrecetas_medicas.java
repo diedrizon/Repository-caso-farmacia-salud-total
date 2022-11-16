@@ -11,7 +11,7 @@ import java.util.Map;
 public class DAOrecetas_medicas {
 
    
-     public Class_recetas_medicas Insertar(int cod_rece_mdc, int cod_medico , String clinica, String telf_medico,
+     public Class_recetas_medicas Insertar(int cod_rece_mdc, String cod_medico , String clinica, String telf_medico,
              java.sql.Date fh_indicaciones,String ced_cli){
         String transaccion = "INSERT INTO recetas_medicas VALUES('"
         + cod_rece_mdc + "', '"
@@ -27,7 +27,7 @@ public class DAOrecetas_medicas {
 }
 return null;
 }
-     public int Actualizar(int cod_rece_mdc,int cod_medico,String clinica, 
+     public int Actualizar(int cod_rece_mdc,String cod_medico,String clinica, 
         String telf_medico, java.sql.Date fh_indicaciones, String ced_cli){
     
     String transaccion = "UPDATE recetas_medicas SET cod_medico='"
@@ -48,7 +48,7 @@ return null;
     for(Map registro : registros) {
         Class_recetas_medicas aut = new Class_recetas_medicas
           ((int) registro.get("cod_rece_mdc"),
-          (int) registro.get("cod_medico"),
+          (String) registro.get("cod_medico"),
           (String) registro.get("clinica"),
           (String) registro.get("telf_medico"),
           (java.sql.Date)registro.get("fh_indicaciones"),

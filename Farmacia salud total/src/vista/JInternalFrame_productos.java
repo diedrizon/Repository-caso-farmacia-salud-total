@@ -27,7 +27,6 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         jTextField_prec_cp.setText("");
         jTextField_prec_vt.setText("");
         jTextField_existe_prod.setText("");
-        jTextField_lab_prod.setText("");
         jTextField_dcrip_prod.setText("");
         jTextField_fh_venc.setText(""); 
     }
@@ -37,7 +36,7 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
        
         DefaultTableModel modelo=new DefaultTableModel();
         String[] columns={"cod_prod","nbr_prod","prec_cp",
-        "prec_vt","existe_prod","lab_prod","dcrip_prod","fh_venc"};
+        "prec_vt","existe_prod","dcrip_prod","fh_venc"};
         
         modelo.setColumnIdentifiers(columns);
         for(Class_productos au:productos){
@@ -45,8 +44,7 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
                    au.getNbr_prod(),
                    Float.toString(au.getPrec_cp()),
                    Float.toString(au.getPrec_vt()),
-                   au.getExiste_prod(),
-                   au.getLab_prod(),
+                   Float.toString( au.getExiste_prod()),
                    au.getDcrip_prod(),
                    au.getFh_venc().toString()};  
             modelo.addRow(renglon);
@@ -59,13 +57,12 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         String nbr_p=this.jTextField_nbr_prod.getText();
         float prec_c=Float.parseFloat(this.jTextField_prec_cp.getText());
         float prec_v=Float.parseFloat(this.jTextField_prec_vt.getText());
-        String exite_p=this.jTextField_existe_prod.getText();
-        String lab=this.jTextField_lab_prod.getText();
+        float exite_p=Float.parseFloat(this.jTextField_existe_prod.getText());
         String dcrip=this.jTextField_dcrip_prod.getText();
         Date fh=Date.valueOf(this.jTextField_fh_venc.getText());
         
         DAOproductos doa=new DAOproductos();
-        int res=doa.Actualizar(cod, nbr_p, prec_c, prec_v, exite_p, lab, dcrip, fh);
+        int res=doa.Actualizar(cod, nbr_p, prec_c, prec_v, exite_p,dcrip, fh);
         if(res==1){
             JOptionPane.showMessageDialog(rootpane, "¡producto actualizado!");
         }
@@ -85,7 +82,6 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTextField_prec_cp = new javax.swing.JTextField();
@@ -94,14 +90,12 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         jTextField_prec_vt = new javax.swing.JTextField();
         jTextField_fh_venc = new javax.swing.JTextField();
         jTextField_dcrip_prod = new javax.swing.JTextField();
-        jTextField_lab_prod = new javax.swing.JTextField();
         jTextField_existe_prod = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton_actualizar_productos = new javax.swing.JButton();
-        jButton_buscar_prod = new javax.swing.JButton();
         jButton_editar_compra = new javax.swing.JButton();
-        jTextField_buscar_compra = new javax.swing.JTextField();
         jButton_agregar_prod = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -136,10 +130,6 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 255));
         jLabel6.setText("Existencia producto");
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel7.setText("Laboratorio");
-
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 255));
         jLabel8.setText("Descripción");
@@ -172,10 +162,6 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         jTextField_dcrip_prod.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_dcrip_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextField_lab_prod.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField_lab_prod.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField_lab_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         jTextField_existe_prod.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_existe_prod.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_existe_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -204,10 +190,8 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7)
                             .addComponent(jLabel9)
-                            .addComponent(jTextField_lab_prod, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(jTextField_dcrip_prod)
+                            .addComponent(jTextField_dcrip_prod, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(jTextField_fh_venc)
                             .addComponent(jTextField_existe_prod)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -229,28 +213,24 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
                     .addComponent(jTextField_cod_prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_lab_prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_nbr_prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_nbr_prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_dcrip_prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_dcrip_prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_prec_cp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_prec_cp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_fh_venc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel5))
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_fh_venc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_prec_vt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTextField_prec_vt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -269,17 +249,6 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton_buscar_prod.setBackground(new java.awt.Color(204, 204, 255));
-        jButton_buscar_prod.setForeground(new java.awt.Color(0, 0, 0));
-        jButton_buscar_prod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon buscar.png"))); // NOI18N
-        jButton_buscar_prod.setText("Buscar");
-        jButton_buscar_prod.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
-        jButton_buscar_prod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_buscar_prodActionPerformed(evt);
-            }
-        });
-
         jButton_editar_compra.setBackground(new java.awt.Color(204, 204, 255));
         jButton_editar_compra.setForeground(new java.awt.Color(0, 0, 0));
         jButton_editar_compra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon Editar.png"))); // NOI18N
@@ -290,10 +259,6 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
                 jButton_editar_compraActionPerformed(evt);
             }
         });
-
-        jTextField_buscar_compra.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField_buscar_compra.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField_buscar_compra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton_agregar_prod.setBackground(new java.awt.Color(204, 204, 255));
         jButton_agregar_prod.setForeground(new java.awt.Color(0, 0, 0));
@@ -306,42 +271,40 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel7.setText("Transacciones");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 60, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(46, 46, 46))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton_buscar_prod)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_buscar_compra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton_agregar_prod)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_editar_compra)))
+                .addComponent(jButton_agregar_prod)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_editar_compra)
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_actualizar_productos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(84, 84, 84))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_buscar_prod)
-                    .addComponent(jTextField_buscar_compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_agregar_prod)
                     .addComponent(jButton_editar_compra))
-                .addGap(45, 45, 45)
+                .addGap(36, 36, 36)
                 .addComponent(jButton_actualizar_productos)
-                .addGap(39, 39, 39))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -363,15 +326,15 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
         jTable_productos.setForeground(new java.awt.Color(0, 0, 0));
         jTable_productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "código", "Nombre", "Precio compra", "precio venta", "Existencia producto", "Laboratorio", "Descripcion", "Fecha vencimiento"
+                "código", "Nombre", "Precio compra", "precio venta", "Existencia producto", "Descripcion", "Fecha vencimiento"
             }
         ));
         jTable_productos.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -434,7 +397,6 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
        String prec_c=jTextField_prec_cp.getText();
        String prec_v=jTextField_prec_vt.getText();
        String existe_p=jTextField_existe_prod.getText();
-       String lab_p=jTextField_lab_prod.getText();
        String dcrip_p=jTextField_dcrip_prod.getText();
        String fh_v=jTextField_fh_venc.getText();
        
@@ -442,7 +404,6 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
                ||existe_p.contentEquals("")
                ||prec_c.contentEquals("")
                ||prec_v.contentEquals("")
-               ||lab_p.contentEquals("")
                ||dcrip_p.contentEquals("")
                ||fh_v.contentEquals("")){
         JOptionPane.showMessageDialog(rootpane,
@@ -454,9 +415,10 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
       int cod_p=Integer.parseInt(cod_prod);
       float prec_compra=Float.parseFloat(prec_c);
       float prec_venta=Float.parseFloat(prec_v);
+      float existe=Float.parseFloat(existe_p);
       Date fech=Date.valueOf(fh_v);
       
-      Class_productos au=new DAOproductos().Insertar(cod_p, nbr_p, prec_compra, prec_venta, existe_p, lab_p, dcrip_p, fech);
+      Class_productos au=new DAOproductos().Insertar(cod_p, nbr_p, prec_compra, prec_venta, existe, dcrip_p, fech);
       JOptionPane.showMessageDialog(rootpane, "Registro agregado");
       
   }catch (Exception e){
@@ -468,10 +430,6 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
       limpiarCampos();
     
     }//GEN-LAST:event_jButton_agregar_prodActionPerformed
-
-    private void jButton_buscar_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar_prodActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_buscar_prodActionPerformed
 
     private void jButton_actualizar_productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_actualizar_productosActionPerformed
         actualizarproductos();
@@ -492,17 +450,15 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
               String nbr=(String)this.jTable_productos.getValueAt(fila,1);
               float prec_c=Float.parseFloat((String)this.jTable_productos.getValueAt(fila,2));
               float prec_v=Float.parseFloat((String)this.jTable_productos.getValueAt(fila,3));
-              String existe_p=(String)this.jTable_productos.getValueAt(fila,4);
-              String lab=(String)this.jTable_productos.getValueAt(fila,5);
-              String dcrip=(String)this.jTable_productos.getValueAt(fila,6);
-              Date fh=Date.valueOf((String)this.jTable_productos.getValueAt(fila,7));
+              float existe_p=Float.parseFloat((String)this.jTable_productos.getValueAt(fila,4));
+              String dcrip=(String)this.jTable_productos.getValueAt(fila,5);
+              Date fh=Date.valueOf((String)this.jTable_productos.getValueAt(fila,6));
              
               jTextField_cod_prod.setText(""+cod);
               jTextField_nbr_prod.setText(nbr);
               jTextField_prec_cp.setText(Float.toString(prec_c));
               jTextField_prec_vt.setText(Float.toString(prec_v));
-              jTextField_existe_prod.setText(existe_p);
-              jTextField_lab_prod.setText(lab);
+              jTextField_existe_prod.setText(Float.toString(existe_p));
               jTextField_dcrip_prod.setText(dcrip);
               jTextField_fh_venc.setText(String.valueOf(fh));
           }catch(NumberFormatException e){
@@ -519,7 +475,6 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_actualizar_productos;
     private javax.swing.JButton jButton_agregar_prod;
-    private javax.swing.JButton jButton_buscar_prod;
     private javax.swing.JButton jButton_editar_compra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -536,12 +491,10 @@ public class JInternalFrame_productos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_productos;
-    private javax.swing.JTextField jTextField_buscar_compra;
     private javax.swing.JTextField jTextField_cod_prod;
     private javax.swing.JTextField jTextField_dcrip_prod;
     private javax.swing.JTextField jTextField_existe_prod;
     private javax.swing.JTextField jTextField_fh_venc;
-    private javax.swing.JTextField jTextField_lab_prod;
     private javax.swing.JTextField jTextField_nbr_prod;
     private javax.swing.JTextField jTextField_prec_cp;
     private javax.swing.JTextField jTextField_prec_vt;

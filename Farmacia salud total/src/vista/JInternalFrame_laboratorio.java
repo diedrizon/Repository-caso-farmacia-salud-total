@@ -76,9 +76,8 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton_agregar_lab = new javax.swing.JButton();
         jButton_actualizar_laboratorio = new javax.swing.JButton();
-        jButton_buscar_lab = new javax.swing.JButton();
         jButton_editar_laboratorio = new javax.swing.JButton();
-        jTextField_buscar_lab = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_laboratorio = new javax.swing.JTable();
@@ -176,7 +175,7 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField_telf_lab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_nbr_lab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
@@ -205,17 +204,6 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton_buscar_lab.setBackground(new java.awt.Color(204, 204, 255));
-        jButton_buscar_lab.setForeground(new java.awt.Color(0, 0, 0));
-        jButton_buscar_lab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon buscar.png"))); // NOI18N
-        jButton_buscar_lab.setText("Buscar");
-        jButton_buscar_lab.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
-        jButton_buscar_lab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_buscar_labActionPerformed(evt);
-            }
-        });
-
         jButton_editar_laboratorio.setBackground(new java.awt.Color(204, 204, 255));
         jButton_editar_laboratorio.setForeground(new java.awt.Color(0, 0, 0));
         jButton_editar_laboratorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icon Editar.png"))); // NOI18N
@@ -227,44 +215,42 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextField_buscar_lab.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField_buscar_lab.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField_buscar_lab.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel6.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel6.setText("Transacciones");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(59, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(53, 53, 53))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jButton_agregar_lab)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_editar_laboratorio))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton_buscar_lab)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_buscar_lab, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jButton_actualizar_laboratorio)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jButton_actualizar_laboratorio)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_buscar_lab)
-                    .addComponent(jTextField_buscar_lab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_agregar_lab)
                     .addComponent(jButton_editar_laboratorio))
-                .addGap(28, 28, 28)
+                .addGap(34, 34, 34)
                 .addComponent(jButton_actualizar_laboratorio)
-                .addGap(52, 52, 52))
+                .addGap(30, 30, 30))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
@@ -325,7 +311,7 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -362,10 +348,6 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
       obtenerDatos();
       limpiarCampos();
     }//GEN-LAST:event_jButton_agregar_labActionPerformed
-
-    private void jButton_buscar_labActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscar_labActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_buscar_labActionPerformed
 
     private void jButton_actualizar_laboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_actualizar_laboratorioActionPerformed
       actualizarlaboratorio();
@@ -405,19 +387,18 @@ public class JInternalFrame_laboratorio extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_actualizar_laboratorio;
     private javax.swing.JButton jButton_agregar_lab;
-    private javax.swing.JButton jButton_buscar_lab;
     private javax.swing.JButton jButton_editar_laboratorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_laboratorio;
-    private javax.swing.JTextField jTextField_buscar_lab;
     private javax.swing.JTextField jTextField_cod_lab;
     private javax.swing.JTextField jTextField_direc_lab;
     private javax.swing.JTextField jTextField_nbr_lab;

@@ -8,30 +8,22 @@ import java.util.*;
 
 public class DAOcompra {
     
-    public Class_compra Insertar(int cod_cp, String vrd_p, float ctd_p,
-        float ctd_t,java.sql.Date fh_cp,int cod_p, int cod_lab){
+    public Class_compra Insertar(int cod_cp, String vrd_p,java.sql.Date fh_cp, int cod_lab){
 String transacciones = "INSERT INTO compra VALUES('"
         + cod_cp + "','"
         + vrd_p + "','"
-        + ctd_p + "', '"
-        + ctd_t + "', '" 
         + fh_cp + "','" 
-        + cod_p + "','"
         + cod_lab + "')"; 
 //Llamar al metodo Actualizar ubicado en DateBase.java
 if (new DataBase().Actualizar(transacciones) > 0){
-    return new Class_compra (cod_cp, vrd_p, ctd_p, ctd_t,fh_cp, cod_p,cod_lab);
+    return new Class_compra (cod_cp, vrd_p,fh_cp,cod_lab);
 }
 return null;
 }
-    public int Actualizar (int cod_cp, String vrd_p, float ctd_p,
-        float ctd_t,java.sql.Date fh_cp, int cod_p,int cod_lab){
+    public int Actualizar (int cod_cp, String vrd_p,java.sql.Date fh_cp,int cod_lab){
         
       String transaccion = "UPDATE compra SET vrd_p='"
-        + vrd_p + "', ctd_p='"
-        + ctd_p + "', ctd_t='"
-        + ctd_t + "', cod_p='" 
-        + cod_p + "', fh_cp='"  
+        + vrd_p + "', fh_cp='"
         + fh_cp + "', cod_lab='"
         + cod_lab + "' WHERE cod_cp="
         + cod_cp;
@@ -46,10 +38,7 @@ return null;
             Class_compra aut = new Class_compra 
               ((int) registro.get("cod_cp"),
               (String) registro.get("vrd_p"),
-              (float) (double) registro.get("ctd_p"),
-              (float) (double) registro.get("ctd_t"),
               (java.sql.Date) registro.get("fh_cp"),
-              (int) registro.get("cod_p"),
               (int) registro.get("cod_lab"));
             compras.add( aut);
         }

@@ -9,28 +9,19 @@ import java.util.Map;
 public class Class_compra {
     private int cod_cp;
     private String vrd_p;
-    private float ctd_p;
-    private float ctd_t;
     private java.sql.Date fh_cp;
-    private int cod_p;
     private int cod_lab;
 
-    public Class_compra(int cod_cp, String vrd_p, float ctd_p, float ctd_t, Date fh_cp, int cod_p, int cod_lab) {
+    public Class_compra(int cod_cp, String vrd_p, Date fh_cp,  int cod_lab) {
         this.cod_cp = cod_cp;
         this.vrd_p = vrd_p;
-        this.ctd_p = ctd_p;
-        this.ctd_t = ctd_t;
         this.fh_cp = fh_cp;
-        this.cod_p = cod_p;
         this.cod_lab = cod_lab;
     }
 
-    public Class_compra(String vrd_p, float ctd_p, float ctd_t, Date fh_cp, int cod_p, int cod_lab) {
+    public Class_compra(String vrd_p, Date fh_cp, int cod_lab) {
         this.vrd_p = vrd_p;
-        this.ctd_p = ctd_p;
-        this.ctd_t = ctd_t;
         this.fh_cp = fh_cp;
-        this.cod_p = cod_p;
         this.cod_lab = cod_lab;
     }
 
@@ -49,30 +40,6 @@ public class Class_compra {
 
     public void setVrd_p(String vrd_p) {
         this.vrd_p = vrd_p;
-    }
-
-    public float getCtd_p() {
-        return ctd_p;
-    }
-
-    public void setCtd_p(float ctd_p) {
-        this.ctd_p = ctd_p;
-    }
-
-    public float getCtd_t() {
-        return ctd_t;
-    }
-
-    public void setCtd_t(float ctd_t) {
-        this.ctd_t = ctd_t;
-    }
-
-    public int getCod_p() {
-        return cod_p;
-    }
-
-    public void setCod_p(int cod_p) {
-        this.cod_p = cod_p;
     }
 
     public java.sql.Date  getFh_cp() {

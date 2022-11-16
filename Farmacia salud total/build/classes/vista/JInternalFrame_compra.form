@@ -62,7 +62,6 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,33 +77,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jTextField_ctd_p" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField_cod_compra" alignment="0" pref="150" max="32767" attributes="0"/>
-                                  <Component id="jTextField_vrd_p" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField_ctd_t" min="-2" pref="150" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="62" max="32767" attributes="0"/>
+                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextField_cod_compra" alignment="0" pref="150" max="32767" attributes="0"/>
+                          <Component id="jTextField_vrd_p" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jTextField_cod_lab" min="-2" pref="150" max="-2" attributes="0"/>
@@ -112,17 +95,18 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField_fh_compra" alignment="0" pref="150" max="32767" attributes="0"/>
-                                  <Component id="jTextField_cod_prod" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField_fh_compra" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="30" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -143,28 +127,14 @@
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jTextField_vrd_p" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField_cod_prod" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextField_ctd_p" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextField_cod_lab" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField_ctd_t" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -203,28 +173,6 @@
             <Property name="text" type="java.lang.String" value="Variedad producto"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Cantidad producto"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Cantidad total"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -234,32 +182,6 @@
               <Color blue="ff" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Fecha compra"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel7">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo producto "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField_ctd_p">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder/>
-              </Border>
-            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_vrd_p">
@@ -292,37 +214,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField_cod_prod">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder/>
-              </Border>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="jTextField_fh_compra">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder/>
-              </Border>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField_ctd_t">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -379,46 +271,40 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton_buscar_compra" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField_buscar_compra" min="-2" pref="150" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           <Component id="jButton_agregar_compra" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jButton_editar_compra" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                          <Component id="jButton_actualizar_compra" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                  <Component id="jButton_actualizar_compra" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton_buscar_compra" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField_buscar_compra" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="49" max="32767" attributes="0"/>
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton_agregar_compra" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton_editar_compra" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="jButton_actualizar_compra" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -444,28 +330,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_agregar_compraActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton_buscar_compra">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="cc" red="cc" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagen/icon buscar.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Buscar"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder thickness="0"/>
-              </Border>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_buscar_compraActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton_actualizar_compra">
@@ -512,19 +376,15 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_editar_compraActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField_buscar_compra">
+        <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="24" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="ff" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder/>
-              </Border>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Transacciones"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -542,15 +402,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
+              <Component id="jScrollPane2" alignment="1" pref="675" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="jScrollPane2" min="-2" pref="116" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jScrollPane2" min="-2" pref="116" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -571,13 +428,10 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="7" rowCount="6">
+                  <Table columnCount="4" rowCount="6">
                     <Column editable="true" title="cod_cp" type="java.lang.Object"/>
                     <Column editable="true" title="vrd_p" type="java.lang.Object"/>
-                    <Column editable="true" title="ctd_p" type="java.lang.Object"/>
-                    <Column editable="true" title="ctd_t" type="java.lang.Object"/>
                     <Column editable="true" title="fh_cp" type="java.lang.Object"/>
-                    <Column editable="true" title="cod_p" type="java.lang.Object"/>
                     <Column editable="true" title="cod_lab" type="java.lang.Object"/>
                   </Table>
                 </Property>

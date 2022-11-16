@@ -8,14 +8,14 @@ import java.sql.Date;
 
 public class Class_recetas_medicas {
     private int cod_rece_mdc;
-    private int cod_medico;
+    private String cod_medico;
     private String clinica;
     private String telf_medico;
     private String ced_cli;
     private java.sql.Date fh_indicaciones;
     
 
-    public Class_recetas_medicas(int cod_rece_mdc, int cod_medico, String clinica, String telf_medico, java.sql.Date fh_indicaciones, String ced_cli) {
+    public Class_recetas_medicas(int cod_rece_mdc, String cod_medico, String clinica, String telf_medico, java.sql.Date fh_indicaciones, String ced_cli) {
         this.cod_rece_mdc = cod_rece_mdc;
         this.cod_medico = cod_medico;
         this.clinica = clinica;
@@ -34,11 +34,11 @@ public class Class_recetas_medicas {
         this.cod_rece_mdc = cod_rece_mdc;
     }
 
-    public int getCod_medico() {
+    public String getCod_medico() {
         return cod_medico;
     }
 
-    public void setCod_medico(int cod_medico) {
+    public void setCod_medico(String cod_medico) {
         this.cod_medico = cod_medico;
     }
 
